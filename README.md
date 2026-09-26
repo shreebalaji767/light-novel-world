@@ -1,34 +1,32 @@
 # Light Novel World
 
-Complete Python/Flask procedural light-novel website.
+A responsive long-form procedural light novel generator built with Python Flask.
 
-- Every HTTP refresh/request generates a new novel.
-- UI and layout are generated from the novel's genre and visual identity.
-- HTML5 + CSS3 + vanilla JavaScript frontend.
-- No database.
-- No localStorage, sessionStorage, IndexedDB, cookies, login, or signup.
-- Responsive mobile/tablet/desktop design.
-- Render Blueprint included.
-- GitHub-ready.
+## Features
 
-The design uses a modern component-oriented visual language inspired by the requested UI Watermelon aesthetic, implemented directly in CSS/HTML rather than requiring React.
+- 600 chapters per generated novel
+- Multiple long-form story arcs
+- Multiple genres
+- Deterministic chapter generation from a novel seed
+- New novel on every new request
+- No database
+- No localStorage
+- No sessionStorage
+- No login
+- Responsive desktop/tablet/mobile reader
+- Chapter navigation
+- Arc navigation
+- Random chapter
+- Keyboard navigation
+- Dynamic visual theme
+- Render deployment
+- GitHub deployment ready
 
-## Run
+## Requirements
+
+Python 3.12+
+
+## Local installation
 
 ```bash
 python -m venv .venv
-# Windows
-.venv\\Scripts\\activate
-# macOS/Linux
-source .venv/bin/activate
-pip install -r requirements.txt
-python app.py
-```
-
-Visit http://127.0.0.1:10000
-
-## Deploy
-
-Push to GitHub, then create a Render Blueprint from `render.yaml`.
-
-Because the novel must be generated on every request, Render should run this as a Python web service, not a static-site service.
