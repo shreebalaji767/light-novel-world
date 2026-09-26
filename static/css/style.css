@@ -1,10 +1,13 @@
 /* =========================================================
-   RESPONSIVE CARD VISIBILITY FIX
-   Light Novel World
+   LIGHT NOVEL WORLD
+   COMPLETE RESPONSIVE CSS
    CSS ONLY — NO HTML / ID / CLASS CHANGES
    ========================================================= */
 
-/* ---------- GLOBAL RESPONSIVE SAFETY ---------- */
+
+/* =========================================================
+   GLOBAL SAFETY
+   ========================================================= */
 
 *,
 *::before,
@@ -22,6 +25,7 @@ body {
     width: 100%;
     max-width: 100%;
     min-width: 0;
+    margin: 0;
     overflow-x: hidden;
 }
 
@@ -29,6 +33,7 @@ img,
 svg,
 video,
 canvas {
+    display: block;
     max-width: 100%;
     height: auto;
 }
@@ -43,338 +48,7 @@ select {
 
 
 /* =========================================================
-   COMMON CARD RULES
-   ========================================================= */
-
-.info-card,
-.character-card,
-.cover-card,
-.final-card,
-.chapter-sidebar,
-.reader,
-.reader-content {
-    min-width: 0;
-    max-width: 100%;
-}
-
-/*
-   IMPORTANT:
-   Never allow card content to be clipped on small screens.
-*/
-.info-card,
-.character-card,
-.final-card {
-    height: auto;
-    min-height: 0;
-    overflow: visible;
-}
-
-
-/* =========================================================
-   INFORMATION CARDS
-   ========================================================= */
-
-.info-grid {
-    width: 100%;
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
-}
-
-.info-card {
-    width: 100%;
-    min-width: 0;
-    height: auto;
-    min-height: 180px;
-    padding: clamp(1rem, 2vw, 1.5rem);
-    overflow-wrap: anywhere;
-    word-break: normal;
-}
-
-.info-card h1,
-.info-card h2,
-.info-card h3,
-.info-card h4,
-.info-card h5,
-.info-card h6,
-.info-card p,
-.info-card span,
-.info-card strong,
-.info-card small {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-}
-
-.info-card p {
-    line-height: 1.7;
-}
-
-
-/* =========================================================
-   CHARACTER CARDS
-   ========================================================= */
-
-.character-grid {
-    width: 100%;
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
-}
-
-.character-card {
-    width: 100%;
-    min-width: 0;
-    height: auto;
-    min-height: 0;
-    padding: clamp(1rem, 2vw, 1.5rem);
-    overflow: visible;
-    overflow-wrap: anywhere;
-}
-
-.character-card > * {
-    min-width: 0;
-    max-width: 100%;
-}
-
-.character-avatar {
-    flex-shrink: 0;
-    max-width: 100%;
-}
-
-.character-info {
-    min-width: 0;
-    width: 100%;
-    max-width: 100%;
-    overflow: visible;
-}
-
-.character-info h1,
-.character-info h2,
-.character-info h3,
-.character-info h4,
-.character-info h5,
-.character-info h6,
-.character-info p,
-.character-info span {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-}
-
-.character-role,
-.character-power {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    white-space: normal;
-}
-
-
-/* =========================================================
-   FINAL CARD / END SECTION
-   ========================================================= */
-
-.final-section {
-    width: 100%;
-    max-width: 100%;
-    overflow: visible;
-}
-
-.final-card {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    min-height: 0;
-    padding: clamp(1.25rem, 4vw, 3rem);
-    overflow: visible;
-    overflow-wrap: anywhere;
-}
-
-.final-card h1,
-.final-card h2,
-.final-card h3,
-.final-card h4,
-.final-card p,
-.final-card span {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-}
-
-
-/* =========================================================
-   COVER CARD
-   ========================================================= */
-
-.cover-card {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    min-height: 0;
-    overflow: visible;
-}
-
-.cover-top,
-.cover-bottom {
-    min-width: 0;
-    max-width: 100%;
-    overflow-wrap: anywhere;
-}
-
-.cover-symbol {
-    max-width: 100%;
-}
-
-
-/* =========================================================
-   HERO
-   ========================================================= */
-
-.hero {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    overflow: visible;
-}
-
-.hero-content {
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-}
-
-.hero h1 {
-    max-width: 100%;
-    min-width: 0;
-    font-size: clamp(2.4rem, 7vw, 6rem);
-    line-height: 0.98;
-    overflow-wrap: anywhere;
-    word-break: normal;
-}
-
-.hero-description {
-    width: 100%;
-    max-width: 760px;
-    overflow-wrap: anywhere;
-}
-
-.hero-actions {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-}
-
-.hero-meta {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    overflow-wrap: anywhere;
-}
-
-
-/* =========================================================
-   SECTIONS
-   ========================================================= */
-
-.section {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    overflow: visible;
-}
-
-.section-heading {
-    min-width: 0;
-    max-width: 100%;
-}
-
-.section-heading h1,
-.section-heading h2,
-.section-heading h3,
-.section-heading p {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-}
-
-
-/* =========================================================
-   READER
-   ========================================================= */
-
-.reader-section {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    overflow: visible;
-}
-
-.reader-layout {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-}
-
-.reader {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    height: auto;
-    overflow: visible;
-}
-
-.reader-content {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    overflow-wrap: anywhere;
-}
-
-.chapter-body {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    overflow-wrap: anywhere;
-    word-break: normal;
-}
-
-.chapter-body p {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-}
-
-.chapter-footer {
-    width: 100%;
-    max-width: 100%;
-    overflow-wrap: anywhere;
-}
-
-
-/* =========================================================
-   CHAPTER SIDEBAR
-   ========================================================= */
-
-.chapter-sidebar {
-    min-width: 0;
-    max-width: 100%;
-    height: auto;
-    overflow: visible;
-}
-
-.chapter-list {
-    min-width: 0;
-    max-width: 100%;
-}
-
-.arc-button {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    overflow-wrap: anywhere;
-    white-space: normal;
-}
-
-
-/* =========================================================
-   NAVIGATION
+   TOPBAR
    ========================================================= */
 
 .topbar {
@@ -392,9 +66,11 @@ select {
 
 .brand-text {
     overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .desktop-nav {
+    min-width: 0;
     overflow-x: auto;
     scrollbar-width: thin;
 }
@@ -407,12 +83,626 @@ select {
 .button {
     min-width: 0;
     max-width: 100%;
+
     white-space: normal;
+
     overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .button.large {
     min-width: 0;
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+.hero-content > * {
+    min-width: 0;
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   HERO TEXT
+   ========================================================= */
+
+.eyebrow {
+    max-width: 100%;
+
+    font-size: clamp(
+        0.58rem,
+        1.2vw,
+        0.85rem
+    );
+
+    line-height: 1.4;
+
+    letter-spacing: clamp(
+        0.055em,
+        0.2vw,
+        0.16em
+    );
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.hero h1 {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    margin: 0;
+
+    font-size: clamp(
+        2rem,
+        7vw,
+        6rem
+    );
+
+    line-height: 0.96;
+
+    letter-spacing: clamp(
+        -0.05em,
+        -0.25vw,
+        -0.02em
+    );
+
+    overflow-wrap: anywhere;
+    word-break: normal;
+    hyphens: auto;
+
+    text-wrap: balance;
+}
+
+.hero-description {
+    width: 100%;
+    max-width: min(760px, 100%);
+    min-width: 0;
+
+    font-size: clamp(
+        0.9rem,
+        1.8vw,
+        1.2rem
+    );
+
+    line-height: 1.65;
+
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.hero-actions {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    overflow: hidden;
+}
+
+.hero-actions .button {
+    min-width: 0;
+    max-width: 100%;
+
+    overflow-wrap: anywhere;
+}
+
+.hero-meta {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px 16px;
+
+    overflow: hidden;
+}
+
+.hero-meta > * {
+    min-width: 0;
+    max-width: 100%;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   BOOK ART AREA
+   ========================================================= */
+
+.hero-art {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    overflow: visible;
+}
+
+
+/* =========================================================
+   BOOK COVER
+   IMPORTANT:
+   DO NOT USE width:100%
+   ========================================================= */
+
+.cover-card {
+    position: relative;
+
+    /*
+       Desktop maximum size.
+       It will shrink automatically when needed.
+    */
+    width: min(100%, 420px);
+
+    max-width: 420px;
+    min-width: 0;
+
+    /*
+       Real book-cover proportions.
+    */
+    aspect-ratio: 2 / 3;
+
+    height: auto;
+
+    /*
+       Prevent flex/grid from stretching it.
+    */
+    flex: 0 1 420px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   BOOK COVER TOP
+   ========================================================= */
+
+.cover-top {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    flex: 1 1 auto;
+
+    padding: clamp(
+        18px,
+        3vw,
+        34px
+    );
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   BOOK COVER BOTTOM
+   ========================================================= */
+
+.cover-bottom {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    flex: 0 0 auto;
+
+    padding: clamp(
+        14px,
+        2.5vw,
+        28px
+    );
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   BOOK COVER CONTENT
+   ========================================================= */
+
+.cover-top *,
+.cover-bottom * {
+    min-width: 0;
+    max-width: 100%;
+
+    box-sizing: border-box;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   BOOK SYMBOL
+   ========================================================= */
+
+.cover-symbol {
+    max-width: 100%;
+    min-width: 0;
+
+    font-size: clamp(
+        1.5rem,
+        5vw,
+        4rem
+    );
+
+    line-height: 1;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   BOOK DECORATION
+   ========================================================= */
+
+.orb {
+    pointer-events: none;
+    max-width: 100%;
+}
+
+.orb-one,
+.orb-two {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   INFORMATION CARDS
+   ========================================================= */
+
+.info-grid {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 1.25rem;
+}
+
+.info-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    height: auto !important;
+    min-height: 180px;
+
+    padding: clamp(
+        1rem,
+        2vw,
+        1.5rem
+    );
+
+    overflow: visible !important;
+
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.info-card h1,
+.info-card h2,
+.info-card h3,
+.info-card h4,
+.info-card h5,
+.info-card h6,
+.info-card p,
+.info-card span,
+.info-card strong,
+.info-card small {
+    max-width: 100%;
+    min-width: 0;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+
+    white-space: normal;
+}
+
+.info-card p {
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   CHARACTER CARDS
+   ========================================================= */
+
+.character-grid {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 1.25rem;
+}
+
+.character-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    height: auto !important;
+    min-height: 0;
+
+    padding: clamp(
+        1rem,
+        2vw,
+        1.5rem
+    );
+
+    overflow: visible !important;
+
+    overflow-wrap: anywhere;
+}
+
+.character-card > * {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.character-avatar {
+    flex-shrink: 0;
+
+    max-width: 100%;
+}
+
+.character-info {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    overflow: visible;
+}
+
+.character-info h1,
+.character-info h2,
+.character-info h3,
+.character-info h4,
+.character-info h5,
+.character-info h6,
+.character-info p,
+.character-info span {
+    max-width: 100%;
+    min-width: 0;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.character-role,
+.character-power {
+    max-width: 100%;
+
+    overflow-wrap: anywhere;
+
+    white-space: normal;
+}
+
+
+/* =========================================================
+   FINAL CARD
+   ========================================================= */
+
+.final-section {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    overflow: visible;
+}
+
+.final-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    height: auto !important;
+    min-height: 0;
+
+    padding: clamp(
+        1.25rem,
+        4vw,
+        3rem
+    );
+
+    overflow: visible !important;
+
+    overflow-wrap: anywhere;
+}
+
+.final-card h1,
+.final-card h2,
+.final-card h3,
+.final-card h4,
+.final-card p,
+.final-card span {
+    max-width: 100%;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.section {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    overflow: visible;
+}
+
+.section-heading {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.section-heading h1,
+.section-heading h2,
+.section-heading h3,
+.section-heading p {
+    max-width: 100%;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   READER
+   ========================================================= */
+
+.reader-section {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    overflow: visible;
+}
+
+.reader-layout {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.reader {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    height: auto;
+
+    overflow: visible;
+}
+
+.reader-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    overflow-wrap: anywhere;
+}
+
+.chapter-body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.chapter-body p {
+    max-width: 100%;
+
+    overflow-wrap: anywhere;
+}
+
+.chapter-footer {
+    width: 100%;
+    max-width: 100%;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   CHAPTER SIDEBAR
+   ========================================================= */
+
+.chapter-sidebar {
+    min-width: 0;
+    max-width: 100%;
+
+    height: auto;
+
+    overflow: visible;
+}
+
+.chapter-list {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.arc-button {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
 }
 
 
@@ -423,26 +713,31 @@ select {
 @media (max-width: 1100px) {
 
     .info-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 
     .character-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 
     .reader-layout {
-        grid-template-columns: 240px minmax(0, 1fr);
+        grid-template-columns:
+            240px minmax(0, 1fr);
     }
 
-    .hero {
-        padding-left: clamp(1rem, 4vw, 3rem);
-        padding-right: clamp(1rem, 4vw, 3rem);
+    .cover-card {
+        width: min(100%, 360px);
+        max-width: 360px;
+
+        flex-basis: 360px;
     }
 }
 
 
 /* =========================================================
-   TABLET / LARGE MOBILE
+   SMALL TABLET
    ========================================================= */
 
 @media (max-width: 800px) {
@@ -461,6 +756,7 @@ select {
 
     .chapter-sidebar {
         width: 100%;
+
         margin-bottom: 1rem;
     }
 
@@ -474,21 +770,37 @@ select {
     }
 
     .hero h1 {
-        font-size: clamp(2.25rem, 11vw, 4.5rem);
+        font-size: clamp(
+            2.25rem,
+            11vw,
+            4.5rem
+        );
     }
 
     .hero-description {
-        font-size: clamp(1rem, 2.5vw, 1.15rem);
+        font-size: clamp(
+            1rem,
+            2.5vw,
+            1.15rem
+        );
     }
 
     .hero-actions {
         display: flex;
         flex-wrap: wrap;
+
         gap: 0.75rem;
     }
 
     .hero-actions .button {
         flex: 1 1 180px;
+    }
+
+    .cover-card {
+        width: min(100%, 330px);
+        max-width: 330px;
+
+        flex-basis: 330px;
     }
 }
 
@@ -513,9 +825,20 @@ select {
         padding-right: 1rem;
     }
 
+    .hero-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     .hero h1 {
-        font-size: clamp(2rem, 13vw, 3.5rem);
+        font-size: clamp(
+            2rem,
+            13vw,
+            3.5rem
+        );
+
         line-height: 1;
+
         letter-spacing: -0.03em;
     }
 
@@ -526,18 +849,88 @@ select {
 
     .hero-actions {
         flex-direction: column;
+
         width: 100%;
     }
 
     .hero-actions .button {
         width: 100%;
+
         flex: none;
     }
+
+
+    /* -----------------------------------------------------
+       MOBILE BOOK CARD
+       ----------------------------------------------------- */
+
+    .hero-art {
+        width: 100%;
+        max-width: 100%;
+
+        padding: 0;
+
+        justify-content: center;
+
+        overflow: visible;
+    }
+
+    .cover-card {
+        /*
+           IMPORTANT:
+           Width is based on viewport,
+           NOT parent percentage.
+        */
+        width: min(
+            calc(100vw - 32px),
+            310px
+        );
+
+        max-width: 310px;
+        min-width: 0;
+
+        flex: 0 1 310px;
+
+        aspect-ratio: 2 / 3;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cover-top {
+        padding: clamp(
+            18px,
+            5vw,
+            25px
+        );
+    }
+
+    .cover-bottom {
+        padding: clamp(
+            14px,
+            4vw,
+            21px
+        );
+    }
+
+    .cover-symbol {
+        font-size: clamp(
+            1.5rem,
+            9vw,
+            2.8rem
+        );
+    }
+
+
+    /* -----------------------------------------------------
+       OTHER CARDS
+       ----------------------------------------------------- */
 
     .info-card,
     .character-card,
     .final-card {
         width: 100%;
+
         padding: 1rem;
     }
 
@@ -555,25 +948,28 @@ select {
 
     .chapter-body {
         font-size: 1rem;
+
         line-height: 1.85;
     }
 
     .reader-toolbar {
         flex-wrap: wrap;
+
         height: auto;
+
         gap: 0.5rem;
     }
 
     .reader-position {
         max-width: 100%;
+
         overflow-wrap: anywhere;
     }
 }
 
 
 /* =========================================================
-   VERY SMALL PHONES
-   320px–380px
+   SMALL PHONES
    ========================================================= */
 
 @media (max-width: 380px) {
@@ -589,43 +985,81 @@ select {
     }
 
     .hero h1 {
-        font-size: clamp(1.8rem, 14vw, 2.8rem);
+        font-size: clamp(
+            1.8rem,
+            14vw,
+            2.8rem
+        );
     }
 
     .hero-description {
         font-size: 0.95rem;
     }
 
+
+    /* -----------------------------------------------------
+       SMALL PHONE BOOK
+       ----------------------------------------------------- */
+
+    .cover-card {
+        width: min(
+            calc(100vw - 24px),
+            290px
+        );
+
+        max-width: 290px;
+
+        flex-basis: 290px;
+    }
+
+    .cover-top {
+        padding: 16px;
+    }
+
+    .cover-bottom {
+        padding: 13px 16px;
+    }
+
+
     .info-card,
     .character-card,
     .final-card {
         padding: 0.85rem;
+
         border-radius: 0.75rem;
     }
 
     .button,
     .button.large {
         width: 100%;
+
         min-height: 44px;
     }
 
     .chapter-body {
         font-size: 0.96rem;
+
         line-height: 1.8;
     }
 
     .character-avatar {
         width: min(100%, 90px);
+
         height: auto;
     }
 }
 
 
 /* =========================================================
-   EXTREMELY NARROW DEVICES
+   320px AND BELOW
    ========================================================= */
 
 @media (max-width: 320px) {
+
+    .hero {
+        padding-left: 0.55rem;
+        padding-right: 0.55rem;
+    }
 
     .hero h1 {
         font-size: 1.75rem;
@@ -634,6 +1068,32 @@ select {
     .hero-description {
         font-size: 0.9rem;
     }
+
+
+    /* -----------------------------------------------------
+       TINY BOOK CARD
+       ----------------------------------------------------- */
+
+    .cover-card {
+        width: calc(100vw - 18px);
+
+        max-width: 270px;
+
+        flex-basis: 270px;
+    }
+
+    .cover-top {
+        padding: 13px;
+    }
+
+    .cover-bottom {
+        padding: 11px 13px;
+    }
+
+    .cover-symbol {
+        font-size: 1.45rem;
+    }
+
 
     .info-card,
     .character-card,
@@ -652,7 +1112,52 @@ select {
 
 
 /* =========================================================
-   PREVENT TEXT FROM DISAPPEARING INSIDE FLEX/GRID ITEMS
+   EXTREMELY NARROW — 280px AND BELOW
+   ========================================================= */
+
+@media (max-width: 280px) {
+
+    .hero {
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+
+        line-height: 1.04;
+    }
+
+    .hero-description {
+        font-size: 0.78rem;
+
+        line-height: 1.5;
+    }
+
+    .cover-card {
+        width: calc(100vw - 12px);
+
+        max-width: 260px;
+
+        flex-basis: 260px;
+    }
+
+    .cover-top {
+        padding: 11px;
+    }
+
+    .cover-bottom {
+        padding: 9px 11px;
+    }
+
+    .cover-symbol {
+        font-size: 1.3rem;
+    }
+}
+
+
+/* =========================================================
+   FLEX / GRID MIN-WIDTH PROTECTION
    ========================================================= */
 
 .info-card,
@@ -661,7 +1166,13 @@ select {
 .reader,
 .reader-content,
 .chapter-sidebar,
-.hero-content {
+.hero-content,
+.hero-art,
+.cover-card,
+.cover-top,
+.cover-bottom {
+    min-width: 0;
+
     overflow-wrap: anywhere;
     word-wrap: break-word;
 }
@@ -672,15 +1183,17 @@ select {
 .reader *,
 .reader-content *,
 .chapter-sidebar *,
-.hero-content * {
+.hero-content *,
+.hero-art *,
+.cover-card *,
+.cover-top *,
+.cover-bottom * {
     min-width: 0;
 }
 
 
 /* =========================================================
-   IMPORTANT:
-   If an older rule gives cards fixed heights or hidden
-   overflow, these rules override it.
+   NEVER HIDE CARD TEXT
    ========================================================= */
 
 .info-card,
@@ -688,13 +1201,9 @@ select {
 .final-card {
     height: auto !important;
     max-height: none !important;
+
     overflow: visible !important;
 }
-
-
-/* =========================================================
-   CARD TEXT MUST REMAIN VISIBLE
-   ========================================================= */
 
 .info-card p,
 .info-card span,
@@ -706,7 +1215,39 @@ select {
 .final-card span,
 .final-card div {
     max-height: none;
+
     overflow: visible;
+
     text-overflow: clip;
+
     white-space: normal;
+}
+
+
+/* =========================================================
+   FINAL HORIZONTAL OVERFLOW PROTECTION
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+
+        overflow-x: hidden;
+    }
+
+    .hero,
+    .hero-content,
+    .hero-art,
+    .cover-card,
+    .info-grid,
+    .character-grid,
+    .reader-layout,
+    .reader,
+    .reader-content {
+        min-width: 0;
+        max-width: 100%;
+    }
 }
