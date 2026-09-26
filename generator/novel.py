@@ -11,61 +11,559 @@ from typing import Dict, List
 # CONFIGURATION
 # ============================================================
 
+AUTHOR = "blssnvj21"
+
 CHAPTER_COUNT = 600
 CHAPTER_WORD_COUNT = 800
+
+ARC_COUNT = 15
+CHAPTERS_PER_ARC = CHAPTER_COUNT // ARC_COUNT
 
 
 # ============================================================
 # GENRES
+#
+# Large genre library covering:
+# Fantasy
+# Science Fiction
+# Romance
+# Comedy
+# Parody
+# Slice of Life
+# Mystery
+# Horror
+# Thriller
+# Action
+# Adventure
+# Isekai
+# Reincarnation
+# Regression
+# Cultivation
+# Xianxia
+# Wuxia
+# Xuanhuan
+# Murim
+# LitRPG
+# GameLit
+# System
+# Dungeon
+# Academy
+# School
+# Villainess
+# Otome
+# Harem
+# Reverse Harem
+# Historical
+# Military
+# Sports
+# Mecha
+# Cyberpunk
+# Post-Apocalyptic
+# Supernatural
+# Psychological
+# and many more.
 # ============================================================
 
 GENRES = [
-    "Dark Fantasy",
-    "Epic Fantasy",
+    # --------------------------------------------------------
+    # FANTASY
+    # --------------------------------------------------------
+    "Fantasy",
     "High Fantasy",
+    "Epic Fantasy",
+    "Dark Fantasy",
+    "Low Fantasy",
     "Urban Fantasy",
     "Romantic Fantasy",
-    "Mystery",
-    "Supernatural Mystery",
-    "Science Fiction",
-    "Cyberpunk",
-    "Space Opera",
-    "Post-Apocalyptic",
-    "Steampunk",
-    "Magical Academy",
-    "Martial Arts",
-    "Cultivation",
-    "Adventure",
-    "Thriller",
-    "Psychological Fantasy",
-    "Time Travel",
     "Historical Fantasy",
     "Mythological Fantasy",
-    "Monster Fantasy",
+    "Fairy-Tale Fantasy",
+    "Grimdark Fantasy",
+    "Sword and Sorcery",
+    "Heroic Fantasy",
+    "Magical Realism",
     "Portal Fantasy",
-    "Action Fantasy",
-]
+    "Isekai",
+    "Reverse Isekai",
+    "Reincarnation Fantasy",
+    "Regression Fantasy",
+    "Villainess Fantasy",
+    "Royal Fantasy",
+    "Kingdom Building",
+    "Political Fantasy",
+    "Academy Fantasy",
+    "Magic Academy",
+    "Monster Fantasy",
+    "Beast Taming Fantasy",
+    "Dungeon Fantasy",
+    "Tower Fantasy",
+    "Survival Fantasy",
+    "Travel Fantasy",
+    "Adventure Fantasy",
 
+    # --------------------------------------------------------
+    # EAST ASIAN FANTASY / CULTIVATION
+    # --------------------------------------------------------
+    "Xianxia",
+    "Xuanhuan",
+    "Wuxia",
+    "Qihuan",
+    "Xianhuan",
+    "Cultivation",
+    "Immortal Cultivation",
+    "Demonic Cultivation",
+    "Murim",
+    "Martial Arts",
+    "Eastern Fantasy",
+    "Chinese Historical Fantasy",
+    "Chinese Mythological Fantasy",
+    "Korean Fantasy",
+    "Japanese Fantasy",
 
-SECONDARY_GENRES = [
-    "Adventure",
-    "Mystery",
-    "Romance",
-    "Drama",
+    # --------------------------------------------------------
+    # SCIENCE FICTION
+    # --------------------------------------------------------
+    "Science Fiction",
+    "Hard Science Fiction",
+    "Soft Science Fiction",
+    "Space Opera",
+    "Military Science Fiction",
+    "Cyberpunk",
+    "Post-Cyberpunk",
+    "Solarpunk",
+    "Steampunk",
+    "Dieselpunk",
+    "Biopunk",
+    "Clockpunk",
+    "Nanopunk",
+    "Mecha",
+    "Space Fantasy",
+    "Galactic Empire",
+    "Alien Invasion",
+    "First Contact",
+    "Time Travel",
+    "Time Loop",
+    "Parallel Worlds",
+    "Alternate History",
+    "Dystopian",
+    "Utopian",
+    "Post-Apocalyptic",
+    "Apocalyptic",
+    "Climate Fiction",
+    "Artificial Intelligence",
+    "Virtual Reality",
+    "Simulation Fiction",
+    "Space Survival",
+
+    # --------------------------------------------------------
+    # ACTION / ADVENTURE
+    # --------------------------------------------------------
     "Action",
-    "Thriller",
-    "Supernatural",
-    "Political Intrigue",
-    "Coming of Age",
+    "Adventure",
+    "Action Adventure",
+    "Military",
+    "War",
+    "Battle Fantasy",
+    "Monster Hunting",
+    "Treasure Hunting",
     "Exploration",
+    "Expedition",
     "Survival",
+    "Quest",
+    "Revenge",
+    "Conspiracy",
+    "Espionage",
+    "Heist",
+    "Pirate Adventure",
+    "Road Adventure",
+
+    # --------------------------------------------------------
+    # ROMANCE
+    # --------------------------------------------------------
+    "Romance",
+    "Romantic Comedy",
+    "Slow-Burn Romance",
+    "School Romance",
+    "College Romance",
+    "Fantasy Romance",
+    "Historical Romance",
+    "Royal Romance",
+    "Political Romance",
+    "Tragic Romance",
+    "Forbidden Romance",
+    "First Love",
+    "Second Chance Romance",
+    "Enemies to Lovers",
+    "Friends to Lovers",
+    "Fake Relationship",
+    "Marriage of Convenience",
+    "Harem",
+    "Reverse Harem",
+    "Love Triangle",
+    "Poly Romance",
+
+    # --------------------------------------------------------
+    # COMEDY / PARODY
+    # --------------------------------------------------------
     "Comedy",
+    "Romantic Comedy",
+    "Dark Comedy",
+    "Situational Comedy",
+    "Slapstick Comedy",
+    "Absurdist Comedy",
+    "Deadpan Comedy",
+    "Satirical Comedy",
+    "Parody",
+    "Genre Parody",
+    "Fantasy Parody",
+    "Isekai Parody",
+    "Cultivation Parody",
+    "System Parody",
+    "Academy Parody",
+    "Superhero Parody",
+    "Villain Parody",
+    "Hero Parody",
+    "Reverse Isekai Comedy",
+    "Self-Aware Comedy",
+    "Meta Comedy",
+    "Chaotic Comedy",
+
+    # --------------------------------------------------------
+    # SLICE OF LIFE
+    # --------------------------------------------------------
+    "Slice of Life",
+    "School Life",
+    "High School",
+    "College Life",
+    "Workplace",
+    "Family Drama",
+    "Healing",
+    "Iyashikei",
+    "Daily Life",
+    "Small Town",
+    "Countryside Life",
+    "Restaurant Life",
+    "Cafe Life",
+    "Travel Slice of Life",
+    "Found Family",
+
+    # --------------------------------------------------------
+    # MYSTERY / THRILLER
+    # --------------------------------------------------------
+    "Mystery",
+    "Detective",
+    "Crime",
+    "Crime Thriller",
+    "Psychological Thriller",
+    "Political Thriller",
+    "Conspiracy Thriller",
+    "Techno Thriller",
+    "Legal Thriller",
+    "Espionage Thriller",
+    "Suspense",
+    "Whodunit",
+    "Locked Room Mystery",
+    "Supernatural Mystery",
+    "Historical Mystery",
+    "Occult Mystery",
+    "Urban Mystery",
+
+    # --------------------------------------------------------
+    # HORROR
+    # --------------------------------------------------------
+    "Horror",
+    "Psychological Horror",
+    "Cosmic Horror",
+    "Body Horror",
+    "Gothic Horror",
+    "Supernatural Horror",
+    "Occult Horror",
+    "Monster Horror",
+    "Survival Horror",
+    "Slasher",
+    "Paranormal Horror",
+    "Folk Horror",
+    "Dark Horror",
+    "Apocalyptic Horror",
+    "Existential Horror",
+
+    # --------------------------------------------------------
+    # SUPERNATURAL
+    # --------------------------------------------------------
+    "Supernatural",
+    "Paranormal",
+    "Occult",
+    "Ghost Story",
+    "Demon Fantasy",
+    "Angel Fantasy",
+    "Vampire",
+    "Werewolf",
+    "Spirit World",
+    "Psychic Powers",
+    "Urban Supernatural",
+    "Supernatural Romance",
+
+    # --------------------------------------------------------
+    # PSYCHOLOGICAL
+    # --------------------------------------------------------
+    "Psychological",
+    "Psychological Drama",
+    "Psychological Mystery",
+    "Psychological Fantasy",
+    "Mind Games",
+    "Identity Mystery",
+    "Memory Mystery",
+    "Unreliable Narrator",
+    "Character Study",
+    "Existential Fiction",
+
+    # --------------------------------------------------------
+    # DRAMA
+    # --------------------------------------------------------
+    "Drama",
+    "Character Drama",
+    "Family Drama",
+    "Political Drama",
+    "Historical Drama",
+    "Romantic Drama",
     "Tragedy",
+    "Melodrama",
+    "Coming of Age",
+    "Redemption",
+    "Betrayal Drama",
+    "Revenge Drama",
+
+    # --------------------------------------------------------
+    # GAME / SYSTEM
+    # --------------------------------------------------------
+    "LitRPG",
+    "GameLit",
+    "System",
+    "Leveling System",
+    "Dungeon Core",
+    "Dungeon Master",
+    "Tower Climbing",
+    "Infinite Tower",
+    "Virtual Reality Game",
+    "Death Game",
+    "Battle Royale",
+    "RPG Fantasy",
+    "Strategy Game",
+    "Management System",
+    "Skill Tree",
+    "Status Window",
+    "Quest System",
+
+    # --------------------------------------------------------
+    # SCHOOL / ACADEMY
+    # --------------------------------------------------------
+    "Academy",
+    "Magic Academy",
+    "Military Academy",
+    "Martial Arts Academy",
+    "Monster Academy",
+    "Hero Academy",
+    "Villain Academy",
+    "Supernatural Academy",
+    "Elite School",
+    "School Battle",
+    "School Mystery",
+    "School Comedy",
+    "School Romance",
+
+    # --------------------------------------------------------
+    # CHARACTER-DRIVEN / TROPE
+    # --------------------------------------------------------
+    "Villainess",
+    "Otome Game",
+    "Otome Isekai",
+    "Villain Protagonist",
+    "Antihero",
+    "Anti-Villain",
+    "Overpowered Protagonist",
+    "Weak-to-Strong",
+    "Hidden Power",
+    "Secret Identity",
+    "Reincarnated Protagonist",
+    "Regression",
+    "Time Rewind",
+    "Second Life",
+    "Body Swap",
+    "Gender Bender",
+    "Possession",
+    "Summoning",
+    "Chosen One",
+    "Nobody to Hero",
+    "Rise to Power",
+    "Kingdom Builder",
+    "Merchant Protagonist",
+    "Crafting",
+    "Cooking Fantasy",
+    "Healing Fantasy",
+    "Farming Fantasy",
+    "Monster Protagonist",
+    "Non-Human Protagonist",
+
+    # --------------------------------------------------------
+    # HISTORICAL
+    # --------------------------------------------------------
+    "Historical Fiction",
+    "Historical Adventure",
+    "Historical Romance",
+    "Historical Mystery",
+    "Historical War",
+    "Samurai Fiction",
+    "Ninja Fiction",
+    "Pirate Fiction",
+    "Medieval Fiction",
+    "Ancient Civilization",
+    "Royal Court Drama",
+    "Period Drama",
+
+    # --------------------------------------------------------
+    # SPORTS
+    # --------------------------------------------------------
+    "Sports",
+    "Football",
+    "Soccer",
+    "Basketball",
+    "Baseball",
+    "Boxing",
+    "Martial Arts Sports",
+    "Tennis",
+    "Racing",
+    "Motorsports",
+    "Esports",
+    "Competitive Gaming",
+
+    # --------------------------------------------------------
+    # MECHA / MILITARY / TECHNOLOGY
+    # --------------------------------------------------------
+    "Mecha",
+    "Military Mecha",
+    "Robot War",
+    "Battle Mecha",
+    "Military Science Fiction",
+    "Artificial Intelligence",
+    "Android",
+    "Cyborg",
+    "Space Military",
+    "Future War",
+    "Tech Fantasy",
+
+    # --------------------------------------------------------
+    # SOCIAL / POLITICAL
+    # --------------------------------------------------------
+    "Political Intrigue",
+    "Court Intrigue",
+    "Royal Politics",
+    "Kingdom Politics",
+    "Faction Conflict",
+    "Revolution",
+    "Civil War",
+    "Empire Building",
+    "Diplomacy",
+    "Economic Fiction",
+    "Merchant Drama",
+    "Social Commentary",
+
+    # --------------------------------------------------------
+    # EXPERIMENTAL / META
+    # --------------------------------------------------------
+    "Meta Fiction",
+    "Self-Aware Fiction",
+    "Fourth-Wall Comedy",
+    "Narrative Experiment",
+    "Nonlinear Fiction",
+    "Multiple Protagonists",
+    "Anthology Fantasy",
+    "Time-Fragmented Story",
+    "Dream Fiction",
+    "Surreal Fiction",
 ]
 
 
 # ============================================================
-# WORLDS / PLACES
+# SECONDARY GENRES
+# ============================================================
+
+SECONDARY_GENRES = [
+    "Adventure",
+    "Action",
+    "Romance",
+    "Comedy",
+    "Parody",
+    "Satire",
+    "Drama",
+    "Mystery",
+    "Thriller",
+    "Horror",
+    "Psychological",
+    "Slice of Life",
+    "Coming of Age",
+    "School Life",
+    "Academy",
+    "Supernatural",
+    "Fantasy",
+    "Science Fiction",
+    "Historical",
+    "Political Intrigue",
+    "Survival",
+    "Exploration",
+    "War",
+    "Revenge",
+    "Tragedy",
+    "Healing",
+    "Found Family",
+    "Cultivation",
+    "Martial Arts",
+    "Isekai",
+    "Reincarnation",
+    "Regression",
+    "System",
+    "LitRPG",
+    "Dungeon",
+    "Kingdom Building",
+    "Villainess",
+    "Harem",
+    "Reverse Harem",
+]
+
+
+# ============================================================
+# TONES
+# ============================================================
+
+TONES = [
+    "lighthearted",
+    "comedic",
+    "chaotic",
+    "wholesome",
+    "heartwarming",
+    "dramatic",
+    "melancholic",
+    "mysterious",
+    "dark",
+    "grim",
+    "hopeful",
+    "romantic",
+    "epic",
+    "cinematic",
+    "fast-paced",
+    "slow-burn",
+    "psychological",
+    "intense",
+    "satirical",
+    "absurd",
+    "serious",
+    "adventurous",
+    "bittersweet",
+    "philosophical",
+]
+
+
+# ============================================================
+# WORLDS
 # ============================================================
 
 PLACES = [
@@ -99,8 +597,31 @@ PLACES = [
     "Cindral",
     "Eryndor",
     "Marovelle",
+    "Hanamori",
+    "Kurohana",
+    "Seiran",
+    "Akatsuki",
+    "Yukishiro",
+    "Hoshizora",
+    "Gyeonghwa",
+    "Mujin",
+    "Haeryeong",
+    "Baekcheon",
+    "Cheonhwa",
+    "Jinhwa",
+    "Xianyu",
+    "Yunhai",
+    "Longwei",
+    "Qinglan",
+    "Tianluo",
+    "Jadefall",
+    "Hongyuan",
 ]
 
+
+# ============================================================
+# FACTIONS
+# ============================================================
 
 FACTIONS = [
     "The Obsidian Covenant",
@@ -121,8 +642,24 @@ FACTIONS = [
     "The Ashen Brotherhood",
     "The Azure Legion",
     "The Nameless Court",
+    "The Laughing Swordsmen",
+    "The Bureau of Extremely Serious Problems",
+    "The Heavenly Pavilion",
+    "The Jade Sect",
+    "The Celestial Court",
+    "The Blood Moon Sect",
+    "The Northern Murim Alliance",
+    "The Black Lotus Society",
+    "The Imperial Academy",
+    "The Royal Mage Association",
+    "The Adventurer's Guild",
+    "The Seven Dragon Clans",
 ]
 
+
+# ============================================================
+# POWER SYSTEMS
+# ============================================================
 
 POWERS = [
     "Astral Resonance",
@@ -145,8 +682,26 @@ POWERS = [
     "Mirror Step",
     "World Sense",
     "Ember Heart",
+    "Mana Circulation",
+    "Sword Intent",
+    "Qi Manipulation",
+    "Demonic Energy",
+    "Heavenly Energy",
+    "Spirit Contract",
+    "Divine Authority",
+    "System Interface",
+    "Skill Synthesis",
+    "Soul Rank",
+    "Monster Evolution",
+    "Bloodline Awakening",
+    "Concept Manipulation",
+    "Reality Editing",
 ]
 
+
+# ============================================================
+# OBJECTS
+# ============================================================
 
 OBJECTS = [
     "a broken silver compass",
@@ -169,8 +724,19 @@ OBJECTS = [
     "a translucent mask",
     "a small metal sphere",
     "a book without a title",
+    "a mysterious smartphone",
+    "a strange game cartridge",
+    "a jade pendant",
+    "an ancient cultivation manual",
+    "a talking sword",
+    "a cursed doll",
+    "a ridiculous-looking crown",
 ]
 
+
+# ============================================================
+# CONFLICTS
+# ============================================================
 
 CONFLICTS = [
     "the disappearance of an entire district",
@@ -185,11 +751,19 @@ CONFLICTS = [
     "the disappearance of several powerful warriors",
     "a secret conflict between rival factions",
     "a forgotten disaster returning to the world",
+    "a kingdom secretly controlled by another power",
+    "a dungeon appearing in the middle of a city",
+    "a mysterious system choosing random people",
+    "the destruction of the protagonist's homeland",
+    "an immortal returning after centuries",
+    "a tournament hiding a much larger conspiracy",
+    "a demon king who claims to be retired",
+    "a hero who desperately wants to become a villain",
 ]
 
 
 # ============================================================
-# CHAPTER TITLES
+# CHAPTER TITLE SYSTEM
 # ============================================================
 
 CHAPTER_VERBS = [
@@ -208,6 +782,11 @@ CHAPTER_VERBS = [
     "The Return of",
     "The Name That",
     "The Silence Before",
+    "The Problem With",
+    "The Absolutely Terrible Idea of",
+    "The Unexpected Visit From",
+    "The Day Everything Went",
+    "The Quest That Should Have Been Simple",
 ]
 
 
@@ -227,6 +806,10 @@ CHAPTER_NOUNS = [
     "Watched",
     "Moved",
     "Whispered",
+    "Completely Wrong",
+    "Ridiculous",
+    "Impossible",
+    "Unexpected",
 ]
 
 
@@ -273,10 +856,167 @@ ARC_NAMES = [
 
 
 # ============================================================
-# NAME SYSTEM
+# FICTIONAL NAME SYSTEM
+#
+# These are fictional names inspired by naming patterns.
+# They are not intended to represent real people.
 # ============================================================
 
-FIRST_NAMES = [
+JAPANESE_FIRST_NAMES = [
+    "Akira",
+    "Ren",
+    "Haruto",
+    "Sora",
+    "Yuki",
+    "Hikaru",
+    "Kaito",
+    "Riku",
+    "Aoi",
+    "Itsuki",
+    "Shin",
+    "Takumi",
+    "Rei",
+    "Koharu",
+    "Mio",
+    "Yuna",
+    "Rin",
+    "Kaede",
+    "Hana",
+    "Ayame",
+    "Natsuki",
+    "Kiyomi",
+    "Masato",
+    "Kazuki",
+    "Ryo",
+    "Tsubasa",
+    "Asuka",
+    "Sayaka",
+    "Mei",
+    "Nozomi",
+]
+
+
+JAPANESE_LAST_NAMES = [
+    "Kurosawa",
+    "Aoyama",
+    "Takahashi",
+    "Mizuno",
+    "Kobayashi",
+    "Fujimoto",
+    "Shirakawa",
+    "Kisaragi",
+    "Amamiya",
+    "Hoshino",
+    "Kanzaki",
+    "Moriyama",
+    "Tsukishiro",
+    "Sakuraba",
+    "Kurokawa",
+    "Hayashida",
+    "Minamoto",
+    "Shinomiya",
+    "Yamashiro",
+    "Akizuki",
+]
+
+
+KOREAN_FIRST_NAMES = [
+    "Seo-jun",
+    "Ji-ho",
+    "Min-jun",
+    "Hyun-woo",
+    "Do-yun",
+    "Ji-hoon",
+    "Ha-jun",
+    "Si-woo",
+    "Joon-ho",
+    "Tae-hyun",
+    "Min-seo",
+    "Seo-yeon",
+    "Ji-eun",
+    "Ha-eun",
+    "Yu-na",
+    "Soo-ah",
+    "Ye-jin",
+    "Eun-chae",
+    "Da-hyun",
+    "Hye-jin",
+]
+
+
+KOREAN_LAST_NAMES = [
+    "Kim",
+    "Lee",
+    "Park",
+    "Choi",
+    "Jung",
+    "Kang",
+    "Yoon",
+    "Han",
+    "Shin",
+    "Kwon",
+    "Seo",
+    "Hwang",
+    "Lim",
+    "Jang",
+    "Moon",
+    "Baek",
+    "Song",
+    "Ryu",
+    "Jeon",
+    "Hong",
+]
+
+
+CHINESE_FIRST_NAMES = [
+    "Wei",
+    "Chen",
+    "Jun",
+    "Hao",
+    "Lei",
+    "Ming",
+    "Tian",
+    "Jian",
+    "Yun",
+    "Feng",
+    "Xiao",
+    "Lin",
+    "Jing",
+    "Mei",
+    "Lan",
+    "Qing",
+    "Yue",
+    "Shan",
+    "Rui",
+    "Xuan",
+]
+
+
+CHINESE_LAST_NAMES = [
+    "Li",
+    "Wang",
+    "Zhang",
+    "Liu",
+    "Chen",
+    "Yang",
+    "Huang",
+    "Zhao",
+    "Wu",
+    "Zhou",
+    "Xu",
+    "Sun",
+    "Ma",
+    "Zhu",
+    "Hu",
+    "Guo",
+    "He",
+    "Gao",
+    "Lin",
+    "Luo",
+]
+
+
+WESTERN_FIRST_NAMES = [
     "Aren",
     "Kael",
     "Liora",
@@ -297,20 +1037,10 @@ FIRST_NAMES = [
     "Nolan",
     "Ayla",
     "Cassian",
-    "Rhea",
-    "Eryn",
-    "Soren",
-    "Maren",
-    "Iris",
-    "Theo",
-    "Nadia",
-    "Varen",
-    "Aria",
-    "Ren",
 ]
 
 
-LAST_NAMES = [
+WESTERN_LAST_NAMES = [
     "Valen",
     "Ardent",
     "Nox",
@@ -331,6 +1061,82 @@ LAST_NAMES = [
     "Lorne",
     "Voss",
     "Meridian",
+]
+
+
+# ============================================================
+# CHARACTER SYSTEM
+# ============================================================
+
+CHARACTER_ROLES = [
+    "Protagonist",
+    "Guardian",
+    "Rival",
+    "Scholar",
+    "Wanderer",
+    "Knight",
+    "Mage",
+    "Strategist",
+    "Heir",
+    "Assassin",
+    "Explorer",
+    "Outsider",
+    "Merchant",
+    "Teacher",
+    "Adventurer",
+    "Detective",
+    "Cultivator",
+    "Swordsman",
+    "Healer",
+    "Comedian",
+]
+
+
+CHARACTER_TRAITS = [
+    "quiet but observant",
+    "recklessly optimistic",
+    "calm under pressure",
+    "deeply suspicious",
+    "curious about forbidden knowledge",
+    "protective of their companions",
+    "haunted by an unexplained memory",
+    "driven by an old promise",
+    "unable to trust easily",
+    "surprisingly compassionate",
+    "ambitious but uncertain",
+    "patient and calculating",
+    "terrible at making normal decisions",
+    "always hungry",
+    "dramatically overconfident",
+    "serious until someone makes a terrible joke",
+    "lazy but strangely talented",
+    "kind despite a frightening reputation",
+    "competitive about absolutely everything",
+    "convinced they are the main character",
+]
+
+
+ABILITIES = [
+    "Can sense hidden energy",
+    "Can manipulate ancient symbols",
+    "Can temporarily alter gravity",
+    "Can communicate with spirits",
+    "Can perceive possible futures",
+    "Can absorb magical attacks",
+    "Can create protective barriers",
+    "Can manipulate memories",
+    "Can move through shadows",
+    "Can summon spectral weapons",
+    "Can read forgotten languages",
+    "Can control elemental energy",
+    "Can copy temporary abilities",
+    "Can evolve after surviving dangerous battles",
+    "Can see hidden status information",
+    "Can step between reflected surfaces",
+    "Can speak with monsters",
+    "Can temporarily freeze time",
+    "Can convert damage into energy",
+    "Can turn extremely bad luck into unexpected advantages",
 ]
 
 
@@ -474,6 +1280,11 @@ TITLE_PREFIXES = [
     "Children of",
     "Kingdom of",
     "Chronicles of",
+    "The Completely Normal",
+    "My Very Strange",
+    "I Accidentally Became",
+    "The Extremely Unfortunate",
+    "Why Am I",
 ]
 
 
@@ -498,6 +1309,12 @@ TITLE_WORDS = [
     "Lost",
     "Ancient",
     "Burning",
+    "Ridiculous",
+    "Unemployed",
+    "Overpowered",
+    "Accidental",
+    "Lazy",
+    "Terrible",
 ]
 
 
@@ -522,58 +1339,13 @@ TITLE_NOUNS = [
     "Prophecy",
     "City",
     "Door",
-]
-
-
-# ============================================================
-# CHARACTER SYSTEM
-# ============================================================
-
-CHARACTER_ROLES = [
-    "Protagonist",
-    "Guardian",
-    "Rival",
-    "Scholar",
-    "Wanderer",
-    "Knight",
+    "Hero",
+    "Villain",
+    "Adventurer",
     "Mage",
-    "Strategist",
-    "Heir",
-    "Assassin",
-    "Explorer",
-    "Outsider",
-]
-
-
-CHARACTER_TRAITS = [
-    "quiet but observant",
-    "recklessly optimistic",
-    "calm under pressure",
-    "deeply suspicious",
-    "curious about forbidden knowledge",
-    "protective of their companions",
-    "haunted by an unexplained memory",
-    "driven by an old promise",
-    "unable to trust easily",
-    "surprisingly compassionate",
-    "ambitious but uncertain",
-    "patient and calculating",
-]
-
-
-ABILITIES = [
-    "Can sense hidden energy",
-    "Can manipulate ancient symbols",
-    "Can temporarily alter gravity",
-    "Can communicate with spirits",
-    "Can perceive possible futures",
-    "Can absorb magical attacks",
-    "Can create protective barriers",
-    "Can manipulate memories",
-    "Can move through shadows",
-    "Can summon spectral weapons",
-    "Can read forgotten languages",
-    "Can control elemental energy",
+    "Swordsman",
+    "Dungeon",
+    "System",
 ]
 
 
@@ -582,11 +1354,6 @@ ABILITIES = [
 # ============================================================
 
 def stable_rng(value: str) -> random.Random:
-    """
-    Creates a deterministic random generator from a string.
-
-    The same input always produces the same sequence.
-    """
     digest = hashlib.sha256(
         value.encode("utf-8")
     ).digest()
@@ -600,13 +1367,6 @@ def stable_rng(value: str) -> random.Random:
 
 
 def make_seed() -> str:
-    """
-    Creates a fresh cryptographically random seed.
-
-    A new HTTP request therefore produces a new novel.
-
-    No database or browser storage is required.
-    """
     return secrets.token_hex(32)
 
 
@@ -619,13 +1379,76 @@ def pick(
     ]
 
 
+# ============================================================
+# NAME GENERATION
+# ============================================================
+
 def make_name(
     rng: random.Random,
+    style: str | None = None,
 ) -> str:
+
+    if style is None:
+        style = pick(
+            rng,
+            [
+                "western",
+                "japanese",
+                "korean",
+                "chinese",
+            ],
+        )
+
+    if style == "japanese":
+        return (
+            f"{pick(rng, JAPANESE_FIRST_NAMES)} "
+            f"{pick(rng, JAPANESE_LAST_NAMES)}"
+        )
+
+    if style == "korean":
+        return (
+            f"{pick(rng, KOREAN_FIRST_NAMES)} "
+            f"{pick(rng, KOREAN_LAST_NAMES)}"
+        )
+
+    if style == "chinese":
+        return (
+            f"{pick(rng, CHINESE_FIRST_NAMES)} "
+            f"{pick(rng, CHINESE_LAST_NAMES)}"
+        )
+
     return (
-        f"{pick(rng, FIRST_NAMES)} "
-        f"{pick(rng, LAST_NAMES)}"
+        f"{pick(rng, WESTERN_FIRST_NAMES)} "
+        f"{pick(rng, WESTERN_LAST_NAMES)}"
     )
+
+
+def make_unique_name(
+    rng: random.Random,
+    used_names: set,
+    style: str | None = None,
+) -> str:
+
+    for _ in range(100):
+        name = make_name(
+            rng,
+            style,
+        )
+
+        if name not in used_names:
+            used_names.add(name)
+            return name
+
+    suffix = rng.randrange(
+        1000,
+        9999,
+    )
+
+    name = f"{make_name(rng, style)} {suffix}"
+
+    used_names.add(name)
+
+    return name
 
 
 # ============================================================
@@ -644,7 +1467,10 @@ def pick_unique(
     ]
 
     if not available:
-        return pick(rng, items)
+        return pick(
+            rng,
+            items,
+        )
 
     value = pick(
         rng,
@@ -654,28 +1480,6 @@ def pick_unique(
     used.add(value)
 
     return value
-
-
-def make_unique_name(
-    rng: random.Random,
-    used_names: set,
-) -> str:
-
-    for _ in range(100):
-        name = make_name(rng)
-
-        if name not in used_names:
-            used_names.add(name)
-            return name
-
-    name = (
-        f"{make_name(rng)} "
-        f"{rng.randrange(1000, 9999)}"
-    )
-
-    used_names.add(name)
-
-    return name
 
 
 # ============================================================
@@ -703,9 +1507,10 @@ def make_title(
 
     patterns = [
         f"{prefix} {adjective} {noun}",
-        f"{prefix} {adjective} {noun}",
         f"{adjective} {noun}",
         f"{prefix} {noun} of {adjective}",
+        f"{prefix} {adjective} {noun}",
+        f"{adjective} {noun}: A Completely Unnecessary Adventure",
     ]
 
     return pick(
@@ -729,10 +1534,21 @@ def make_characters(
 
     characters = []
 
+    protagonist_style = pick(
+        rng,
+        [
+            "western",
+            "japanese",
+            "korean",
+            "chinese",
+        ],
+    )
+
     characters.append(
         {
             "name": protagonist,
             "role": "Protagonist",
+            "origin_style": protagonist_style,
             "trait": pick(
                 rng,
                 CHARACTER_TRAITS,
@@ -740,6 +1556,12 @@ def make_characters(
             "ability": pick(
                 rng,
                 ABILITIES,
+            ),
+            "description": (
+                f"{protagonist} is the central character of "
+                f"the story. Their journey begins with a personal "
+                f"problem but gradually becomes connected to a "
+                f"much larger conflict."
             ),
         }
     )
@@ -750,14 +1572,30 @@ def make_characters(
         if role != "Protagonist"
     ]
 
-    for role in roles[:5]:
+    styles = [
+        "japanese",
+        "korean",
+        "chinese",
+        "western",
+    ]
+
+    for index, role in enumerate(roles[:9]):
+
+        style = styles[
+            index % len(styles)
+        ]
+
+        name = make_unique_name(
+            rng,
+            used_names,
+            style,
+        )
+
         characters.append(
             {
-                "name": make_unique_name(
-                    rng,
-                    used_names,
-                ),
+                "name": name,
                 "role": role,
+                "origin_style": style,
                 "trait": pick(
                     rng,
                     CHARACTER_TRAITS,
@@ -766,6 +1604,11 @@ def make_characters(
                     rng,
                     ABILITIES,
                 ),
+                "description": (
+                    f"{name} serves as the story's "
+                    f"{role.lower()}. Their decisions can "
+                    f"change the direction of the journey."
+                ),
             }
         )
 
@@ -773,34 +1616,335 @@ def make_characters(
 
 
 # ============================================================
+# WORLD BLUEPRINT
+# ============================================================
+
+def make_world_blueprint(
+    seed: str,
+    world: str,
+    genre: str,
+    faction: str,
+) -> Dict:
+
+    rng = stable_rng(
+        f"{seed}:world"
+    )
+
+    world_types = [
+        "a continent ruled by ancient kingdoms",
+        "a modern city hiding a supernatural society",
+        "a vast magical empire",
+        "a world connected by mysterious gates",
+        "a post-apocalyptic civilization",
+        "a cultivation world divided into sects",
+        "a futuristic interstellar civilization",
+        "a world where humans and monsters coexist",
+        "an academy-centered magical society",
+        "a world built around enormous floating cities",
+    ]
+
+    eras = [
+        "an age of forgotten magic",
+        "the beginning of a technological revolution",
+        "a fragile post-war era",
+        "the final years of an ancient dynasty",
+        "a period of political instability",
+        "an era when supernatural phenomena have returned",
+        "a new age following the collapse of an old civilization",
+    ]
+
+    locations = [
+        world,
+        pick(rng, PLACES),
+        pick(rng, PLACES),
+        pick(rng, PLACES),
+        pick(rng, PLACES),
+        pick(rng, PLACES),
+    ]
+
+    unique_locations = []
+
+    for location in locations:
+        if location not in unique_locations:
+            unique_locations.append(location)
+
+    geography = [
+        f"the central region surrounding {world}",
+        f"the northern territories beyond {world}",
+        f"the western frontier",
+        f"the eastern kingdoms",
+        f"the southern coast",
+        f"the hidden region beyond the old boundary",
+    ]
+
+    rules = [
+        f"The influence of {faction} affects political and social life.",
+        "Ancient knowledge cannot be safely used without consequences.",
+        "Major powers are limited by personal cost, knowledge, or resources.",
+        "The world contains truths that contradict commonly accepted history.",
+        "Important locations have histories that become relevant later.",
+    ]
+
+    return {
+        "name": world,
+        "type": pick(
+            rng,
+            world_types,
+        ),
+        "genre_context": genre,
+        "era": pick(
+            rng,
+            eras,
+        ),
+        "description": (
+            f"{world} is a fictional setting designed for a long-form "
+            f"light novel. It combines the atmosphere of {genre.lower()} "
+            f"with its own cultures, conflicts, mysteries, locations, "
+            f"organizations, and historical secrets."
+        ),
+        "geography": geography,
+        "important_locations": unique_locations,
+        "world_rules": rules,
+        "society": (
+            f"Different communities in {world} have developed "
+            f"different beliefs about power, history, authority, "
+            f"and the unexplained events affecting their lives."
+        ),
+        "history": (
+            f"The official history of {world} leaves several major "
+            f"events unexplained. Those missing pieces gradually "
+            f"become central to the main story."
+        ),
+    }
+
+
+# ============================================================
+# POWER BLUEPRINT
+# ============================================================
+
+def make_power_blueprint(
+    seed: str,
+    power: str,
+) -> Dict:
+
+    rng = stable_rng(
+        f"{seed}:power"
+    )
+
+    mechanisms = [
+        "energy is controlled through mental focus",
+        "power is awakened through emotional resonance",
+        "abilities are activated through ancient symbols",
+        "users develop abilities through training and experience",
+        "power is connected to the user's soul",
+        "abilities evolve after major personal breakthroughs",
+        "users exchange resources for temporary supernatural effects",
+        "power responds to contracts with supernatural entities",
+    ]
+
+    costs = [
+        "physical exhaustion",
+        "loss of concentration",
+        "memory damage",
+        "temporary weakness",
+        "emotional instability",
+        "limited resources",
+        "risk of losing control",
+        "permanent consequences when abilities are overused",
+    ]
+
+    levels = [
+        "Awakening",
+        "Novice",
+        "Initiate",
+        "Adept",
+        "Expert",
+        "Master",
+        "Transcendent",
+        "Mythic",
+        "Legendary",
+    ]
+
+    rare = [
+        "an ability that ignores normal limitations",
+        "a forbidden form of the power",
+        "a lost technique",
+        "an ability connected to ancient history",
+        "a technique believed to be impossible",
+    ]
+
+    return {
+        "name": power,
+        "description": (
+            f"{power} is the primary supernatural or extraordinary "
+            f"ability system associated with the story. It begins "
+            f"as a limited ability and becomes increasingly important "
+            f"as the protagonist discovers its deeper rules."
+        ),
+        "mechanism": pick(
+            rng,
+            mechanisms,
+        ),
+        "costs": [
+            pick(rng, costs),
+            pick(rng, costs),
+            pick(rng, costs),
+        ],
+        "levels": levels,
+        "limitations": [
+            "power cannot solve every problem",
+            "strong abilities require preparation or sacrifice",
+            "knowledge of the system is incomplete",
+            "stronger enemies can exploit weaknesses",
+        ],
+        "rare_abilities": [
+            pick(rng, rare),
+            pick(rng, rare),
+            pick(rng, rare),
+        ],
+        "progression": (
+            "The protagonist's understanding of the power system "
+            "develops gradually rather than becoming complete at "
+            "the beginning of the story."
+        ),
+    }
+
+
+# ============================================================
+# ANTAGONISTS
+# ============================================================
+
+def make_antagonists(
+    seed: str,
+    used_names: set,
+) -> List[Dict]:
+
+    rng = stable_rng(
+        f"{seed}:antagonists"
+    )
+
+    roles = [
+        "Primary Antagonist",
+        "Secondary Antagonist",
+        "Political Antagonist",
+        "Personal Rival",
+        "Hidden Antagonist",
+    ]
+
+    descriptions = [
+        "believes that the world must be forcibly changed",
+        "is pursuing knowledge forbidden by every major faction",
+        "has a personal connection to the protagonist's past",
+        "appears helpful while pursuing a hidden objective",
+        "believes their actions are necessary to prevent a greater disaster",
+        "treats the conflict as an intellectual game",
+        "wants to restore an ancient order",
+    ]
+
+    antagonists = []
+
+    for index, role in enumerate(roles):
+
+        styles = [
+            "western",
+            "japanese",
+            "korean",
+            "chinese",
+        ]
+
+        name = make_unique_name(
+            rng,
+            used_names,
+            styles[index % 4],
+        )
+
+        antagonists.append(
+            {
+                "name": name,
+                "role": role,
+                "motivation": pick(
+                    rng,
+                    descriptions,
+                ),
+                "description": (
+                    f"{name} is a fictional {role.lower()} whose "
+                    f"actions influence the long-term direction "
+                    f"of the story."
+                ),
+            }
+        )
+
+    return antagonists
+
+
+# ============================================================
 # ARC GENERATION
 # ============================================================
 
 def make_arcs(
-    rng: random.Random,
+    seed: str,
+    characters: List[Dict],
+    antagonists: List[Dict],
+    world: Dict,
+    power: Dict,
 ) -> List[Dict]:
 
     arcs = []
 
-    chapters_per_arc = (
-        CHAPTER_COUNT // 15
-    )
+    for index in range(ARC_COUNT):
 
-    for index in range(15):
+        rng = stable_rng(
+            f"{seed}:arc:{index + 1}"
+        )
 
         start = (
             index *
-            chapters_per_arc
+            CHAPTERS_PER_ARC
             + 1
         )
 
-        if index == 14:
-            end = CHAPTER_COUNT
-        else:
-            end = (
-                (index + 1)
-                * chapters_per_arc
-            )
+        end = (
+            CHAPTER_COUNT
+            if index == ARC_COUNT - 1
+            else (index + 1)
+            * CHAPTERS_PER_ARC
+        )
+
+        character_names = [
+            character["name"]
+            for character in characters
+        ]
+
+        involved = []
+
+        count = min(
+            4,
+            len(character_names),
+        )
+
+        available = list(
+            character_names
+        )
+
+        for _ in range(count):
+            if available:
+                selected = pick(
+                    rng,
+                    available,
+                )
+
+                involved.append(
+                    selected
+                )
+
+                available.remove(
+                    selected
+                )
+
+        antagonist = pick(
+            rng,
+            antagonists,
+        )
 
         arcs.append(
             {
@@ -812,30 +1956,268 @@ def make_arcs(
                     rng,
                     ARC_THEMES,
                 ),
+                "objective": (
+                    f"The characters must survive the events of "
+                    f"this stage while discovering another part "
+                    f"of the mystery surrounding {world['name']}."
+                ),
+                "central_conflict": (
+                    f"The conflict between the protagonists and "
+                    f"{antagonist['name']} becomes increasingly important."
+                ),
+                "locations": world[
+                    "important_locations"
+                ][
+                    :min(
+                        3,
+                        len(
+                            world[
+                                "important_locations"
+                            ]
+                        ),
+                    )
+                ],
+                "characters_involved": involved,
+                "antagonist_activity": (
+                    f"{antagonist['name']} advances a plan connected "
+                    f"to the larger conflict."
+                ),
+                "power_progression": (
+                    f"The characters gain a deeper understanding "
+                    f"of {power['name']}."
+                ),
+                "major_revelation": (
+                    f"A new piece of the history of "
+                    f"{world['name']} becomes known."
+                ),
+                "beginning_state": (
+                    "The characters enter this arc with incomplete "
+                    "information and unresolved questions."
+                ),
+                "ending_state": (
+                    "The characters leave this arc changed, with "
+                    "new knowledge and a new problem to solve."
+                ),
             }
         )
 
     return arcs
 
 
-def get_arc(
+# ============================================================
+# CHAPTER ROADMAP
+# ============================================================
+
+def make_chapter_roadmap(
+    seed: str,
     arcs: List[Dict],
-    chapter_number: int,
-) -> Dict:
+    characters: List[Dict],
+    world: Dict,
+    power: Dict,
+    antagonists: List[Dict],
+) -> List[Dict]:
 
-    for arc in arcs:
-        if (
-            arc["start"]
-            <= chapter_number
-            <= arc["end"]
-        ):
-            return arc
+    roadmap = []
 
-    return arcs[-1]
+    used_titles = set()
+
+    character_names = [
+        character["name"]
+        for character in characters
+    ]
+
+    for chapter_number in range(
+        1,
+        CHAPTER_COUNT + 1,
+    ):
+
+        rng = stable_rng(
+            f"{seed}:roadmap:{chapter_number}"
+        )
+
+        arc = get_arc(
+            arcs,
+            chapter_number,
+        )
+
+        relative = (
+            chapter_number
+            - arc["start"]
+        )
+
+        arc_length = (
+            arc["end"]
+            - arc["start"]
+            + 1
+        )
+
+        ratio = relative / max(
+            1,
+            arc_length - 1,
+        )
+
+        if ratio < 0.20:
+            phase = "opening"
+        elif ratio < 0.50:
+            phase = "development"
+        elif ratio < 0.75:
+            phase = "turning point"
+        elif ratio < 0.93:
+            phase = "climax"
+        else:
+            phase = "aftermath"
+
+        title = (
+            f"{pick(rng, CHAPTER_VERBS)} "
+            f"{pick(rng, CHAPTER_NOUNS)}"
+        )
+
+        for _ in range(10):
+            if title not in used_titles:
+                break
+
+            title = (
+                f"{pick(rng, CHAPTER_VERBS)} "
+                f"{pick(rng, CHAPTER_NOUNS)}"
+            )
+
+        if title in used_titles:
+            title = (
+                f"{title} "
+                f"#{chapter_number}"
+            )
+
+        used_titles.add(
+            title
+        )
+
+        focus_count = min(
+            3,
+            len(character_names),
+        )
+
+        shuffled_characters = list(
+            character_names
+        )
+
+        rng.shuffle(
+            shuffled_characters
+        )
+
+        focus = shuffled_characters[
+            :focus_count
+        ]
+
+        antagonist = pick(
+            rng,
+            antagonists,
+        )
+
+        events = [
+            (
+                f"The characters investigate a problem connected "
+                f"to {arc['theme']}."
+            ),
+            (
+                f"{focus[0]} makes a decision that changes "
+                f"the immediate situation."
+            ),
+            (
+                f"{antagonist['name']} or their influence "
+                f"creates another complication."
+            ),
+        ]
+
+        if phase in {
+            "turning point",
+            "climax",
+        }:
+            events.append(
+                (
+                    f"The rules of {power['name']} become "
+                    f"more important to the conflict."
+                )
+            )
+
+        if phase == "opening":
+            purpose = (
+                f"Introduce or develop the central problem "
+                f"of the {arc['title']} arc."
+            )
+        elif phase == "development":
+            purpose = (
+                "Build character relationships, mysteries, "
+                "and consequences."
+            )
+        elif phase == "turning point":
+            purpose = (
+                "Change the direction of the story through "
+                "a discovery, betrayal, victory, or defeat."
+            )
+        elif phase == "climax":
+            purpose = (
+                "Resolve a major conflict while creating "
+                "the conditions for the next stage."
+            )
+        else:
+            purpose = (
+                "Show the consequences of the arc and "
+                "prepare the next major storyline."
+            )
+
+        roadmap.append(
+            {
+                "number": chapter_number,
+                "title": title,
+                "arc_number": arc["number"],
+                "arc_title": arc["title"],
+                "phase": phase,
+                "purpose": purpose,
+                "location": pick(
+                    rng,
+                    world["important_locations"],
+                ),
+                "characters": focus,
+                "events": events,
+                "character_development": (
+                    f"The characters involved must confront "
+                    f"a personal consequence related to "
+                    f"the events of this chapter."
+                ),
+                "world_development": (
+                    f"The reader learns another detail about "
+                    f"{world['name']}."
+                ),
+                "power_development": (
+                    f"The chapter develops the understanding "
+                    f"of {power['name']} without making it "
+                    f"an unlimited solution."
+                ),
+                "revelation": (
+                    f"A clue connected to the deeper mystery "
+                    f"is revealed."
+                ),
+                "state_before": (
+                    f"The characters begin Chapter "
+                    f"{chapter_number:03d} with unresolved "
+                    f"problems from the preceding events."
+                ),
+                "state_after": (
+                    "The situation changes enough to create "
+                    "a reason to continue into the next chapter."
+                ),
+                "cliffhanger": (
+                    "A new question, threat, discovery, or "
+                    "unexpected consequence appears."
+                ),
+            }
+        )
+
+    return roadmap
 
 
 # ============================================================
-# DESIGN GENERATION
+# DESIGN
 # ============================================================
 
 def make_design(
@@ -884,133 +2266,380 @@ def make_design(
 
 
 # ============================================================
-# NOVEL GENERATION
+# ARC LOOKUP
 # ============================================================
 
-def generate_novel() -> Dict:
-    """
-    Creates a completely new novel.
+def get_arc(
+    arcs: List[Dict],
+    chapter_number: int,
+) -> Dict:
 
-    Every call gets a fresh cryptographic seed.
+    for arc in arcs:
+        if (
+            arc["start"]
+            <= chapter_number
+            <= arc["end"]
+        ):
+            return arc
 
-    No database.
-    No localStorage.
-    No sessionStorage.
-    """
+    return arcs[-1]
 
-    seed = make_seed()
 
-    rng = stable_rng(seed)
+# ============================================================
+# NOVEL BLUEPRINT
+# ============================================================
+
+def generate_blueprint(
+    seed: str,
+) -> Dict:
+
+    core_rng = stable_rng(
+        f"{seed}:core"
+    )
 
     genre = pick(
-        rng,
+        core_rng,
         GENRES,
     )
 
     secondary_genre = pick(
-        rng,
+        core_rng,
         SECONDARY_GENRES,
     )
 
-    world = pick(
-        rng,
+    tone = pick(
+        core_rng,
+        TONES,
+    )
+
+    world_name = pick(
+        core_rng,
         PLACES,
     )
 
     faction = pick(
-        rng,
+        core_rng,
         FACTIONS,
     )
 
-    power = pick(
-        rng,
+    power_name = pick(
+        core_rng,
         POWERS,
     )
 
     conflict = pick(
-        rng,
+        core_rng,
         CONFLICTS,
     )
 
+    protagonist_style = pick(
+        core_rng,
+        [
+            "japanese",
+            "korean",
+            "chinese",
+            "western",
+        ],
+    )
+
+    used_names = set()
+
     protagonist = make_unique_name(
-        rng,
-        set(),
+        core_rng,
+        used_names,
+        protagonist_style,
     )
 
     title = make_title(
-        rng
+        core_rng
     )
 
-    design = make_design(
-        rng
+    world = make_world_blueprint(
+        seed,
+        world_name,
+        genre,
+        faction,
+    )
+
+    power = make_power_blueprint(
+        seed,
+        power_name,
     )
 
     characters = make_characters(
-        rng,
+        stable_rng(
+            f"{seed}:characters"
+        ),
         protagonist,
     )
 
-    arc_rng = stable_rng(
-        f"{seed}:arcs"
+    antagonists = make_antagonists(
+        seed,
+        used_names,
     )
 
     arcs = make_arcs(
-        arc_rng
+        seed,
+        characters,
+        antagonists,
+        world,
+        power,
     )
 
-    synopsis_templates = [
+    roadmap = make_chapter_roadmap(
+        seed,
+        arcs,
+        characters,
+        world,
+        power,
+        antagonists,
+    )
+
+    central_mystery_rng = stable_rng(
+        f"{seed}:mystery"
+    )
+
+    mysteries = [
         (
-            f"In the world of {world}, "
-            f"{protagonist} becomes trapped inside "
-            f"a conflict involving {faction}. "
-            f"When the power known as {power} "
-            f"begins behaving strangely, an old mystery "
-            f"returns and threatens to change everything."
+            f"Why does the history of {world_name} contradict "
+            f"the records preserved by the major factions?"
         ),
         (
-            f"{protagonist} expected an ordinary journey "
-            f"through {world}. Instead, they become "
-            f"connected to {conflict}. As the mysterious "
-            f"power of {power} awakens, the boundaries "
-            f"between legend and reality begin to disappear."
+            f"Why does {power_name} appear to know something "
+            f"about events that happened before the protagonist "
+            f"was born?"
         ),
         (
-            f"Something is changing in {world}. "
-            f"The ancient influence of {faction} is returning, "
-            f"and {protagonist} discovers that {power} "
-            f"may be connected to a secret buried "
-            f"for generations."
+            f"Who originally created the hidden system behind "
+            f"{conflict}?"
         ),
         (
-            f"When {protagonist} discovers evidence connected "
-            f"to {conflict}, they are pulled into a journey "
-            f"across {world}. Every answer reveals another "
-            f"question, and the people closest to them "
-            f"may know more than they admit."
+            f"Why is {faction} connected to events that officially "
+            f"never happened?"
         ),
     ]
 
-    synopsis = pick(
-        rng,
-        synopsis_templates,
+    central_mystery = pick(
+        central_mystery_rng,
+        mysteries,
+    )
+
+    themes = [
+        pick(
+            core_rng,
+            [
+                "identity",
+                "friendship",
+                "freedom",
+                "ambition",
+                "trust",
+                "sacrifice",
+                "redemption",
+                "power",
+                "responsibility",
+                "family",
+                "survival",
+                "truth",
+                "love",
+                "belonging",
+                "second chances",
+            ],
+        ),
+        pick(
+            core_rng,
+            [
+                "the cost of power",
+                "the meaning of heroism",
+                "the difference between truth and history",
+                "the consequences of choices",
+                "the absurdity of fate",
+                "the value of ordinary life",
+                "the danger of unchecked ambition",
+            ],
+        ),
+    ]
+
+    synopsis = (
+        f"{title} is a long-form {genre.lower()} light novel "
+        f"with elements of {secondary_genre.lower()} and a "
+        f"{tone} tone. The story follows {protagonist}, who "
+        f"becomes involved in {conflict} within {world_name}. "
+        f"As the influence of {faction} grows and the mysteries "
+        f"surrounding {power_name} deepen, what begins as a "
+        f"personal journey gradually expands into a conflict "
+        f"that can reshape the entire world."
+    )
+
+    if "Comedy" in genre or "Parody" in genre:
+        synopsis += (
+            f" Along the way, the story deliberately embraces "
+            f"comedic situations, absurd misunderstandings, "
+            f"genre jokes, exaggerated character reactions, "
+            f"and occasional parody of familiar light-novel "
+            f"story conventions."
+        )
+
+    return {
+        "author": AUTHOR,
+        "title": title,
+        "genre": genre,
+        "secondary_genre": secondary_genre,
+        "tone": tone,
+        "themes": themes,
+        "synopsis": synopsis,
+
+        "world": world,
+
+        "power_system": power,
+
+        "protagonist": {
+            "name": protagonist,
+            "style": protagonist_style,
+            "description": (
+                f"{protagonist} is the central character whose "
+                f"personal choices gradually connect to the "
+                f"larger conflict."
+            ),
+            "goal": (
+                "Discover the truth behind the events "
+                "that changed their life."
+            ),
+            "fear": (
+                "Losing the people who become important "
+                "during the journey."
+            ),
+            "strengths": [
+                "adaptability",
+                "determination",
+                "curiosity",
+                "ability to form relationships",
+            ],
+            "weaknesses": [
+                "incomplete knowledge",
+                "limited experience",
+                "emotional decisions",
+                "difficulty understanding their own power",
+            ],
+        },
+
+        "characters": characters,
+
+        "antagonists": antagonists,
+
+        "factions": [
+            {
+                "name": faction,
+                "role": "major faction",
+                "description": (
+                    f"{faction} is one of the organizations "
+                    f"whose actions influence the main conflict."
+                ),
+            },
+            {
+                "name": pick(
+                    stable_rng(
+                        f"{seed}:faction:secondary"
+                    ),
+                    FACTIONS,
+                ),
+                "role": "secondary faction",
+                "description": (
+                    "A second organization whose interests "
+                    "sometimes align with the protagonists "
+                    "and sometimes oppose them."
+                ),
+            },
+        ],
+
+        "main_conflict": conflict,
+
+        "central_mystery": central_mystery,
+
+        "story_rules": [
+            "Actions have consequences.",
+            "Power has limitations and costs.",
+            "Characters can change their beliefs.",
+            "Important mysteries are resolved gradually.",
+            "Major revelations should connect to earlier clues.",
+            "Comedy can interrupt serious situations without "
+            "automatically erasing their consequences.",
+            "Parody elements can reference genre conventions "
+            "without requiring existing copyrighted characters.",
+        ],
+
+        "arcs": arcs,
+
+        "chapter_roadmap": roadmap,
+
+        "chapter_count": CHAPTER_COUNT,
+        "chapter_word_count": CHAPTER_WORD_COUNT,
+    }
+
+
+# ============================================================
+# NOVEL GENERATION
+# ============================================================
+
+def generate_novel() -> Dict:
+
+    seed = make_seed()
+
+    blueprint = generate_blueprint(
+        seed
+    )
+
+    design = make_design(
+        stable_rng(
+            f"{seed}:design"
+        )
     )
 
     return {
         "seed": seed,
-        "title": title,
-        "genre": genre,
-        "secondary_genre": secondary_genre,
-        "world": world,
-        "faction": faction,
-        "power": power,
-        "conflict": conflict,
-        "protagonist": protagonist,
-        "synopsis": synopsis,
+        "author": AUTHOR,
+
+        "title": blueprint["title"],
+        "genre": blueprint["genre"],
+        "secondary_genre": blueprint[
+            "secondary_genre"
+        ],
+        "tone": blueprint["tone"],
+        "synopsis": blueprint["synopsis"],
+
+        "world": blueprint[
+            "world"
+        ]["name"],
+
+        "faction": blueprint[
+            "factions"
+        ][0]["name"],
+
+        "power": blueprint[
+            "power_system"
+        ]["name"],
+
+        "conflict": blueprint[
+            "main_conflict"
+        ],
+
+        "protagonist": blueprint[
+            "protagonist"
+        ]["name"],
+
         "chapter_count": CHAPTER_COUNT,
         "chapter_word_count": CHAPTER_WORD_COUNT,
-        "characters": characters,
-        "arcs": arcs,
+
+        "characters": blueprint[
+            "characters"
+        ],
+
+        "arcs": blueprint[
+            "arcs"
+        ],
+
         "design": design,
+
+        "blueprint": blueprint,
     }
 
 
@@ -1111,559 +2740,153 @@ def generate_chapter(
             "Invalid chapter number"
         )
 
+    blueprint = generate_blueprint(
+        seed
+    )
+
     rng = stable_rng(
         f"{seed}:chapter:{chapter_number}"
     )
 
-    base_rng = stable_rng(
-        seed
+    roadmap = blueprint[
+        "chapter_roadmap"
+    ]
+
+    plan = roadmap[
+        chapter_number - 1
+    ]
+
+    protagonist = blueprint[
+        "protagonist"
+    ]["name"]
+
+    genre = blueprint[
+        "genre"
+    ]
+
+    secondary_genre = blueprint[
+        "secondary_genre"
+    ]
+
+    world = blueprint[
+        "world"
+    ]
+
+    power = blueprint[
+        "power_system"
+    ]
+
+    faction = blueprint[
+        "factions"
+    ][0]["name"]
+
+    characters = blueprint[
+        "characters"
+    ]
+
+    protagonist_character = next(
+        (
+            character
+            for character in characters
+            if character["role"] == "Protagonist"
+        ),
+        characters[0],
     )
 
-    # --------------------------------------------------------
-    # RECREATE NOVEL CORE
-    # --------------------------------------------------------
+    character_map = {
+        character["name"]: character
+        for character in characters
+    }
 
-    genre = pick(
-        base_rng,
-        GENRES,
+    focus_characters = [
+        character_map[name]
+        for name in plan["characters"]
+        if name in character_map
+    ]
+
+    if not focus_characters:
+        focus_characters = [
+            protagonist_character
+        ]
+
+    focus_names = [
+        character["name"]
+        for character in focus_characters
+    ]
+
+    supporting_name = (
+        focus_names[1]
+        if len(focus_names) > 1
+        else protagonist
     )
 
-    secondary_genre = pick(
-        base_rng,
-        SECONDARY_GENRES,
+    secondary_name = (
+        focus_names[2]
+        if len(focus_names) > 2
+        else supporting_name
     )
 
-    world = pick(
-        base_rng,
-        PLACES,
+    antagonist = pick(
+        rng,
+        blueprint[
+            "antagonists"
+        ],
     )
 
-    faction = pick(
-        base_rng,
-        FACTIONS,
-    )
+    location = plan[
+        "location"
+    ]
 
-    power = pick(
-        base_rng,
-        POWERS,
-    )
-
-    conflict = pick(
-        base_rng,
-        CONFLICTS,
-    )
-
-    protagonist = make_unique_name(
-        base_rng,
-        set(),
-    )
-
-    arc_rng = stable_rng(
-        f"{seed}:arcs"
-    )
-
-    arcs = make_arcs(
-        arc_rng
+    object_item = pick(
+        rng,
+        OBJECTS,
     )
 
     arc = get_arc(
-        arcs,
+        blueprint["arcs"],
         chapter_number,
     )
 
     # --------------------------------------------------------
-    # CHAPTER-SPECIFIC VALUES
-    # --------------------------------------------------------
-
-    used_places = set()
-    used_objects = set()
-    used_names = {
-        protagonist
-    }
-
-    location = pick_unique(
-        rng,
-        PLACES,
-        used_places,
-    )
-
-    object_item = pick_unique(
-        rng,
-        OBJECTS,
-        used_objects,
-    )
-
-    conflict_item = pick(
-        rng,
-        CONFLICTS,
-    )
-
-    supporting_character = make_unique_name(
-        rng,
-        used_names,
-    )
-
-    secondary_character = make_unique_name(
-        rng,
-        used_names,
-    )
-
-    rival_character = make_unique_name(
-        rng,
-        used_names,
-    )
-
-    # --------------------------------------------------------
-    # CHAPTER TITLE
+    # TITLE
     # --------------------------------------------------------
 
     title = (
         f"Chapter {chapter_number:03d}: "
-        f"{pick(rng, CHAPTER_VERBS)} "
-        f"{pick(rng, CHAPTER_NOUNS)}"
+        f"{plan['title']}"
     )
 
     # --------------------------------------------------------
-    # OPENINGS
+    # OPENING
     # --------------------------------------------------------
 
     openings = [
         (
-            f"Morning arrived over {location} beneath a sky "
-            f"that looked far too quiet for the events that "
-            f"had taken place during the previous night. "
-            f"{protagonist} stood beside the window, watching "
-            f"the first travelers move through the distant street."
+            f"The morning over {location} began quietly, "
+            f"although {protagonist} had already learned "
+            f"that quiet places rarely stayed quiet for long."
         ),
         (
-            f"Rain covered {location} when {protagonist} finally "
-            f"woke. The sound of water against the roof should "
-            f"have been calming, but something about the silence "
-            f"between each distant thunder was deeply unsettling."
+            f"When {protagonist} arrived in {location}, "
+            f"the first thing they noticed was the unusual "
+            f"silence. Even the people who normally filled "
+            f"the streets seemed to be avoiding one another."
         ),
         (
-            f"{protagonist} woke before sunrise with the strange "
-            f"certainty that someone had spoken their name. "
-            f"The room was empty. Yet the feeling remained, "
-            f"as though an unseen presence had followed them "
-            f"into the night."
+            f"Nothing about {location} looked particularly "
+            f"dangerous at first. That was exactly what made "
+            f"{protagonist} uncomfortable."
         ),
         (
-            f"The journey had brought them to {location} just "
-            f"before darkness. From a distance the settlement "
-            f"appeared ordinary. Only after entering its streets "
-            f"did {protagonist} notice the abandoned buildings "
-            f"and shuttered windows."
+            f"{protagonist} had expected the next stage of "
+            f"the journey to be simple. That expectation "
+            f"lasted approximately until the moment they "
+            f"entered {location}."
         ),
     ]
 
     # --------------------------------------------------------
-    # DISCOVERIES
-    # --------------------------------------------------------
-
-    discoveries = [
-        (
-            f"Near an abandoned structure, {protagonist} discovered "
-            f"{object_item}. Dust covered its surface, yet a faint "
-            f"warmth remained beneath the material."
-        ),
-        (
-            f"Behind a damaged wall they found a narrow passage. "
-            f"The entrance had been carefully concealed, and the "
-            f"stone around it carried markings that looked older "
-            f"than the town."
-        ),
-        (
-            f"A forgotten document contained several references "
-            f"to {faction}. Most of the writing had faded, but "
-            f"a single paragraph remained clear enough to read."
-        ),
-        (
-            f"Footprints crossed the dust near the entrance. "
-            f"They were fresh enough to prove that someone had "
-            f"arrived before them, yet there was no sign of "
-            f"where that person had gone."
-        ),
-        (
-            f"A low sound emerged from beneath the ground. "
-            f"Following it led the group to a chamber that "
-            f"should not have existed beneath {location}."
-        ),
-    ]
-
-    # --------------------------------------------------------
-    # DEVELOPMENTS
-    # --------------------------------------------------------
-
-    developments = [
-        (
-            f"The discovery appeared connected to the larger "
-            f"mystery surrounding {world}."
-        ),
-        (
-            f"The evidence suggested that {faction} had been "
-            f"involved in these events for much longer than "
-            f"anyone realized."
-        ),
-        (
-            f"The information contradicted what {protagonist} "
-            f"believed about {power}."
-        ),
-        (
-            f"The discovery revealed that the current conflict "
-            f"was only one part of a struggle that had begun "
-            f"generations earlier."
-        ),
-        (
-            f"The evidence seemed directly connected to "
-            f"{conflict_item}."
-        ),
-    ]
-
-    # --------------------------------------------------------
-    # COMPLICATIONS
-    # --------------------------------------------------------
-
-    complications = [
-        (
-            "Before anyone could investigate further, footsteps "
-            "echoed through the corridor."
-        ),
-        (
-            "The door behind them suddenly closed."
-        ),
-        (
-            "A warning signal began sounding throughout the settlement."
-        ),
-        (
-            "Someone had apparently been waiting for them."
-        ),
-        (
-            f"{object_item.capitalize()} suddenly reacted to "
-            f"{protagonist}'s presence."
-        ),
-        (
-            "A distant explosion interrupted the conversation."
-        ),
-        (
-            "The lights disappeared one after another."
-        ),
-    ]
-
-    # --------------------------------------------------------
-    # EMOTIONAL EVENTS
-    # --------------------------------------------------------
-
-    emotional_events = [
-        (
-            f"{protagonist} remembered why the journey had begun."
-        ),
-        (
-            f"{supporting_character} finally admitted that they "
-            f"were afraid of what would happen next."
-        ),
-        (
-            f"{secondary_character} revealed a secret that had "
-            f"been hidden since the beginning of the journey."
-        ),
-        (
-            "The argument that followed was not really about "
-            "the discovery. It was about trust."
-        ),
-        (
-            "For several seconds nobody knew what to say. "
-            "The silence made the danger feel closer."
-        ),
-    ]
-
-    # --------------------------------------------------------
-    # ACTION EVENTS
-    # --------------------------------------------------------
-
-    action_events = [
-        (
-            f"The confrontation began before anyone was prepared. "
-            f"{protagonist} moved first, using {power} to create "
-            f"an opening for the others."
-        ),
-        (
-            f"The attackers moved quickly. {supporting_character} "
-            f"blocked the first strike while {protagonist} "
-            f"searched for a way through."
-        ),
-        (
-            "The ground shook violently. Something enormous was "
-            "moving beneath the structure."
-        ),
-        (
-            f"{rival_character} appeared without warning and "
-            f"immediately challenged {protagonist}."
-        ),
-        (
-            f"The escape became a desperate race through the "
-            f"narrow streets of {location}."
-        ),
-    ]
-
-    # --------------------------------------------------------
-    # POWER EVENTS
-    # --------------------------------------------------------
-
-    power_events = [
-        (
-            f"{power} awakened more strongly than before."
-        ),
-        (
-            f"The energy surrounding {protagonist} changed shape, "
-            f"behaving in a way nobody had witnessed before."
-        ),
-        (
-            f"For several seconds {protagonist} could see "
-            f"fragments of possible futures."
-        ),
-        (
-            f"The ability responded to {object_item} rather than "
-            f"to {protagonist}'s conscious command."
-        ),
-        (
-            f"The power suddenly became silent, leaving "
-            f"{protagonist} more frightened than before."
-        ),
-    ]
-
-    # --------------------------------------------------------
-    # REVELATIONS
-    # --------------------------------------------------------
-
-    revelations = [
-        (
-            f"The final clue revealed that the events surrounding "
-            f"{world} had happened before."
-        ),
-        (
-            "The evidence suggested that someone had deliberately "
-            "created the current conflict."
-        ),
-        (
-            f"{protagonist} discovered that the enemy knew their name."
-        ),
-        (
-            "The document contained a prediction describing an "
-            "event that had not happened yet."
-        ),
-        (
-            f"The symbol matched the mark that appeared whenever "
-            f"{power} was activated."
-        ),
-        (
-            "The truth was far older than the current generation."
-        ),
-    ]
-
-    # --------------------------------------------------------
-    # REFLECTIONS
-    # --------------------------------------------------------
-
-    reflections = [
-        (
-            f"{protagonist} stood alone for several minutes, "
-            f"thinking about everything that had happened."
-        ),
-        (
-            "The others discussed their options, but every choice "
-            "seemed to carry a different kind of danger."
-        ),
-        (
-            "Nobody wanted to admit how serious the situation "
-            "had become."
-        ),
-        (
-            "The journey had started with a single unanswered "
-            "question. Now there were dozens."
-        ),
-        (
-            "Trust had become more valuable than information, "
-            "and neither was easy to obtain."
-        ),
-    ]
-
-    # --------------------------------------------------------
-    # TRANSITIONS
-    # --------------------------------------------------------
-
-    transitions = [
-        (
-            f"By evening the immediate danger had passed. "
-            f"The group prepared to leave {location} before dawn."
-        ),
-        (
-            f"Night fell over {location}. The streets became empty, "
-            f"but the feeling of being watched never disappeared."
-        ),
-        (
-            "The group found temporary shelter and began planning "
-            "their next move."
-        ),
-        (
-            "After everything that had happened, sleep was difficult."
-        ),
-    ]
-
-    # --------------------------------------------------------
-    # CLIFFHANGERS
-    # --------------------------------------------------------
-
-    cliffhangers = [
-        (
-            f"Just before midnight, somebody whispered "
-            f"{protagonist}'s name from outside the room."
-        ),
-        (
-            f"A message appeared beside {object_item}: "
-            f"DO NOT TRUST THE PERSON BESIDE YOU."
-        ),
-        (
-            "Far beyond the horizon, a strange light appeared "
-            "in the sky."
-        ),
-        (
-            "The sealed door opened by itself."
-        ),
-        (
-            f"A new symbol appeared on {protagonist}'s hand."
-        ),
-        (
-            "Someone left a letter outside the door. "
-            "It contained tomorrow's date."
-        ),
-        (
-            f"{rival_character}'s voice came from the darkness."
-        ),
-    ]
-
-    # --------------------------------------------------------
-    # DIALOGUE
-    # --------------------------------------------------------
-
-    dialogue_sets = [
-        [
-            f'"We should leave," {supporting_character} said.',
-            f'"Not yet," {protagonist} replied.',
-            '"You saw what happened. Staying here is dangerous."',
-            '"Then we find out why it happened before we leave."',
-        ],
-        [
-            f'"How long have you known?" {protagonist} asked.',
-            f'{supporting_character} looked away.',
-            '"Long enough to know that the truth is worse than the rumor."',
-            '"That is not an answer."',
-            '"It is the only answer I can give you right now."',
-        ],
-        [
-            f'"This changes everything," {secondary_character} whispered.',
-            f'"No," {protagonist} said. "It explains everything."',
-            '"Those are not the same thing."',
-            '"I know."',
-        ],
-        [
-            f'"Who sent you?" {protagonist} demanded.',
-            f'{rival_character} smiled.',
-            '"You still think someone sent me?"',
-            '"Then why are you here?"',
-            '"Because you finally reached the place I was waiting for."',
-        ],
-    ]
-
-    # --------------------------------------------------------
-    # BRIDGE PARAGRAPHS
-    # --------------------------------------------------------
-
-    bridge_paragraphs = [
-        (
-            f"The group spent several minutes checking the area again. "
-            f"They searched the walls, floor, and nearby objects for "
-            f"another clue. Nothing appeared immediately."
-        ),
-        (
-            f"{protagonist} returned to {object_item}. "
-            f"The object remained unchanged, yet something about "
-            f"it felt different now."
-        ),
-        (
-            f"{secondary_character} suggested that the answer might "
-            f"not be hidden inside the object. Perhaps the object "
-            f"itself was only a key."
-        ),
-        (
-            "The suggestion changed the way everyone looked at the room."
-        ),
-        (
-            f"{supporting_character} remembered an old story involving "
-            f"{world}. The details had always sounded like a myth, "
-            f"but they suddenly appeared strangely relevant."
-        ),
-        (
-            "The discussion continued quietly. Each person contributed "
-            "what little they knew, and slowly a pattern began to appear."
-        ),
-        (
-            "The pattern was incomplete, but it was enough to establish "
-            "a possible direction."
-        ),
-        (
-            f"{protagonist} realized that the next destination was "
-            "no longer a matter of choice."
-        ),
-        (
-            "The road ahead would take them closer to the heart of "
-            "the mystery, whether they were ready or not."
-        ),
-        (
-            f"Another distant sound echoed through {location}. "
-            "Nobody moved until it disappeared."
-        ),
-        (
-            "When the silence returned, it somehow felt worse than before."
-        ),
-        (
-            f"{rival_character} had disappeared during the confusion. "
-            "Nobody knew when they had left."
-        ),
-        (
-            "That disappearance created another question that would "
-            "have to wait until later."
-        ),
-        (
-            "For now, survival remained more important than answers."
-        ),
-        (
-            f"The cold air entered through the damaged doorway, "
-            f"carrying the smell of rain and distant smoke."
-        ),
-        (
-            f"{protagonist} studied the markings again and noticed "
-            f"a pattern that had been hidden beneath the dust."
-        ),
-        (
-            "Nobody could explain why the symbols seemed familiar, "
-            "but everyone agreed that ignoring them was impossible."
-        ),
-        (
-            "The discovery forced the group to reconsider their "
-            "assumptions about the journey."
-        ),
-        (
-            f"The name of {faction} appeared once more in their notes, "
-            "surrounded by several references that had been crossed out."
-        ),
-        (
-            f"{secondary_character} carefully copied the remaining "
-            f"symbols before the fading light made them impossible to read."
-        ),
-    ]
-
-    # --------------------------------------------------------
-    # BUILD CHAPTER
+    # PLAN DESCRIPTION
     # --------------------------------------------------------
 
     paragraphs: List[str] = []
@@ -1677,107 +2900,95 @@ def generate_chapter(
 
     paragraphs.append(
         (
-            f"Chapter {chapter_number} belongs to the "
-            f"{arc['title']} arc, a period shaped by "
-            f"{arc['theme']}. The journey has already changed "
-            f"{protagonist}, but the events waiting in {location} "
-            f"will force another decision."
+            f"This chapter marks the {plan['phase']} phase "
+            f"of the {arc['title']} arc. The immediate purpose "
+            f"is to {plan['purpose'].lower()} "
+            f"{protagonist} does not yet understand how "
+            f"important the events will become."
+        )
+    )
+
+    # --------------------------------------------------------
+    # EVENTS
+    # --------------------------------------------------------
+
+    paragraphs.append(
+        (
+            f"{supporting_name} noticed something unusual "
+            f"near {location}. It was {object_item}, apparently "
+            f"left behind by someone who had no intention of "
+            f"being identified."
         )
     )
 
     paragraphs.append(
-        pick(
-            rng,
-            discoveries,
-        )
+        plan["events"][0]
     )
 
     paragraphs.append(
         (
-            f"For several seconds nobody moved. "
-            f"{supporting_character} examined the discovery while "
-            f"{secondary_character} watched the entrance."
+            f"{protagonist} examined the situation carefully. "
+            f"The evidence seemed connected to {world['name']}, "
+            f"and several details pointed toward the influence "
+            f"of {faction}."
         )
     )
 
     paragraphs.append(
-        pick(
-            rng,
-            developments,
-        )
+        plan["events"][1]
     )
 
     paragraphs.append(
         (
-            f"The implications were difficult to ignore. If the "
-            f"evidence was genuine, then the events happening now "
-            f"were connected to something that had begun long before "
-            f"{protagonist} entered the story."
+            f"The decision immediately created a new problem. "
+            f"{secondary_name} disagreed, arguing that the group "
+            f"was missing information that could completely "
+            f"change their interpretation of the evidence."
         )
     )
 
     paragraphs.append(
-        pick(
-            rng,
-            complications,
-        )
+        plan["events"][2]
     )
 
-    paragraphs.append(
-        (
-            f"{protagonist} immediately understood that there was "
-            f"no longer enough time for careful planning. Whatever "
-            f"was approaching would arrive soon."
-        )
-    )
-
-    dialogue = pick(
-        rng,
-        dialogue_sets,
-    )
-
-    paragraphs.extend(
-        dialogue
-    )
+    # --------------------------------------------------------
+    # CHARACTER DEVELOPMENT
+    # --------------------------------------------------------
 
     paragraphs.append(
         (
-            "The conversation ended without agreement. Everyone "
-            "understood that the next decision would affect more "
-            "than the people standing in the room."
+            f"{protagonist} understood that the problem was "
+            f"becoming personal. The journey had begun with "
+            f"questions, but every new answer demanded another "
+            f"choice."
         )
     )
 
     paragraphs.append(
-        pick(
-            rng,
-            emotional_events,
-        )
+        plan[
+            "character_development"
+        ]
     )
 
-    paragraphs.append(
+    # --------------------------------------------------------
+    # POWER
+    # --------------------------------------------------------
+
+    power_events = [
         (
-            f"Outside, the wind grew stronger. Its sound travelled "
-            f"through the streets of {location}, carrying distant "
-            f"voices and the metallic sound of something moving "
-            f"through the dark."
-        )
-    )
-
-    paragraphs.append(
-        pick(
-            rng,
-            action_events,
-        )
-    )
-
-    paragraphs.append(
+            f"The presence of {power['name']} became noticeable "
+            f"again. {protagonist} could feel the familiar "
+            f"pressure building beneath their awareness."
+        ),
         (
-            f"{protagonist} barely had enough time to react. "
-            f"The situation had changed from an investigation into "
-            f"a fight for survival."
-        )
-    )
+            f"{protagonist} attempted to use {power['name']}, "
+            f"but the ability responded differently than expected."
+        ),
+        (
+            f"For a brief moment, the rules of {power['name']} "
+            f"appeared to change."
+        ),
+    ]
 
     paragraphs.append(
         pick(
@@ -1788,91 +2999,228 @@ def generate_chapter(
 
     paragraphs.append(
         (
-            "The sudden release of power forced everyone nearby "
-            "to retreat. For one impossible moment, the world "
-            "seemed to stop moving."
+            f"The effect was limited. {protagonist} knew that "
+            f"{power['name']} could not simply solve every "
+            f"problem, and forcing the ability further could "
+            f"have consequences."
+        )
+    )
+
+    paragraphs.append(
+        plan[
+            "power_development"
+        ]
+    )
+
+    # --------------------------------------------------------
+    # DIALOGUE
+    # --------------------------------------------------------
+
+    dialogue_sets = [
+        [
+            f'"We need more information," {supporting_name} said.',
+            f'"We already have enough," {protagonist} replied.',
+            f'"Enough to do what?"',
+            f'"Enough to know that waiting is worse."',
+        ],
+        [
+            f'"Do you trust them?" {secondary_name} asked.',
+            f'"No," {protagonist} answered.',
+            f'"Then why are we listening?"',
+            '"Because sometimes the truth comes from people we dislike."',
+        ],
+        [
+            f'"This cannot be coincidence," {supporting_name} said.',
+            f'"I know," {protagonist} replied.',
+            '"Then what are we supposed to do?"',
+            '"Keep going until coincidence becomes impossible."',
+        ],
+        [
+            f'"You are taking this too seriously," {secondary_name} said.',
+            f'"Something is trying to kill us."',
+            '"Exactly. That means we should at least enjoy breakfast first."',
+            f'{protagonist} stared at {secondary_name}.',
+            '"You are impossible."',
+        ],
+    ]
+
+    dialogue = pick(
+        rng,
+        dialogue_sets,
+    )
+
+    paragraphs.extend(
+        dialogue
+    )
+
+    # --------------------------------------------------------
+    # COMEDY / PARODY INSERTION
+    # --------------------------------------------------------
+
+    comedy_genres = {
+        "Comedy",
+        "Parody",
+        "Romantic Comedy",
+        "Fantasy Parody",
+        "Isekai Parody",
+        "Cultivation Parody",
+        "System Parody",
+        "Academy Parody",
+        "Superhero Parody",
+        "Villain Parody",
+        "Hero Parody",
+        "Self-Aware Comedy",
+        "Meta Comedy",
+        "Chaotic Comedy",
+    }
+
+    if (
+        genre in comedy_genres
+        or secondary_genre in comedy_genres
+        or blueprint["tone"] in {
+            "comedic",
+            "absurd",
+            "satirical",
+        }
+    ):
+        comedy_events = [
+            (
+                "For approximately five seconds, everyone "
+                "agreed on a sensible plan. Then they immediately "
+                "started arguing about who was responsible for it."
+            ),
+            (
+                f"{protagonist} considered using {power['name']} "
+                "to solve the problem. Then they remembered "
+                "that using mysterious supernatural powers "
+                "usually created three additional problems."
+            ),
+            (
+                "Nobody mentioned it aloud, but everyone knew "
+                "that this was exactly the sort of situation "
+                "that would become embarrassing when retold later."
+            ),
+            (
+                f"{secondary_name} offered a brilliant solution. "
+                f"It was so brilliant that {protagonist} immediately "
+                f"rejected it."
+            ),
+            (
+                "The situation had officially reached the point "
+                "where even the universe seemed to be making jokes."
+            ),
+        ]
+
+        paragraphs.append(
+            pick(
+                rng,
+                comedy_events,
+            )
+        )
+
+    # --------------------------------------------------------
+    # MYSTERY
+    # --------------------------------------------------------
+
+    paragraphs.append(
+        (
+            f"The clues eventually pointed toward a deeper "
+            f"question: {blueprint['central_mystery']}"
+        )
+    )
+
+    paragraphs.append(
+        plan[
+            "world_development"
+        ]
+    )
+
+    paragraphs.append(
+        plan[
+            "revelation"
+        ]
+    )
+
+    # --------------------------------------------------------
+    # ANTAGONIST
+    # --------------------------------------------------------
+
+    paragraphs.append(
+        (
+            f"{antagonist['name']} remained somewhere beyond "
+            f"the immediate scene. Their motives were still "
+            f"unclear, but the consequences of their actions "
+            f"were becoming easier to recognize."
         )
     )
 
     paragraphs.append(
         (
-            f"{protagonist} could hear their own breathing. "
-            f"The strange energy disappeared almost as quickly "
-            f"as it had appeared."
-        )
-    )
-
-    paragraphs.append(
-        pick(
-            rng,
-            revelations,
-        )
-    )
-
-    paragraphs.append(
-        (
-            "The revelation left the group silent. It did not "
-            "solve the mystery. Instead, it revealed that the "
-            "mystery was far larger than they had imagined."
-        )
-    )
-
-    paragraphs.append(
-        pick(
-            rng,
-            reflections,
-        )
-    )
-
-    paragraphs.append(
-        (
-            f"{supporting_character} finally looked toward "
-            f"{protagonist}. There was no certainty in their "
-            f"expression, only the understanding that the journey "
-            f"had reached another turning point."
-        )
-    )
-
-    paragraphs.append(
-        (
-            f"The name of {faction} appeared again in their "
-            f"discussion. The organization had been present "
-            f"in too many places to be coincidence."
-        )
-    )
-
-    paragraphs.append(
-        (
-            f"The conflict surrounding {conflict_item} was becoming "
-            f"impossible to separate from their personal journey."
-        )
-    )
-
-    paragraphs.append(
-        pick(
-            rng,
-            transitions,
-        )
-    )
-
-    paragraphs.append(
-        (
-            f"Before leaving, {protagonist} looked back one final "
-            f"time. The place seemed ordinary again, almost peaceful. "
-            f"But the silence felt artificial."
+            f"The group finally understood that {antagonist['name']} "
+            f"was not acting randomly. Every movement was connected "
+            f"to a larger objective."
         )
     )
 
     # --------------------------------------------------------
-    # BRIDGE EXPANSION
+    # REFLECTION
     # --------------------------------------------------------
 
-    shuffled_bridges = list(
+    paragraphs.append(
+        (
+            f"Later, when the immediate danger had passed, "
+            f"{protagonist} thought about the journey so far. "
+            f"The person who had entered {world['name']} at "
+            f"the beginning would not have recognized the person "
+            f"standing there now."
+        )
+    )
+
+    paragraphs.append(
+        plan[
+            "state_after"
+        ]
+    )
+
+    # --------------------------------------------------------
+    # BRIDGES
+    # --------------------------------------------------------
+
+    bridge_paragraphs = [
+        (
+            f"The group continued through {location}, carefully "
+            f"avoiding unnecessary attention."
+        ),
+        (
+            f"{supporting_name} kept the strange object nearby, "
+            f"although nobody completely understood its purpose."
+        ),
+        (
+            "The conversation returned repeatedly to the same "
+            "unanswered questions."
+        ),
+        (
+            f"{protagonist} noticed another detail connected "
+            f"to the mystery and quietly memorized it."
+        ),
+        (
+            "The road ahead was uncertain, but turning back "
+            "was no longer an attractive option."
+        ),
+        (
+            "For a moment everything seemed ordinary again."
+        ),
+        (
+            "That moment did not last."
+        ),
+    ]
+
+    shuffled = list(
         bridge_paragraphs
     )
 
     rng.shuffle(
-        shuffled_bridges
+        shuffled
     )
 
     bridge_index = 0
@@ -1882,9 +3230,9 @@ def generate_chapter(
         < 820
     ):
         paragraphs.append(
-            shuffled_bridges[
+            shuffled[
                 bridge_index
-                % len(shuffled_bridges)
+                % len(shuffled)
             ]
         )
 
@@ -1894,8 +3242,39 @@ def generate_chapter(
             break
 
     # --------------------------------------------------------
-    # ENDING
+    # CLIFFHANGER
     # --------------------------------------------------------
+
+    cliffhangers = [
+        (
+            f"Just before midnight, somebody whispered "
+            f"{protagonist}'s name from outside the room."
+        ),
+        (
+            f"A message appeared beside {object_item}: "
+            f"DO NOT TRUST THE PERSON BESIDE YOU."
+        ),
+        (
+            "Far beyond the horizon, a strange light appeared."
+        ),
+        (
+            "The sealed door opened by itself."
+        ),
+        (
+            f"A new symbol appeared on {protagonist}'s hand."
+        ),
+        (
+            "Someone left a letter outside the door containing "
+            "tomorrow's date."
+        ),
+        (
+            f"{antagonist['name']}'s voice came from the darkness."
+        ),
+        (
+            "The next destination appeared on a map that had "
+            "previously been completely blank."
+        ),
+    ]
 
     paragraphs.append(
         pick(
@@ -1912,17 +3291,13 @@ def generate_chapter(
     )
 
     # --------------------------------------------------------
-    # EXACTLY 800 WORDS
+    # EXACT 800 WORD TARGET
     # --------------------------------------------------------
 
     paragraphs = trim_to_exact_words(
         paragraphs,
         CHAPTER_WORD_COUNT,
     )
-
-    # --------------------------------------------------------
-    # SAFETY FALLBACK
-    # --------------------------------------------------------
 
     current_count = word_count(
         paragraphs
@@ -1949,21 +3324,27 @@ def generate_chapter(
             CHAPTER_WORD_COUNT,
         )
 
-    # --------------------------------------------------------
-    # FINAL RESULT
-    # --------------------------------------------------------
-
     final_count = word_count(
         paragraphs
     )
 
+    # --------------------------------------------------------
+    # FINAL CHAPTER OBJECT
+    # --------------------------------------------------------
+
     return {
+        "author": AUTHOR,
         "number": chapter_number,
         "title": title,
         "arc": arc,
+        "arc_number": arc["number"],
+        "phase": plan["phase"],
         "location": location,
         "genre": genre,
         "secondary_genre": secondary_genre,
+        "characters": focus_names,
+        "antagonist": antagonist["name"],
+        "chapter_plan": plan,
         "paragraphs": paragraphs,
         "word_count": final_count,
     }
