@@ -1,17 +1,53 @@
+/* =========================================================
+   LIGHT NOVEL WORLD
+   RESPONSIVE UI — CSS ONLY
+   Existing classes/IDs preserved
+   ========================================================= */
+
 :root {
-    --page-width: 1400px;
+    --page-width: 1440px;
     --reading-width: 820px;
+
     --transition: 180ms ease;
+    --transition-slow: 320ms ease;
+
+    --border-soft:
+        color-mix(in srgb, var(--text) 9%, transparent);
+
+    --border-medium:
+        color-mix(in srgb, var(--text) 14%, transparent);
+
+    --surface-glass:
+        color-mix(in srgb, var(--surface) 88%, transparent);
+
+    --surface-glass-2:
+        color-mix(in srgb, var(--surface-2) 92%, transparent);
+
+    --accent-soft:
+        color-mix(in srgb, var(--accent) 10%, transparent);
+
+    --accent-medium:
+        color-mix(in srgb, var(--accent) 18%, transparent);
+
+    --accent-border:
+        color-mix(in srgb, var(--accent) 28%, transparent);
 }
 
 
-* {
+/* =========================================================
+   RESET
+   ========================================================= */
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 90px;
 }
 
 
@@ -37,41 +73,35 @@ body {
     line-height: 1.6;
 
     overflow-x: hidden;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 
-body::before {
-    content: "";
+img,
+svg,
+video {
+    max-width: 100%;
+}
 
-    position: fixed;
 
-    inset: 0;
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
 
-    pointer-events: none;
 
-    background:
-        radial-gradient(
-            circle at 10% 10%,
-            color-mix(
-                in srgb,
-                var(--accent) 7%,
-                transparent
-            ),
-            transparent 30%
-        );
-
-    z-index: -2;
+button {
+    color: inherit;
 }
 
 
 a {
     color: inherit;
     text-decoration: none;
-}
-
-
-button {
-    font: inherit;
 }
 
 
@@ -84,6 +114,58 @@ a:focus-visible {
 }
 
 
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 8% 5%,
+            color-mix(
+                in srgb,
+                var(--accent) 7%,
+                transparent
+            ),
+            transparent 28%
+        );
+
+    z-index: -2;
+}
+
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 90% 90%,
+            color-mix(
+                in srgb,
+                var(--accent-2) 4%,
+                transparent
+            ),
+            transparent 32%
+        );
+
+    z-index: -3;
+}
+
+
 .noise {
     position: fixed;
 
@@ -91,9 +173,9 @@ a:focus-visible {
 
     pointer-events: none;
 
-    opacity: .025;
+    opacity: .018;
 
-    z-index: 20;
+    z-index: 100;
 
     background-image:
         url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
@@ -113,6 +195,8 @@ a:focus-visible {
 
     width: 100%;
 
+    min-height: 70px;
+
     display: flex;
 
     align-items: center;
@@ -122,26 +206,27 @@ a:focus-visible {
     gap: 24px;
 
     padding:
-        18px
-        clamp(18px, 4vw, 60px);
+        12px
+        clamp(16px, 4vw, 60px);
 
     background:
         color-mix(
             in srgb,
-            var(--surface) 88%,
+            var(--surface) 84%,
             transparent
         );
 
     border-bottom:
         1px solid
-        color-mix(
-            in srgb,
-            var(--text) 9%,
-            transparent
-        );
+        var(--border-soft);
 
     backdrop-filter:
-        blur(18px);
+        blur(22px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(22px)
+        saturate(140%);
 }
 
 
@@ -152,7 +237,7 @@ a:focus-visible {
 
     gap: 12px;
 
-    min-width: max-content;
+    min-width: 0;
 }
 
 
@@ -160,6 +245,8 @@ a:focus-visible {
     width: 42px;
 
     height: 42px;
+
+    flex: 0 0 42px;
 
     display: grid;
 
@@ -183,16 +270,18 @@ a:focus-visible {
     letter-spacing: -.04em;
 
     box-shadow:
-        0 10px 30px
+        0 8px 26px
         color-mix(
             in srgb,
-            var(--accent) 24%,
+            var(--accent) 20%,
             transparent
         );
 }
 
 
 .brand-text {
+    min-width: 0;
+
     display: flex;
 
     flex-direction: column;
@@ -202,20 +291,30 @@ a:focus-visible {
 
 
 .brand-text strong {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
     font-size: 15px;
+
+    font-weight: 800;
 }
 
 
 .brand-text small {
-    margin-top: 4px;
+    margin-top: 5px;
 
     color: var(--muted);
 
-    font-size: 9px;
+    font-size: 8px;
 
     font-weight: 800;
 
-    letter-spacing: .25em;
+    letter-spacing: .22em;
+
+    white-space: nowrap;
 }
 
 
@@ -224,24 +323,59 @@ a:focus-visible {
 
     align-items: center;
 
-    gap: 30px;
+    justify-content: center;
+
+    gap: clamp(18px, 3vw, 32px);
 
     color: var(--muted);
 
-    font-size: 14px;
+    font-size: 13px;
 
     font-weight: 650;
 }
 
 
 .desktop-nav a {
+    position: relative;
+
+    padding:
+        7px
+        0;
+
     transition:
         color var(--transition);
 }
 
 
+.desktop-nav a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 100%;
+
+    bottom: 0;
+
+    height: 2px;
+
+    border-radius: 999px;
+
+    background: var(--accent);
+
+    transition:
+        right var(--transition);
+}
+
+
 .desktop-nav a:hover {
     color: var(--text);
+}
+
+
+.desktop-nav a:hover::after {
+    right: 0;
 }
 
 
@@ -262,12 +396,13 @@ a:focus-visible {
 
     padding:
         10px
-        18px;
+        17px;
 
-    border: 1px solid transparent;
+    border:
+        1px solid transparent;
 
     border-radius:
-        calc(var(--radius) * .7);
+        calc(var(--radius) * .72);
 
     cursor: pointer;
 
@@ -275,14 +410,26 @@ a:focus-visible {
         transform var(--transition),
         background var(--transition),
         border-color var(--transition),
+        box-shadow var(--transition),
         opacity var(--transition);
 
+    font-size: 13px;
+
     font-weight: 750;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
 }
 
 
 .button:hover:not(:disabled) {
     transform: translateY(-2px);
+}
+
+
+.button:active:not(:disabled) {
+    transform: translateY(0);
 }
 
 
@@ -306,10 +453,21 @@ a:focus-visible {
     color: var(--surface);
 
     box-shadow:
-        0 12px 30px
+        0 10px 28px
         color-mix(
             in srgb,
-            var(--accent) 20%,
+            var(--accent) 18%,
+            transparent
+        );
+}
+
+
+.button-primary:hover:not(:disabled) {
+    box-shadow:
+        0 14px 34px
+        color-mix(
+            in srgb,
+            var(--accent) 26%,
             transparent
         );
 }
@@ -324,13 +482,22 @@ a:focus-visible {
         );
 
     border-color:
-        color-mix(
-            in srgb,
-            var(--text) 12%,
-            transparent
-        );
+        var(--border-medium);
 
     color: var(--text);
+}
+
+
+.button-secondary:hover:not(:disabled) {
+    background:
+        color-mix(
+            in srgb,
+            var(--accent) 7%,
+            var(--surface-2)
+        );
+
+    border-color:
+        var(--accent-border);
 }
 
 
@@ -342,7 +509,9 @@ a:focus-visible {
         23px;
 
     border-radius:
-        calc(var(--radius) * .8);
+        calc(var(--radius) * .82);
+
+    font-size: 14px;
 }
 
 
@@ -353,6 +522,8 @@ a:focus-visible {
 .hero {
     position: relative;
 
+    width: 100%;
+
     min-height: 720px;
 
     max-width: var(--page-width);
@@ -360,14 +531,14 @@ a:focus-visible {
     margin: 0 auto;
 
     padding:
-        clamp(70px, 10vw, 130px)
+        clamp(70px, 9vw, 130px)
         clamp(20px, 5vw, 70px);
 
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.1fr)
-        minmax(320px, .9fr);
+        minmax(0, 1.08fr)
+        minmax(300px, .92fr);
 
     align-items: center;
 
@@ -391,28 +562,53 @@ a:focus-visible {
 
     background:
         var(--hero-background);
+
+    opacity: .98;
+}
+
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            color-mix(
+                in srgb,
+                var(--accent) 3%,
+                transparent
+            )
+        );
 }
 
 
 .hero-glow {
     position: absolute;
 
-    width: 480px;
+    width: clamp(280px, 35vw, 520px);
 
-    height: 480px;
+    height: clamp(280px, 35vw, 520px);
 
-    right: 8%;
+    right: 6%;
 
-    top: 12%;
+    top: 10%;
 
     border-radius: 50%;
 
-    background:
-        var(--accent);
+    background: var(--accent);
 
-    opacity: .06;
+    opacity: .055;
 
-    filter: blur(80px);
+    filter: blur(90px);
 
     z-index: -1;
 
@@ -422,6 +618,8 @@ a:focus-visible {
 
 .hero-content {
     min-width: 0;
+
+    max-width: 850px;
 }
 
 
@@ -434,11 +632,13 @@ a:focus-visible {
 
     color: var(--muted);
 
-    font-size: 11px;
+    font-size: 10px;
 
     font-weight: 850;
 
-    letter-spacing: .22em;
+    letter-spacing: .2em;
+
+    text-transform: uppercase;
 }
 
 
@@ -447,12 +647,15 @@ a:focus-visible {
 
     height: 7px;
 
+    flex: 0 0 7px;
+
     border-radius: 50%;
 
     background: var(--accent);
 
     box-shadow:
-        0 0 18px var(--accent);
+        0 0 18px
+        var(--accent);
 }
 
 
@@ -463,7 +666,7 @@ a:focus-visible {
 
     gap: 8px;
 
-    margin-top: 22px;
+    margin-top: 20px;
 }
 
 
@@ -472,7 +675,9 @@ a:focus-visible {
 
     align-items: center;
 
-    min-height: 30px;
+    justify-content: center;
+
+    min-height: 29px;
 
     padding:
         5px
@@ -483,7 +688,7 @@ a:focus-visible {
     background:
         color-mix(
             in srgb,
-            var(--accent) 13%,
+            var(--accent) 11%,
             transparent
         );
 
@@ -491,15 +696,17 @@ a:focus-visible {
         1px solid
         color-mix(
             in srgb,
-            var(--accent) 28%,
+            var(--accent) 25%,
             transparent
         );
 
     color: var(--accent);
 
-    font-size: 11px;
+    font-size: 10px;
 
     font-weight: 800;
+
+    line-height: 1.2;
 }
 
 
@@ -523,7 +730,7 @@ a:focus-visible {
 
 
 .hero h1 {
-    max-width: 850px;
+    max-width: 900px;
 
     margin:
         24px
@@ -531,14 +738,16 @@ a:focus-visible {
         20px;
 
     font-size:
-        clamp(48px, 7vw, 92px);
+        clamp(48px, 7vw, 94px);
 
-    line-height: .98;
+    line-height: .96;
 
     letter-spacing:
-        -.055em;
+        -.06em;
 
     overflow-wrap: anywhere;
+
+    text-wrap: balance;
 }
 
 
@@ -550,9 +759,11 @@ a:focus-visible {
     color: var(--muted);
 
     font-size:
-        clamp(16px, 1.7vw, 20px);
+        clamp(15px, 1.55vw, 19px);
 
     line-height: 1.8;
+
+    text-wrap: pretty;
 }
 
 
@@ -561,9 +772,9 @@ a:focus-visible {
 
     flex-wrap: wrap;
 
-    gap: 12px;
+    gap: 10px;
 
-    margin-top: 34px;
+    margin-top: 32px;
 }
 
 
@@ -577,17 +788,13 @@ a:focus-visible {
 
     max-width: 720px;
 
-    margin-top: 55px;
+    margin-top: 50px;
 
-    padding-top: 22px;
+    padding-top: 21px;
 
     border-top:
         1px solid
-        color-mix(
-            in srgb,
-            var(--text) 9%,
-            transparent
-        );
+        var(--border-soft);
 }
 
 
@@ -603,11 +810,13 @@ a:focus-visible {
 
     color: var(--muted);
 
-    font-size: 9px;
+    font-size: 8px;
 
     font-weight: 850;
 
-    letter-spacing: .18em;
+    letter-spacing: .17em;
+
+    text-transform: uppercase;
 }
 
 
@@ -620,12 +829,14 @@ a:focus-visible {
 
     white-space: nowrap;
 
-    font-size: 14px;
+    font-size: 13px;
+
+    font-weight: 750;
 }
 
 
 /* =========================================================
-   COVER
+   HERO ART / COVER
    ========================================================= */
 
 .hero-art {
@@ -671,7 +882,7 @@ a:focus-visible {
         );
 
     border-radius:
-        var(--radius);
+        calc(var(--radius) * 1.1);
 
     background:
         linear-gradient(
@@ -685,13 +896,19 @@ a:focus-visible {
         );
 
     box-shadow:
-        var(--shadow);
+        0 30px 80px
+        color-mix(
+            in srgb,
+            var(--text) 16%,
+            transparent
+        );
 
     transform:
         rotate(2deg);
 
     transition:
-        transform 350ms ease;
+        transform 350ms ease,
+        box-shadow 350ms ease;
 }
 
 
@@ -699,6 +916,14 @@ a:focus-visible {
     transform:
         rotate(0deg)
         translateY(-8px);
+
+    box-shadow:
+        0 40px 100px
+        color-mix(
+            in srgb,
+            var(--accent) 16%,
+            transparent
+        );
 }
 
 
@@ -719,6 +944,30 @@ a:focus-visible {
     opacity: .10;
 
     filter: blur(30px);
+
+    pointer-events: none;
+}
+
+
+.cover-card::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 12px;
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(--accent) 16%,
+            transparent
+        );
+
+    border-radius:
+        calc(var(--radius) * .8);
+
+    pointer-events: none;
 }
 
 
@@ -726,9 +975,11 @@ a:focus-visible {
 .cover-bottom {
     position: relative;
 
+    z-index: 1;
+
     color: var(--muted);
 
-    font-size: 9px;
+    font-size: 8px;
 
     font-weight: 850;
 
@@ -738,6 +989,8 @@ a:focus-visible {
 
 .cover-symbol {
     position: relative;
+
+    z-index: 1;
 
     margin:
         40px
@@ -763,9 +1016,16 @@ a:focus-visible {
 .cover-card h2 {
     position: relative;
 
+    z-index: 1;
+
     max-width: 260px;
 
     margin: 0;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
     font-size: 28px;
 
@@ -778,6 +1038,8 @@ a:focus-visible {
 .cover-card p {
     position: relative;
 
+    z-index: 1;
+
     margin:
         13px
         0
@@ -785,7 +1047,7 @@ a:focus-visible {
 
     color: var(--accent);
 
-    font-size: 11px;
+    font-size: 10px;
 
     font-weight: 800;
 
@@ -813,7 +1075,7 @@ a:focus-visible {
             var(--accent-2)
         );
 
-    opacity: .18;
+    opacity: .16;
 
     filter: blur(1px);
 
@@ -847,6 +1109,7 @@ a:focus-visible {
 
 
 @keyframes float {
+
     0%,
     100% {
         transform: translateY(0);
@@ -863,16 +1126,17 @@ a:focus-visible {
    ========================================================= */
 
 .section {
-    width: min(
-        var(--page-width),
-        calc(100% - 40px)
-    );
+    width:
+        min(
+            var(--page-width),
+            calc(100% - 40px)
+        );
 
     margin:
         0 auto;
 
     padding:
-        clamp(70px, 9vw, 120px)
+        clamp(70px, 8vw, 120px)
         0;
 }
 
@@ -886,7 +1150,7 @@ a:focus-visible {
 
     gap: 40px;
 
-    margin-bottom: 42px;
+    margin-bottom: 40px;
 }
 
 
@@ -900,7 +1164,7 @@ a:focus-visible {
 
     color: var(--accent);
 
-    font-size: 10px;
+    font-size: 9px;
 
     font-weight: 850;
 
@@ -919,20 +1183,24 @@ a:focus-visible {
     font-size:
         clamp(30px, 4vw, 52px);
 
-    line-height: 1.05;
+    line-height: 1.04;
 
     letter-spacing: -.045em;
+
+    text-wrap: balance;
 }
 
 
 .section-heading > p {
-    max-width: 420px;
+    max-width: 440px;
 
     margin: 0;
 
     color: var(--muted);
 
-    font-size: 15px;
+    font-size: 14px;
+
+    line-height: 1.75;
 }
 
 
@@ -946,42 +1214,63 @@ a:focus-visible {
     grid-template-columns:
         repeat(4, minmax(0, 1fr));
 
-    gap: 14px;
+    gap: 12px;
 }
 
 
 .info-card {
     min-height: 230px;
 
-    padding: 25px;
+    padding: 24px;
 
     border:
         1px solid
-        color-mix(
-            in srgb,
-            var(--text) 9%,
-            transparent
-        );
+        var(--border-soft);
 
     border-radius:
-        var(--radius);
+        calc(var(--radius) * .9);
 
     background:
         var(--surface-2);
 
+    box-shadow:
+        0 4px 18px
+        color-mix(
+            in srgb,
+            var(--text) 3%,
+            transparent
+        );
+
     transition:
         transform var(--transition),
-        border-color var(--transition);
+        border-color var(--transition),
+        background var(--transition),
+        box-shadow var(--transition);
 }
 
 
 .info-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
 
     border-color:
         color-mix(
             in srgb,
-            var(--accent) 30%,
+            var(--accent) 28%,
+            transparent
+        );
+
+    background:
+        color-mix(
+            in srgb,
+            var(--accent) 3%,
+            var(--surface-2)
+        );
+
+    box-shadow:
+        0 14px 30px
+        color-mix(
+            in srgb,
+            var(--text) 6%,
             transparent
         );
 }
@@ -990,9 +1279,11 @@ a:focus-visible {
 .card-number {
     color: var(--accent);
 
-    font-size: 11px;
+    font-size: 10px;
 
     font-weight: 850;
+
+    letter-spacing: .1em;
 }
 
 
@@ -1002,7 +1293,9 @@ a:focus-visible {
         0
         8px;
 
-    font-size: 20px;
+    font-size: 19px;
+
+    line-height: 1.2;
 }
 
 
@@ -1011,7 +1304,9 @@ a:focus-visible {
 
     color: var(--muted);
 
-    font-size: 14px;
+    font-size: 13px;
+
+    line-height: 1.75;
 }
 
 
@@ -1025,35 +1320,59 @@ a:focus-visible {
     grid-template-columns:
         repeat(3, minmax(0, 1fr));
 
-    gap: 14px;
+    gap: 12px;
 }
 
 
 .character-card {
+    min-width: 0;
+
     display: flex;
 
-    gap: 18px;
+    gap: 16px;
 
-    padding: 20px;
+    padding: 19px;
 
     border:
         1px solid
-        color-mix(
-            in srgb,
-            var(--text) 9%,
-            transparent
-        );
+        var(--border-soft);
 
     border-radius:
-        var(--radius);
+        calc(var(--radius) * .9);
 
     background:
         var(--surface-2);
+
+    transition:
+        transform var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+
+.character-card:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        color-mix(
+            in srgb,
+            var(--accent) 25%,
+            transparent
+        );
+
+    box-shadow:
+        0 12px 26px
+        color-mix(
+            in srgb,
+            var(--text) 5%,
+            transparent
+        );
 }
 
 
 .character-avatar {
-    flex: 0 0 48px;
+    flex:
+        0 0 48px;
 
     width: 48px;
 
@@ -1063,18 +1382,26 @@ a:focus-visible {
 
     place-items: center;
 
-    border-radius: 15px;
+    border-radius: 14px;
 
     background:
         color-mix(
             in srgb,
-            var(--accent) 14%,
+            var(--accent) 13%,
             var(--surface)
+        );
+
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(--accent) 12%,
+            transparent
         );
 
     color: var(--accent);
 
-    font-size: 19px;
+    font-size: 18px;
 
     font-weight: 900;
 }
@@ -1088,7 +1415,7 @@ a:focus-visible {
 .character-role {
     color: var(--accent);
 
-    font-size: 9px;
+    font-size: 8px;
 
     font-weight: 850;
 
@@ -1104,7 +1431,11 @@ a:focus-visible {
         0
         4px;
 
-    font-size: 18px;
+    overflow-wrap: anywhere;
+
+    font-size: 17px;
+
+    line-height: 1.2;
 }
 
 
@@ -1113,18 +1444,28 @@ a:focus-visible {
 
     color: var(--muted);
 
-    font-size: 13px;
+    font-size: 12px;
+
+    line-height: 1.65;
 }
 
 
 .character-power {
     display: inline-block;
 
-    margin-top: 11px;
+    max-width: 100%;
+
+    margin-top: 10px;
 
     padding:
         4px
         8px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
 
     border-radius: 999px;
 
@@ -1137,24 +1478,24 @@ a:focus-visible {
 
     color: var(--text);
 
-    font-size: 10px;
+    font-size: 9px;
 }
 
 
 /* =========================================================
-   READER
+   READER SECTION
    ========================================================= */
 
 .reader-section {
     padding:
-        40px
+        35px
         0
         100px;
 
     background:
         color-mix(
             in srgb,
-            var(--surface-2) 45%,
+            var(--surface-2) 48%,
             transparent
         );
 
@@ -1177,10 +1518,11 @@ a:focus-visible {
 
 
 .reader-layout {
-    width: min(
-        var(--page-width),
-        calc(100% - 40px)
-    );
+    width:
+        min(
+            var(--page-width),
+            calc(100% - 40px)
+        );
 
     margin: 0 auto;
 
@@ -1189,38 +1531,43 @@ a:focus-visible {
     grid-template-columns:
         280px minmax(0, 1fr);
 
-    gap: 24px;
+    gap: 18px;
 
     align-items: start;
 }
 
 
+/* =========================================================
+   CHAPTER SIDEBAR
+   ========================================================= */
+
 .chapter-sidebar {
     position: sticky;
 
-    top: 90px;
+    top: 88px;
 
     max-height:
-        calc(100vh - 110px);
+        calc(100vh - 105px);
 
     overflow: hidden;
 
     border:
         1px solid
-        color-mix(
-            in srgb,
-            var(--text) 9%,
-            transparent
-        );
+        var(--border-soft);
 
     border-radius:
-        var(--radius);
+        calc(var(--radius) * .95);
 
     background:
         var(--surface);
 
     box-shadow:
-        var(--shadow);
+        0 12px 35px
+        color-mix(
+            in srgb,
+            var(--text) 6%,
+            transparent
+        );
 }
 
 
@@ -1229,17 +1576,15 @@ a:focus-visible {
 
     justify-content: space-between;
 
+    align-items: center;
+
     gap: 15px;
 
-    padding: 20px;
+    padding: 18px;
 
     border-bottom:
         1px solid
-        color-mix(
-            in srgb,
-            var(--text) 8%,
-            transparent
-        );
+        var(--border-soft);
 }
 
 
@@ -1249,14 +1594,14 @@ a:focus-visible {
         0
         0;
 
-    font-size: 18px;
+    font-size: 17px;
 }
 
 
 .chapter-count {
     min-width: 38px;
 
-    height: 30px;
+    height: 29px;
 
     display: grid;
 
@@ -1271,13 +1616,13 @@ a:focus-visible {
     background:
         color-mix(
             in srgb,
-            var(--accent) 12%,
+            var(--accent) 11%,
             transparent
         );
 
     color: var(--accent);
 
-    font-size: 11px;
+    font-size: 10px;
 
     font-weight: 850;
 }
@@ -1285,11 +1630,43 @@ a:focus-visible {
 
 .chapter-list {
     max-height:
-        calc(100vh - 210px);
+        calc(100vh - 205px);
 
     overflow-y: auto;
 
-    padding: 10px;
+    padding: 9px;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        color-mix(
+            in srgb,
+            var(--accent) 30%,
+            transparent
+        )
+        transparent;
+}
+
+
+.chapter-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+.chapter-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.chapter-list::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--accent) 30%,
+            transparent
+        );
 }
 
 
@@ -1304,15 +1681,16 @@ a:focus-visible {
 
     gap: 3px;
 
-    margin-bottom: 4px;
+    margin-bottom: 3px;
 
     padding:
-        13px;
+        12px;
 
-    border: 1px solid transparent;
+    border:
+        1px solid transparent;
 
     border-radius:
-        calc(var(--radius) * .65);
+        calc(var(--radius) * .62);
 
     background: transparent;
 
@@ -1324,7 +1702,8 @@ a:focus-visible {
 
     transition:
         background var(--transition),
-        border-color var(--transition);
+        border-color var(--transition),
+        transform var(--transition);
 }
 
 
@@ -1332,44 +1711,52 @@ a:focus-visible {
     background:
         color-mix(
             in srgb,
-            var(--text) 5%,
+            var(--accent) 5%,
             transparent
         );
 
     border-color:
         color-mix(
             in srgb,
-            var(--text) 7%,
+            var(--accent) 13%,
             transparent
         );
+
+    transform: translateX(2px);
 }
 
 
 .arc-button span {
     color: var(--accent);
 
-    font-size: 9px;
+    font-size: 8px;
 
     font-weight: 850;
 
     letter-spacing: .14em;
+
+    text-transform: uppercase;
 }
 
 
 .arc-button strong {
-    font-size: 13px;
+    font-size: 12px;
+
+    line-height: 1.35;
 }
 
 
 .arc-button small {
     color: var(--muted);
 
-    font-size: 10px;
+    font-size: 9px;
+
+    line-height: 1.4;
 }
 
 
 /* =========================================================
-   READER CONTENT
+   READER
    ========================================================= */
 
 .reader {
@@ -1379,40 +1766,45 @@ a:focus-visible {
 
     border:
         1px solid
-        color-mix(
-            in srgb,
-            var(--text) 9%,
-            transparent
-        );
+        var(--border-soft);
 
     border-radius:
-        var(--radius);
+        calc(var(--radius) * .95);
 
     background:
         var(--surface);
 
     box-shadow:
-        var(--shadow);
+        0 15px 45px
+        color-mix(
+            in srgb,
+            var(--text) 6%,
+            transparent
+        );
 }
 
 
 .reader-toolbar {
     display: grid;
 
-    grid-template-columns: 48px 1fr 48px;
+    grid-template-columns:
+        48px minmax(0, 1fr) 48px;
 
     align-items: center;
 
     gap: 10px;
 
     padding:
-        15px 18px;
+        13px 16px;
 
     border-bottom:
         1px solid
+        var(--border-soft);
+
+    background:
         color-mix(
             in srgb,
-            var(--text) 8%,
+            var(--surface-2) 50%,
             transparent
         );
 }
@@ -1429,13 +1821,9 @@ a:focus-visible {
 
     border:
         1px solid
-        color-mix(
-            in srgb,
-            var(--text) 10%,
-            transparent
-        );
+        var(--border-medium);
 
-    border-radius: 13px;
+    border-radius: 12px;
 
     background:
         var(--surface-2);
@@ -1446,7 +1834,8 @@ a:focus-visible {
 
     transition:
         transform var(--transition),
-        border-color var(--transition);
+        border-color var(--transition),
+        background var(--transition);
 }
 
 
@@ -1459,6 +1848,13 @@ a:focus-visible {
             var(--accent) 40%,
             transparent
         );
+
+    background:
+        color-mix(
+            in srgb,
+            var(--accent) 6%,
+            var(--surface-2)
+        );
 }
 
 
@@ -1470,20 +1866,32 @@ a:focus-visible {
 
 
 .reader-position {
+    min-width: 0;
+
+    overflow: hidden;
+
     text-align: center;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
 
     color: var(--muted);
 
-    font-size: 12px;
+    font-size: 10px;
 
     font-weight: 800;
 
     letter-spacing: .08em;
+
+    text-transform: uppercase;
 }
 
 
 .reader-progress {
     height: 3px;
+
+    overflow: hidden;
 
     background:
         color-mix(
@@ -1511,14 +1919,20 @@ a:focus-visible {
 }
 
 
+/* =========================================================
+   READER CONTENT
+   ========================================================= */
+
 .reader-content {
+    width: 100%;
+
     max-width:
         var(--reading-width);
 
     margin: 0 auto;
 
     padding:
-        clamp(30px, 6vw, 80px)
+        clamp(35px, 6vw, 80px)
         clamp(20px, 6vw, 70px)
         70px;
 }
@@ -1529,13 +1943,13 @@ a:focus-visible {
 
     flex-wrap: wrap;
 
-    gap: 9px;
+    gap: 8px;
 
-    margin-bottom: 15px;
+    margin-bottom: 14px;
 
     color: var(--muted);
 
-    font-size: 10px;
+    font-size: 9px;
 
     font-weight: 850;
 
@@ -1556,12 +1970,19 @@ a:focus-visible {
         0
         38px;
 
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
     font-size:
         clamp(32px, 5vw, 54px);
 
-    line-height: 1.05;
+    line-height: 1.06;
 
     letter-spacing: -.045em;
+
+    text-wrap: balance;
 }
 
 
@@ -1572,9 +1993,13 @@ a:focus-visible {
         serif;
 
     font-size:
-        clamp(17px, 1.7vw, 20px);
+        clamp(17px, 1.55vw, 20px);
 
     line-height: 1.95;
+
+    color: var(--text);
+
+    text-wrap: pretty;
 }
 
 
@@ -1599,16 +2024,12 @@ a:focus-visible {
 
     border-top:
         1px solid
-        color-mix(
-            in srgb,
-            var(--text) 8%,
-            transparent
-        );
+        var(--border-soft);
 }
 
 
 /* =========================================================
-   FINAL
+   FINAL SECTION
    ========================================================= */
 
 .final-section {
@@ -1633,7 +2054,7 @@ a:focus-visible {
         );
 
     border-radius:
-        calc(var(--radius) * 1.3);
+        calc(var(--radius) * 1.25);
 
     background:
         linear-gradient(
@@ -1644,6 +2065,14 @@ a:focus-visible {
                 var(--surface-2)
             ),
             var(--surface-2)
+        );
+
+    box-shadow:
+        0 20px 60px
+        color-mix(
+            in srgb,
+            var(--text) 5%,
+            transparent
         );
 }
 
@@ -1688,6 +2117,8 @@ a:focus-visible {
     line-height: 1;
 
     letter-spacing: -.05em;
+
+    text-wrap: balance;
 }
 
 
@@ -1700,6 +2131,8 @@ a:focus-visible {
         28px;
 
     color: var(--muted);
+
+    line-height: 1.8;
 }
 
 
@@ -1708,10 +2141,11 @@ a:focus-visible {
    ========================================================= */
 
 .footer {
-    width: min(
-        var(--page-width),
-        calc(100% - 40px)
-    );
+    width:
+        min(
+            var(--page-width),
+            calc(100% - 40px)
+        );
 
     margin: 0 auto;
 
@@ -1730,7 +2164,7 @@ a:focus-visible {
 
     color: var(--muted);
 
-    font-size: 11px;
+    font-size: 10px;
 
     border-top:
         1px solid
@@ -1748,6 +2182,8 @@ a:focus-visible {
     flex-direction: column;
 
     gap: 4px;
+
+    min-width: 0;
 }
 
 
@@ -1767,23 +2203,56 @@ a:focus-visible {
 
 
 /* =========================================================
-   RESPONSIVE
+   LARGE DESKTOP
    ========================================================= */
 
-@media (max-width: 1050px) {
+@media (min-width: 1600px) {
+
+    .topbar {
+        padding-left:
+            max(60px, calc((100vw - 1440px) / 2));
+
+        padding-right:
+            max(60px, calc((100vw - 1440px) / 2));
+    }
+
+
+    .hero {
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+
+
+    .hero h1 {
+        font-size: 96px;
+    }
+
+
+    .reader-layout {
+        gap: 24px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+   ========================================================= */
+
+@media (max-width: 1100px) {
 
     .hero {
         grid-template-columns:
-            1fr
-            360px;
+            minmax(0, 1fr)
+            minmax(280px, .75fr);
 
-        gap: 40px;
+        gap: 45px;
     }
 
 
     .hero h1 {
         font-size:
-            clamp(46px, 7vw, 72px);
+            clamp(44px, 6.5vw, 76px);
     }
 
 
@@ -1801,68 +2270,48 @@ a:focus-visible {
 
     .reader-layout {
         grid-template-columns:
-            230px minmax(0, 1fr);
+            235px minmax(0, 1fr);
     }
 
 }
 
 
-@media (max-width: 820px) {
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
 
     .topbar {
+        min-height: 64px;
+
         padding:
-            13px 16px;
+            10px 18px;
     }
 
 
     .desktop-nav {
-        display: none;
-    }
-
-
-    .topbar .button {
-        min-height: 40px;
-
-        padding:
-            8px 12px;
+        gap: 18px;
 
         font-size: 12px;
     }
 
 
     .hero {
-        width: 100%;
-
         min-height: auto;
 
         padding:
-            70px 20px;
+            75px 24px;
 
         grid-template-columns:
             1fr;
 
-        text-align: center;
+        gap: 55px;
     }
 
 
     .hero-content {
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: center;
-    }
-
-
-    .hero-description {
-        max-width: 620px;
-    }
-
-
-    .hero-meta {
-        width: 100%;
-
-        text-align: left;
+        max-width: 800px;
     }
 
 
@@ -1871,11 +2320,24 @@ a:focus-visible {
     }
 
 
+    .hero h1 {
+        max-width: 800px;
+    }
+
+
+    .hero-description {
+        max-width: 700px;
+    }
+
+
     .reader-layout {
-        width: calc(100% - 24px);
+        width:
+            calc(100% - 28px);
 
         grid-template-columns:
             1fr;
+
+        gap: 14px;
     }
 
 
@@ -1889,18 +2351,23 @@ a:focus-visible {
     .chapter-list {
         display: flex;
 
-        gap: 8px;
-
-        overflow-x: auto;
+        gap: 7px;
 
         max-height: none;
 
-        padding: 10px;
+        overflow-x: auto;
+
+        overflow-y: hidden;
+
+        padding: 9px;
+
+        scrollbar-width: thin;
     }
 
 
     .arc-button {
-        flex: 0 0 170px;
+        flex:
+            0 0 180px;
 
         margin: 0;
     }
@@ -1910,7 +2377,78 @@ a:focus-visible {
         padding:
             25px
             0
-            70px;
+            80px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE NAVIGATION / LAYOUT
+   ========================================================= */
+
+@media (max-width: 820px) {
+
+    .desktop-nav {
+        display: none;
+    }
+
+
+    .topbar {
+        gap: 10px;
+    }
+
+
+    .topbar .button {
+        min-height: 40px;
+
+        padding:
+            8px 13px;
+
+        font-size: 11px;
+    }
+
+
+    .hero {
+        text-align: center;
+
+        align-items: center;
+    }
+
+
+    .hero-content {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+
+    .eyebrow {
+        justify-content: center;
+    }
+
+
+    .genre-row {
+        justify-content: center;
+    }
+
+
+    .hero-description {
+        max-width: 650px;
+    }
+
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+
+    .hero-meta {
+        width: 100%;
+
+        text-align: left;
     }
 
 
@@ -1918,15 +2456,39 @@ a:focus-visible {
         flex-direction: column;
 
         align-items: flex-start;
+
+        gap: 14px;
+    }
+
+
+    .section-heading > p {
+        max-width: 650px;
     }
 
 }
 
 
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 600px) {
 
-    .brand-text {
-        display: none;
+    html {
+        scroll-padding-top: 75px;
+    }
+
+
+    .topbar {
+        min-height: 58px;
+
+        padding:
+            9px 14px;
+    }
+
+
+    .brand {
+        gap: 9px;
     }
 
 
@@ -1934,27 +2496,82 @@ a:focus-visible {
         width: 38px;
 
         height: 38px;
+
+        flex-basis: 38px;
+
+        border-radius: 11px;
+
+        font-size: 12px;
+    }
+
+
+    .brand-text {
+        display: none;
+    }
+
+
+    .topbar .button {
+        min-height: 38px;
+
+        padding:
+            7px 11px;
+
+        border-radius: 10px;
+
+        font-size: 10px;
     }
 
 
     .hero {
         padding:
-            55px 16px;
+            58px 16px
+            55px;
+
+        gap: 38px;
+    }
+
+
+    .eyebrow {
+        font-size: 8px;
+
+        letter-spacing: .16em;
+    }
+
+
+    .genre-row {
+        gap: 6px;
+
+        margin-top: 16px;
+    }
+
+
+    .badge {
+        min-height: 27px;
+
+        padding:
+            5px 9px;
+
+        font-size: 9px;
     }
 
 
     .hero h1 {
-        font-size:
-            clamp(40px, 13vw, 58px);
+        margin:
+            18px
+            0
+            16px;
 
-        margin-top: 18px;
+        font-size:
+            clamp(38px, 12vw, 58px);
+
+        line-height: .98;
     }
 
 
     .hero-description {
-        font-size: 15px;
+        font-size: 14px;
 
-        line-height: 1.7;
+        line-height: 1.75;
     }
 
 
@@ -1962,6 +2579,10 @@ a:focus-visible {
         width: 100%;
 
         flex-direction: column;
+
+        gap: 8px;
+
+        margin-top: 25px;
     }
 
 
@@ -1971,84 +2592,274 @@ a:focus-visible {
 
 
     .hero-meta {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
 
-        gap: 13px;
+        gap: 12px;
 
-        margin-top: 35px;
+        margin-top: 34px;
+
+        padding-top: 18px;
+    }
+
+
+    .hero-meta span {
+        font-size: 7px;
+    }
+
+
+    .hero-meta strong {
+        font-size: 12px;
     }
 
 
     .hero-art {
-        min-height: 380px;
+        min-height: 370px;
     }
 
 
     .cover-card {
-        width: min(280px, 75vw);
+        width:
+            min(
+                280px,
+                76vw
+            );
+
+        padding: 32px;
+
+        border-radius: 18px;
+    }
+
+
+    .cover-symbol {
+        margin:
+            32px
+            0
+            22px;
+
+        font-size: 60px;
+    }
+
+
+    .cover-card h2 {
+        font-size: 24px;
     }
 
 
     .section {
-        width: calc(100% - 28px);
+        width:
+            calc(100% - 28px);
 
         padding:
-            65px 0;
+            62px
+            0;
+    }
+
+
+    .section-heading {
+        margin-bottom: 28px;
+    }
+
+
+    .section-label {
+        font-size: 8px;
+    }
+
+
+    .section-heading h2 {
+        font-size:
+            clamp(28px, 9vw, 42px);
+    }
+
+
+    .section-heading > p {
+        font-size: 13px;
     }
 
 
     .info-grid,
     .character-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
+
+        gap: 9px;
     }
 
 
     .info-card {
         min-height: auto;
+
+        padding: 20px;
+    }
+
+
+    .info-card h3 {
+        margin-top: 30px;
+
+        font-size: 18px;
+    }
+
+
+    .info-card p {
+        font-size: 13px;
+    }
+
+
+    .character-card {
+        padding: 16px;
+
+        gap: 13px;
+    }
+
+
+    .character-avatar {
+        width: 44px;
+
+        height: 44px;
+
+        flex-basis: 44px;
+
+        border-radius: 12px;
+    }
+
+
+    .character-info h3 {
+        font-size: 16px;
+    }
+
+
+    .character-info p {
+        font-size: 12px;
+    }
+
+
+    .reader-section {
+        padding:
+            18px
+            0
+            65px;
     }
 
 
     .reader-layout {
-        width: calc(100% - 16px);
+        width:
+            calc(100% - 14px);
+
+        gap: 10px;
+    }
+
+
+    .chapter-sidebar {
+        border-radius: 14px;
+    }
+
+
+    .sidebar-header {
+        padding:
+            14px;
+    }
+
+
+    .sidebar-header h3 {
+        font-size: 15px;
+    }
+
+
+    .chapter-list {
+        padding: 7px;
+    }
+
+
+    .arc-button {
+        flex-basis: 160px;
+
+        padding:
+            11px;
+
+        border-radius: 10px;
+    }
+
+
+    .arc-button strong {
+        font-size: 11px;
+    }
+
+
+    .arc-button small {
+        font-size: 8px;
+    }
+
+
+    .reader {
+        border-radius: 14px;
     }
 
 
     .reader-toolbar {
         grid-template-columns:
-            44px 1fr 44px;
+            40px minmax(0, 1fr) 40px;
+
+        gap: 7px;
 
         padding:
-            12px;
+            10px;
     }
 
 
     .icon-button {
-        width: 40px;
+        width: 38px;
 
-        height: 40px;
+        height: 38px;
+
+        border-radius: 10px;
+    }
+
+
+    .reader-position {
+        font-size: 8px;
+
+        letter-spacing: .05em;
     }
 
 
     .reader-content {
         padding:
-            35px 18px 50px;
+            32px
+            18px
+            48px;
+    }
+
+
+    .chapter-kicker {
+        font-size: 8px;
+
+        gap: 6px;
     }
 
 
     .reader-content h2 {
-        margin-bottom: 28px;
+        margin-bottom: 27px;
+
+        font-size:
+            clamp(29px, 9vw, 43px);
+
+        line-height: 1.08;
     }
 
 
     .chapter-body {
         font-size: 17px;
 
-        line-height: 1.85;
+        line-height: 1.86;
     }
 
 
     .chapter-footer {
         flex-direction: column;
+
+        margin-top: 40px;
+
+        padding-top: 24px;
     }
 
 
@@ -2057,41 +2868,294 @@ a:focus-visible {
     }
 
 
+    .final-section {
+        padding-top: 65px;
+    }
+
+
+    .final-card {
+        padding:
+            30px
+            22px;
+
+        border-radius: 18px;
+    }
+
+
+    .final-card h2 {
+        font-size:
+            clamp(30px, 10vw, 48px);
+    }
+
+
+    .final-card p {
+        font-size: 13px;
+
+        line-height: 1.75;
+    }
+
+
     .footer {
-        width: calc(100% - 28px);
+        width:
+            calc(100% - 28px);
 
         flex-direction: column;
+
+        gap: 12px;
+
+        padding:
+            25px
+            0
+            35px;
+
+        font-size: 9px;
     }
 
 }
 
 
-@media (max-width: 390px) {
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
 
     .topbar .button {
-        font-size: 11px;
+        font-size: 9px;
 
         padding:
             7px 9px;
     }
 
 
+    .hero {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+
+
     .hero h1 {
-        font-size: 38px;
+        font-size:
+            clamp(
+                35px,
+                12vw,
+                48px
+            );
     }
 
 
-    .badge {
-        font-size: 10px;
+    .hero-description {
+        font-size: 13px;
     }
 
 
-    .reader-position {
-        font-size: 10px;
+    .hero-art {
+        min-height: 340px;
+    }
+
+
+    .cover-card {
+        width:
+            min(
+                255px,
+                74vw
+            );
+    }
+
+
+    .cover-symbol {
+        font-size: 54px;
+
+        margin:
+            28px
+            0
+            18px;
+    }
+
+
+    .cover-card h2 {
+        font-size: 22px;
+    }
+
+
+    .section {
+        width:
+            calc(100% - 24px);
+    }
+
+
+    .reader-layout {
+        width:
+            calc(100% - 10px);
+    }
+
+
+    .reader-content {
+        padding:
+            28px
+            15px
+            45px;
+    }
+
+
+    .chapter-body {
+        font-size: 16px;
+
+        line-height: 1.82;
     }
 
 }
 
+
+/* =========================================================
+   VERY SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .topbar {
+        padding:
+            8px 10px;
+    }
+
+
+    .brand-mark {
+        width: 35px;
+
+        height: 35px;
+
+        flex-basis: 35px;
+    }
+
+
+    .topbar .button {
+        min-height: 36px;
+
+        padding:
+            6px 8px;
+
+        font-size: 8px;
+    }
+
+
+    .hero {
+        padding:
+            48px
+            11px
+            45px;
+    }
+
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+
+    .badge {
+        font-size: 8px;
+    }
+
+
+    .cover-card {
+        width: 235px;
+    }
+
+
+    .reader-toolbar {
+        grid-template-columns:
+            38px minmax(0, 1fr) 38px;
+
+        padding: 8px;
+    }
+
+
+    .icon-button {
+        width: 36px;
+
+        height: 36px;
+    }
+
+
+    .reader-position {
+        font-size: 7px;
+    }
+
+
+    .reader-content {
+        padding:
+            25px
+            13px
+            40px;
+    }
+
+
+    .reader-content h2 {
+        font-size: 29px;
+    }
+
+
+    .chapter-body {
+        font-size: 15.5px;
+    }
+
+}
+
+
+/* =========================================================
+   LANDSCAPE PHONES
+   ========================================================= */
+
+@media (max-width: 900px) and (orientation: landscape) {
+
+    .hero {
+        padding-top: 50px;
+
+        padding-bottom: 50px;
+    }
+
+
+    .hero-art {
+        min-height: 320px;
+    }
+
+
+    .cover-card {
+        width: 220px;
+    }
+
+
+    .chapter-list {
+        max-height: 180px;
+    }
+
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) {
+
+    .button:hover:not(:disabled),
+    .icon-button:hover:not(:disabled),
+    .info-card:hover,
+    .character-card:hover,
+    .cover-card:hover {
+        transform: none;
+    }
+
+
+    .desktop-nav a::after {
+        display: none;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -2108,6 +3172,130 @@ a:focus-visible {
         animation-iteration-count: 1 !important;
 
         transition-duration: .01ms !important;
+
+        scroll-behavior: auto !important;
+    }
+
+}
+
+
+/* =========================================================
+   HIGH CONTRAST / ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-contrast: more) {
+
+    .button,
+    .info-card,
+    .character-card,
+    .reader,
+    .chapter-sidebar,
+    .cover-card,
+    .final-card {
+        border-color:
+            color-mix(
+                in srgb,
+                var(--text) 20%,
+                transparent
+            );
+    }
+
+
+    .muted-badge,
+    .character-power {
+        border:
+            1px solid
+            color-mix(
+                in srgb,
+                var(--text) 14%,
+                transparent
+            );
+    }
+
+}
+
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+
+    .topbar,
+    .desktop-nav,
+    .hero-actions,
+    .chapter-sidebar,
+    .reader-toolbar,
+    .reader-progress,
+    .final-section,
+    .footer,
+    .noise,
+    .orb,
+    .hero-glow {
+        display: none !important;
+    }
+
+
+    body {
+        background: white !important;
+
+        color: black !important;
+    }
+
+
+    .hero,
+    .section,
+    .reader-section {
+        width: 100%;
+
+        max-width: none;
+
+        padding:
+            20px 0;
+    }
+
+
+    .hero {
+        display: block;
+
+        min-height: auto;
+    }
+
+
+    .hero-art {
+        display: none;
+    }
+
+
+    .reader-layout {
+        width: 100%;
+
+        display: block;
+    }
+
+
+    .reader {
+        border: 0;
+
+        box-shadow: none;
+
+        background: white;
+    }
+
+
+    .reader-content {
+        max-width: 100%;
+
+        padding: 0;
+    }
+
+
+    .chapter-body {
+        color: black;
+
+        font-size: 12pt;
+
+        line-height: 1.7;
     }
 
 }
