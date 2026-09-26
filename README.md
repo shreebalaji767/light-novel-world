@@ -1,32 +1,30 @@
 # Light Novel World
 
-A responsive long-form procedural light novel generator built with Python Flask.
+A procedural long-form light novel generator built with Flask.
 
 ## Features
 
-- 600 chapters per generated novel
-- Multiple long-form story arcs
-- Multiple genres
-- Deterministic chapter generation from a novel seed
-- New novel on every new request
+- New novel on every page refresh
+- Cryptographically random novel seed
+- 600 chapters per novel
+- Deterministic chapter generation within each novel
+- Exactly 800 generated chapter words
+- Novel-specific visual theme
+- Responsive desktop layout
+- Responsive tablet layout
+- Responsive mobile layout
+- Chapter navigation
+- Random chapter
+- Arc navigation
 - No database
 - No localStorage
 - No sessionStorage
 - No login
-- Responsive desktop/tablet/mobile reader
-- Chapter navigation
-- Arc navigation
-- Random chapter
-- Keyboard navigation
-- Dynamic visual theme
-- Render deployment
-- GitHub deployment ready
+- No user account
 
-## Requirements
+## Run locally
 
-Python 3.12+
-
-## Local installation
+Install dependencies:
 
 ```bash
-python -m venv .venv
+pip install -r requirements.txt
