@@ -2,6 +2,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+.Python
 .venv/
 venv/
 env/
@@ -15,7 +16,6 @@ htmlcov/
 .idea/
 
 .DS_Store
-Thumbs.db
 
 *.log
 
