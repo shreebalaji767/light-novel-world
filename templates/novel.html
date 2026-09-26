@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -8,13 +9,11 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <!-- Project Identifier -->
     <meta
         name="blssnvj21"
         content="light-novel-world"
     >
 
-    <!-- Standard SEO -->
     <meta
         name="description"
         content="{{ novel.title }} — a dynamically generated {{ novel.genre }} light novel with {{ novel.chapter_count }} chapters."
@@ -23,11 +22,6 @@
     <meta
         name="robots"
         content="index, follow"
-    >
-
-    <meta
-        name="theme-color"
-        content="{{ novel.design.accent }}"
     >
 
     <meta
@@ -40,58 +34,9 @@
         content="Light Novel World"
     >
 
-    <!-- Searchable Project Identifier -->
     <meta
-        name="keywords"
-        content="blssnvj21, Light Novel World, light novel, online light novel, generated light novel, {{ novel.genre }}, {{ novel.title }}"
-    >
-
-    <!-- Canonical URL -->
-    <link
-        rel="canonical"
-        href="{{ request.url_root }}"
-    >
-
-    <!-- Open Graph -->
-    <meta
-        property="og:type"
-        content="website"
-    >
-
-    <meta
-        property="og:title"
-        content="{{ novel.title }} — Light Novel World"
-    >
-
-    <meta
-        property="og:description"
-        content="{{ novel.synopsis }}"
-    >
-
-    <meta
-        property="og:site_name"
-        content="Light Novel World"
-    >
-
-    <meta
-        property="og:url"
-        content="{{ request.url }}"
-    >
-
-    <!-- Twitter / Social Preview -->
-    <meta
-        name="twitter:card"
-        content="summary"
-    >
-
-    <meta
-        name="twitter:title"
-        content="{{ novel.title }} — Light Novel World"
-    >
-
-    <meta
-        name="twitter:description"
-        content="{{ novel.synopsis }}"
+        name="theme-color"
+        content="{{ novel.design.accent }}"
     >
 
     <title>
@@ -99,28 +44,17 @@
     </title>
 
     <link
+        rel="canonical"
+        href="{{ request.url }}"
+    >
+
+    <link
         rel="stylesheet"
         href="{{ url_for('static', filename='css/style.css') }}"
     >
 
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Light Novel World",
-        "url": "{{ request.url_root }}",
-        "description": "{{ novel.title }} — a dynamically generated {{ novel.genre }} light novel with {{ novel.chapter_count }} chapters.",
-        "keywords": [
-            "blssnvj21",
-            "Light Novel World",
-            "light novel",
-            "{{ novel.genre }}"
-        ]
-    }
-    </script>
-
 </head>
+
 
 <body
     style="
@@ -130,23 +64,29 @@
         --surface-2: {{ novel.design.surface2 }};
         --text: {{ novel.design.text }};
         --muted: {{ novel.design.muted }};
+        --radius: {{ novel.design.radius }};
+        --shadow: {{ novel.design.shadow }};
+        --hero-background: {{ novel.design.hero }};
     "
 >
 
 <div class="noise"></div>
+
 
 <header class="topbar">
 
     <a
         class="brand"
         href="/"
+        aria-label="Light Novel World home"
     >
 
         <span class="brand-mark">
             LW
         </span>
 
-        <span>
+        <span class="brand-text">
+
             <strong>
                 Light Novel
             </strong>
@@ -154,6 +94,7 @@
             <small>
                 WORLD
             </small>
+
         </span>
 
     </a>
@@ -211,11 +152,9 @@
                 {{ novel.genre }}
             </span>
 
-
             <span class="badge muted-badge">
                 {{ novel.secondary_genre }}
             </span>
-
 
             <span class="badge muted-badge">
                 {{ novel.chapter_count }} Chapters
@@ -237,8 +176,8 @@
         <div class="hero-actions">
 
             <button
-                class="button button-primary large"
                 id="startReading"
+                class="button button-primary large"
                 type="button"
             >
                 Start Reading
@@ -246,8 +185,8 @@
 
 
             <button
-                class="button button-secondary large"
                 id="randomChapter"
+                class="button button-secondary large"
                 type="button"
             >
                 Random Chapter
@@ -354,7 +293,6 @@
                 THE STORY
             </span>
 
-
             <h2>
                 A world waiting to unfold.
             </h2>
@@ -379,11 +317,9 @@
                 01
             </span>
 
-
             <h3>
                 World
             </h3>
-
 
             <p>
                 {{ novel.world }}
@@ -398,11 +334,9 @@
                 02
             </span>
 
-
             <h3>
                 Conflict
             </h3>
-
 
             <p>
                 {{ novel.conflict }}
@@ -417,11 +351,9 @@
                 03
             </span>
 
-
             <h3>
                 Faction
             </h3>
-
 
             <p>
                 {{ novel.faction }}
@@ -436,11 +368,9 @@
                 04
             </span>
 
-
             <h3>
                 Power
             </h3>
-
 
             <p>
                 {{ novel.power }}
@@ -465,7 +395,6 @@
             <span class="section-label">
                 CAST
             </span>
-
 
             <h2>
                 The people behind the story.
@@ -493,16 +422,13 @@
                     {{ character.role }}
                 </div>
 
-
                 <h3>
                     {{ character.name }}
                 </h3>
 
-
                 <p>
                     {{ character.trait }}
                 </p>
-
 
                 <div class="character-power">
                     {{ character.ability }}
@@ -536,7 +462,6 @@
                         READ
                     </span>
 
-
                     <h3>
                         Chapters
                     </h3>
@@ -568,11 +493,9 @@
                         ARC {{ "%02d"|format(chapter.number) }}
                     </span>
 
-
                     <strong>
                         {{ chapter.title }}
                     </strong>
-
 
                     <small>
                         {{ chapter.start }}–{{ chapter.end }}
@@ -640,11 +563,9 @@
                         THE BEGINNING
                     </span>
 
-
                     <span>
                         •
                     </span>
-
 
                     <span id="chapterLocation">
                         UNKNOWN
@@ -709,8 +630,8 @@
 
 
         <p>
-            No account. No saved browser data.
-            Every new request creates another story seed.
+            Refresh this page or generate another world.
+            No account, database, localStorage, or sessionStorage is required.
         </p>
 
 
@@ -737,7 +658,6 @@
             Light Novel World
         </strong>
 
-
         <span>
             Procedurally generated fiction.
         </span>
@@ -746,22 +666,16 @@
 
 
     <div>
-
         {{ novel.chapter_count }}
         chapters · No database · No localStorage
-
     </div>
 
 
-    <!-- Public project identifier -->
-
     <div class="project-identifier">
-
         Project ID:
         <strong>
             blssnvj21
         </strong>
-
     </div>
 
 </footer>
