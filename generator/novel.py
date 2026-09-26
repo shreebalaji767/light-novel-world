@@ -22,52 +22,10 @@ CHAPTERS_PER_ARC = CHAPTER_COUNT // ARC_COUNT
 
 # ============================================================
 # GENRES
-#
-# Large genre library covering:
-# Fantasy
-# Science Fiction
-# Romance
-# Comedy
-# Parody
-# Slice of Life
-# Mystery
-# Horror
-# Thriller
-# Action
-# Adventure
-# Isekai
-# Reincarnation
-# Regression
-# Cultivation
-# Xianxia
-# Wuxia
-# Xuanhuan
-# Murim
-# LitRPG
-# GameLit
-# System
-# Dungeon
-# Academy
-# School
-# Villainess
-# Otome
-# Harem
-# Reverse Harem
-# Historical
-# Military
-# Sports
-# Mecha
-# Cyberpunk
-# Post-Apocalyptic
-# Supernatural
-# Psychological
-# and many more.
 # ============================================================
 
 GENRES = [
-    # --------------------------------------------------------
-    # FANTASY
-    # --------------------------------------------------------
+    # Fantasy
     "Fantasy",
     "High Fantasy",
     "Epic Fantasy",
@@ -100,10 +58,14 @@ GENRES = [
     "Survival Fantasy",
     "Travel Fantasy",
     "Adventure Fantasy",
+    "Cozy Fantasy",
+    "Military Fantasy",
+    "Gaslamp Fantasy",
+    "Steampunk Fantasy",
+    "Comic Fantasy",
+    "Parody Fantasy",
 
-    # --------------------------------------------------------
-    # EAST ASIAN FANTASY / CULTIVATION
-    # --------------------------------------------------------
+    # East Asian Fantasy / Cultivation
     "Xianxia",
     "Xuanhuan",
     "Wuxia",
@@ -120,9 +82,7 @@ GENRES = [
     "Korean Fantasy",
     "Japanese Fantasy",
 
-    # --------------------------------------------------------
-    # SCIENCE FICTION
-    # --------------------------------------------------------
+    # Science Fiction
     "Science Fiction",
     "Hard Science Fiction",
     "Soft Science Fiction",
@@ -154,10 +114,10 @@ GENRES = [
     "Virtual Reality",
     "Simulation Fiction",
     "Space Survival",
+    "AI Fiction",
+    "Space Western",
 
-    # --------------------------------------------------------
-    # ACTION / ADVENTURE
-    # --------------------------------------------------------
+    # Action / Adventure
     "Action",
     "Adventure",
     "Action Adventure",
@@ -176,10 +136,11 @@ GENRES = [
     "Heist",
     "Pirate Adventure",
     "Road Adventure",
+    "Tournament",
+    "Travel",
+    "Road Story",
 
-    # --------------------------------------------------------
-    # ROMANCE
-    # --------------------------------------------------------
+    # Romance
     "Romance",
     "Romantic Comedy",
     "Slow-Burn Romance",
@@ -201,10 +162,13 @@ GENRES = [
     "Reverse Harem",
     "Love Triangle",
     "Poly Romance",
+    "Boys Love",
+    "Girls Love",
+    "Yuri",
+    "Shoujo Romance",
+    "Josei Romance",
 
-    # --------------------------------------------------------
-    # COMEDY / PARODY
-    # --------------------------------------------------------
+    # Comedy / Parody
     "Comedy",
     "Romantic Comedy",
     "Dark Comedy",
@@ -227,10 +191,10 @@ GENRES = [
     "Self-Aware Comedy",
     "Meta Comedy",
     "Chaotic Comedy",
+    "Fourth-Wall Comedy",
+    "Absurd Comedy",
 
-    # --------------------------------------------------------
-    # SLICE OF LIFE
-    # --------------------------------------------------------
+    # Slice of Life
     "Slice of Life",
     "School Life",
     "High School",
@@ -247,9 +211,7 @@ GENRES = [
     "Travel Slice of Life",
     "Found Family",
 
-    # --------------------------------------------------------
-    # MYSTERY / THRILLER
-    # --------------------------------------------------------
+    # Mystery / Thriller
     "Mystery",
     "Detective",
     "Crime",
@@ -267,10 +229,11 @@ GENRES = [
     "Historical Mystery",
     "Occult Mystery",
     "Urban Mystery",
+    "Noir",
+    "Hardboiled Mystery",
+    "Survival Thriller",
 
-    # --------------------------------------------------------
-    # HORROR
-    # --------------------------------------------------------
+    # Horror
     "Horror",
     "Psychological Horror",
     "Cosmic Horror",
@@ -287,9 +250,7 @@ GENRES = [
     "Apocalyptic Horror",
     "Existential Horror",
 
-    # --------------------------------------------------------
-    # SUPERNATURAL
-    # --------------------------------------------------------
+    # Supernatural
     "Supernatural",
     "Paranormal",
     "Occult",
@@ -303,9 +264,7 @@ GENRES = [
     "Urban Supernatural",
     "Supernatural Romance",
 
-    # --------------------------------------------------------
-    # PSYCHOLOGICAL
-    # --------------------------------------------------------
+    # Psychological
     "Psychological",
     "Psychological Drama",
     "Psychological Mystery",
@@ -317,9 +276,7 @@ GENRES = [
     "Character Study",
     "Existential Fiction",
 
-    # --------------------------------------------------------
-    # DRAMA
-    # --------------------------------------------------------
+    # Drama
     "Drama",
     "Character Drama",
     "Family Drama",
@@ -333,9 +290,7 @@ GENRES = [
     "Betrayal Drama",
     "Revenge Drama",
 
-    # --------------------------------------------------------
-    # GAME / SYSTEM
-    # --------------------------------------------------------
+    # Game / System
     "LitRPG",
     "GameLit",
     "System",
@@ -354,9 +309,7 @@ GENRES = [
     "Status Window",
     "Quest System",
 
-    # --------------------------------------------------------
-    # SCHOOL / ACADEMY
-    # --------------------------------------------------------
+    # School / Academy
     "Academy",
     "Magic Academy",
     "Military Academy",
@@ -371,9 +324,7 @@ GENRES = [
     "School Comedy",
     "School Romance",
 
-    # --------------------------------------------------------
-    # CHARACTER-DRIVEN / TROPE
-    # --------------------------------------------------------
+    # Character / Trope
     "Villainess",
     "Otome Game",
     "Otome Isekai",
@@ -404,9 +355,7 @@ GENRES = [
     "Monster Protagonist",
     "Non-Human Protagonist",
 
-    # --------------------------------------------------------
-    # HISTORICAL
-    # --------------------------------------------------------
+    # Historical
     "Historical Fiction",
     "Historical Adventure",
     "Historical Romance",
@@ -420,9 +369,7 @@ GENRES = [
     "Royal Court Drama",
     "Period Drama",
 
-    # --------------------------------------------------------
-    # SPORTS
-    # --------------------------------------------------------
+    # Sports
     "Sports",
     "Football",
     "Soccer",
@@ -436,24 +383,18 @@ GENRES = [
     "Esports",
     "Competitive Gaming",
 
-    # --------------------------------------------------------
-    # MECHA / MILITARY / TECHNOLOGY
-    # --------------------------------------------------------
+    # Technology / Mecha
     "Mecha",
     "Military Mecha",
     "Robot War",
     "Battle Mecha",
-    "Military Science Fiction",
-    "Artificial Intelligence",
     "Android",
     "Cyborg",
     "Space Military",
     "Future War",
     "Tech Fantasy",
 
-    # --------------------------------------------------------
-    # SOCIAL / POLITICAL
-    # --------------------------------------------------------
+    # Social / Political
     "Political Intrigue",
     "Court Intrigue",
     "Royal Politics",
@@ -467,9 +408,7 @@ GENRES = [
     "Merchant Drama",
     "Social Commentary",
 
-    # --------------------------------------------------------
-    # EXPERIMENTAL / META
-    # --------------------------------------------------------
+    # Experimental / Meta
     "Meta Fiction",
     "Self-Aware Fiction",
     "Fourth-Wall Comedy",
@@ -563,7 +502,7 @@ TONES = [
 
 
 # ============================================================
-# WORLDS
+# WORLD NAMES
 # ============================================================
 
 PLACES = [
@@ -763,7 +702,7 @@ CONFLICTS = [
 
 
 # ============================================================
-# CHAPTER TITLE SYSTEM
+# CHAPTER TITLES
 # ============================================================
 
 CHAPTER_VERBS = [
@@ -857,210 +796,66 @@ ARC_NAMES = [
 
 # ============================================================
 # FICTIONAL NAME SYSTEM
-#
-# These are fictional names inspired by naming patterns.
-# They are not intended to represent real people.
 # ============================================================
 
 JAPANESE_FIRST_NAMES = [
-    "Akira",
-    "Ren",
-    "Haruto",
-    "Sora",
-    "Yuki",
-    "Hikaru",
-    "Kaito",
-    "Riku",
-    "Aoi",
-    "Itsuki",
-    "Shin",
-    "Takumi",
-    "Rei",
-    "Koharu",
-    "Mio",
-    "Yuna",
-    "Rin",
-    "Kaede",
-    "Hana",
-    "Ayame",
-    "Natsuki",
-    "Kiyomi",
-    "Masato",
-    "Kazuki",
-    "Ryo",
-    "Tsubasa",
-    "Asuka",
-    "Sayaka",
-    "Mei",
-    "Nozomi",
+    "Akira", "Ren", "Haruto", "Sora", "Yuki",
+    "Hikaru", "Kaito", "Riku", "Aoi", "Itsuki",
+    "Shin", "Takumi", "Rei", "Koharu", "Mio",
+    "Yuna", "Rin", "Kaede", "Hana", "Ayame",
+    "Natsuki", "Kiyomi", "Masato", "Kazuki", "Ryo",
+    "Tsubasa", "Asuka", "Sayaka", "Mei", "Nozomi",
 ]
-
 
 JAPANESE_LAST_NAMES = [
-    "Kurosawa",
-    "Aoyama",
-    "Takahashi",
-    "Mizuno",
-    "Kobayashi",
-    "Fujimoto",
-    "Shirakawa",
-    "Kisaragi",
-    "Amamiya",
-    "Hoshino",
-    "Kanzaki",
-    "Moriyama",
-    "Tsukishiro",
-    "Sakuraba",
-    "Kurokawa",
-    "Hayashida",
-    "Minamoto",
-    "Shinomiya",
-    "Yamashiro",
-    "Akizuki",
+    "Kurosawa", "Aoyama", "Takahashi", "Mizuno",
+    "Kobayashi", "Fujimoto", "Shirakawa", "Kisaragi",
+    "Amamiya", "Hoshino", "Kanzaki", "Moriyama",
+    "Tsukishiro", "Sakuraba", "Kurokawa", "Hayashida",
+    "Minamoto", "Shinomiya", "Yamashiro", "Akizuki",
 ]
-
 
 KOREAN_FIRST_NAMES = [
-    "Seo-jun",
-    "Ji-ho",
-    "Min-jun",
-    "Hyun-woo",
-    "Do-yun",
-    "Ji-hoon",
-    "Ha-jun",
-    "Si-woo",
-    "Joon-ho",
-    "Tae-hyun",
-    "Min-seo",
-    "Seo-yeon",
-    "Ji-eun",
-    "Ha-eun",
-    "Yu-na",
-    "Soo-ah",
-    "Ye-jin",
-    "Eun-chae",
-    "Da-hyun",
-    "Hye-jin",
+    "Seo-jun", "Ji-ho", "Min-jun", "Hyun-woo",
+    "Do-yun", "Ji-hoon", "Ha-jun", "Si-woo",
+    "Joon-ho", "Tae-hyun", "Min-seo", "Seo-yeon",
+    "Ji-eun", "Ha-eun", "Yu-na", "Soo-ah",
+    "Ye-jin", "Eun-chae", "Da-hyun", "Hye-jin",
 ]
-
 
 KOREAN_LAST_NAMES = [
-    "Kim",
-    "Lee",
-    "Park",
-    "Choi",
-    "Jung",
-    "Kang",
-    "Yoon",
-    "Han",
-    "Shin",
-    "Kwon",
-    "Seo",
-    "Hwang",
-    "Lim",
-    "Jang",
-    "Moon",
-    "Baek",
-    "Song",
-    "Ryu",
-    "Jeon",
-    "Hong",
+    "Kim", "Lee", "Park", "Choi", "Jung",
+    "Kang", "Yoon", "Han", "Shin", "Kwon",
+    "Seo", "Hwang", "Lim", "Jang", "Moon",
+    "Baek", "Song", "Ryu", "Jeon", "Hong",
 ]
-
 
 CHINESE_FIRST_NAMES = [
-    "Wei",
-    "Chen",
-    "Jun",
-    "Hao",
-    "Lei",
-    "Ming",
-    "Tian",
-    "Jian",
-    "Yun",
-    "Feng",
-    "Xiao",
-    "Lin",
-    "Jing",
-    "Mei",
-    "Lan",
-    "Qing",
-    "Yue",
-    "Shan",
-    "Rui",
-    "Xuan",
+    "Wei", "Chen", "Jun", "Hao", "Lei",
+    "Ming", "Tian", "Jian", "Yun", "Feng",
+    "Xiao", "Lin", "Jing", "Mei", "Lan",
+    "Qing", "Yue", "Shan", "Rui", "Xuan",
 ]
-
 
 CHINESE_LAST_NAMES = [
-    "Li",
-    "Wang",
-    "Zhang",
-    "Liu",
-    "Chen",
-    "Yang",
-    "Huang",
-    "Zhao",
-    "Wu",
-    "Zhou",
-    "Xu",
-    "Sun",
-    "Ma",
-    "Zhu",
-    "Hu",
-    "Guo",
-    "He",
-    "Gao",
-    "Lin",
-    "Luo",
+    "Li", "Wang", "Zhang", "Liu", "Chen",
+    "Yang", "Huang", "Zhao", "Wu", "Zhou",
+    "Xu", "Sun", "Ma", "Zhu", "Hu",
+    "Guo", "He", "Gao", "Lin", "Luo",
 ]
-
 
 WESTERN_FIRST_NAMES = [
-    "Aren",
-    "Kael",
-    "Liora",
-    "Seren",
-    "Mira",
-    "Elias",
-    "Riven",
-    "Neria",
-    "Darian",
-    "Elara",
-    "Lucian",
-    "Vera",
-    "Arian",
-    "Selene",
-    "Kieran",
-    "Lyra",
-    "Orin",
-    "Nolan",
-    "Ayla",
-    "Cassian",
+    "Aren", "Kael", "Liora", "Seren", "Mira",
+    "Elias", "Riven", "Neria", "Darian", "Elara",
+    "Lucian", "Vera", "Arian", "Selene", "Kieran",
+    "Lyra", "Orin", "Nolan", "Ayla", "Cassian",
 ]
 
-
 WESTERN_LAST_NAMES = [
-    "Valen",
-    "Ardent",
-    "Nox",
-    "Raven",
-    "Eld",
-    "Veyr",
-    "Aster",
-    "Cael",
-    "Morrow",
-    "Thorne",
-    "Ashen",
-    "Vale",
-    "Serin",
-    "Dawn",
-    "Wren",
-    "Ever",
-    "Drake",
-    "Lorne",
-    "Voss",
-    "Meridian",
+    "Valen", "Ardent", "Nox", "Raven", "Eld",
+    "Veyr", "Aster", "Cael", "Morrow", "Thorne",
+    "Ashen", "Vale", "Serin", "Dawn", "Wren",
+    "Ever", "Drake", "Lorne", "Voss", "Meridian",
 ]
 
 
@@ -1091,7 +886,6 @@ CHARACTER_ROLES = [
     "Comedian",
 ]
 
-
 CHARACTER_TRAITS = [
     "quiet but observant",
     "recklessly optimistic",
@@ -1114,7 +908,6 @@ CHARACTER_TRAITS = [
     "competitive about absolutely everything",
     "convinced they are the main character",
 ]
-
 
 ABILITIES = [
     "Can sense hidden energy",
@@ -1287,7 +1080,6 @@ TITLE_PREFIXES = [
     "Why Am I",
 ]
 
-
 TITLE_WORDS = [
     "Forgotten",
     "Eternal",
@@ -1316,7 +1108,6 @@ TITLE_WORDS = [
     "Lazy",
     "Terrible",
 ]
-
 
 TITLE_NOUNS = [
     "Moon",
@@ -1370,13 +1161,8 @@ def make_seed() -> str:
     return secrets.token_hex(32)
 
 
-def pick(
-    rng: random.Random,
-    items: list,
-):
-    return items[
-        rng.randrange(len(items))
-    ]
+def pick(rng: random.Random, items: list):
+    return items[rng.randrange(len(items))]
 
 
 # ============================================================
@@ -1430,20 +1216,13 @@ def make_unique_name(
 ) -> str:
 
     for _ in range(100):
-        name = make_name(
-            rng,
-            style,
-        )
+        name = make_name(rng, style)
 
         if name not in used_names:
             used_names.add(name)
             return name
 
-    suffix = rng.randrange(
-        1000,
-        9999,
-    )
-
+    suffix = rng.randrange(1000, 9999)
     name = f"{make_name(rng, style)} {suffix}"
 
     used_names.add(name)
@@ -1467,15 +1246,9 @@ def pick_unique(
     ]
 
     if not available:
-        return pick(
-            rng,
-            items,
-        )
+        return pick(rng, items)
 
-    value = pick(
-        rng,
-        available,
-    )
+    value = pick(rng, available)
 
     used.add(value)
 
@@ -1490,20 +1263,9 @@ def make_title(
     rng: random.Random,
 ) -> str:
 
-    prefix = pick(
-        rng,
-        TITLE_PREFIXES,
-    )
-
-    adjective = pick(
-        rng,
-        TITLE_WORDS,
-    )
-
-    noun = pick(
-        rng,
-        TITLE_NOUNS,
-    )
+    prefix = pick(rng, TITLE_PREFIXES)
+    adjective = pick(rng, TITLE_WORDS)
+    noun = pick(rng, TITLE_NOUNS)
 
     patterns = [
         f"{prefix} {adjective} {noun}",
@@ -1513,10 +1275,7 @@ def make_title(
         f"{adjective} {noun}: A Completely Unnecessary Adventure",
     ]
 
-    return pick(
-        rng,
-        patterns,
-    )
+    return pick(rng, patterns)
 
 
 # ============================================================
@@ -1528,35 +1287,17 @@ def make_characters(
     protagonist: str,
 ) -> List[Dict]:
 
-    used_names = {
-        protagonist
-    }
+    used_names = {protagonist}
 
     characters = []
-
-    protagonist_style = pick(
-        rng,
-        [
-            "western",
-            "japanese",
-            "korean",
-            "chinese",
-        ],
-    )
 
     characters.append(
         {
             "name": protagonist,
             "role": "Protagonist",
-            "origin_style": protagonist_style,
-            "trait": pick(
-                rng,
-                CHARACTER_TRAITS,
-            ),
-            "ability": pick(
-                rng,
-                ABILITIES,
-            ),
+            "origin_style": "mixed",
+            "trait": pick(rng, CHARACTER_TRAITS),
+            "ability": pick(rng, ABILITIES),
             "description": (
                 f"{protagonist} is the central character of "
                 f"the story. Their journey begins with a personal "
@@ -1581,9 +1322,7 @@ def make_characters(
 
     for index, role in enumerate(roles[:9]):
 
-        style = styles[
-            index % len(styles)
-        ]
+        style = styles[index % len(styles)]
 
         name = make_unique_name(
             rng,
@@ -1596,14 +1335,8 @@ def make_characters(
                 "name": name,
                 "role": role,
                 "origin_style": style,
-                "trait": pick(
-                    rng,
-                    CHARACTER_TRAITS,
-                ),
-                "ability": pick(
-                    rng,
-                    ABILITIES,
-                ),
+                "trait": pick(rng, CHARACTER_TRAITS),
+                "ability": pick(rng, ABILITIES),
                 "description": (
                     f"{name} serves as the story's "
                     f"{role.lower()}. Their decisions can "
@@ -1626,9 +1359,7 @@ def make_world_blueprint(
     faction: str,
 ) -> Dict:
 
-    rng = stable_rng(
-        f"{seed}:world"
-    )
+    rng = stable_rng(f"{seed}:world")
 
     world_types = [
         "a continent ruled by ancient kingdoms",
@@ -1671,10 +1402,10 @@ def make_world_blueprint(
     geography = [
         f"the central region surrounding {world}",
         f"the northern territories beyond {world}",
-        f"the western frontier",
-        f"the eastern kingdoms",
-        f"the southern coast",
-        f"the hidden region beyond the old boundary",
+        "the western frontier",
+        "the eastern kingdoms",
+        "the southern coast",
+        "the hidden region beyond the old boundary",
     ]
 
     rules = [
@@ -1685,23 +1416,21 @@ def make_world_blueprint(
         "Important locations have histories that become relevant later.",
     ]
 
+    description = (
+        f"{world} is a fictional world shaped by {genre.lower()}, "
+        f"where ancient history, competing cultures, hidden powers, "
+        f"and unresolved mysteries influence everyday life. "
+        f"The setting combines familiar places with unexplored "
+        f"regions whose histories gradually become important to "
+        f"{protagonist_placeholder(world)}."
+    )
+
     return {
         "name": world,
-        "type": pick(
-            rng,
-            world_types,
-        ),
+        "type": pick(rng, world_types),
         "genre_context": genre,
-        "era": pick(
-            rng,
-            eras,
-        ),
-        "description": (
-            f"{world} is a fictional setting designed for a long-form "
-            f"light novel. It combines the atmosphere of {genre.lower()} "
-            f"with its own cultures, conflicts, mysteries, locations, "
-            f"organizations, and historical secrets."
-        ),
+        "era": pick(rng, eras),
+        "description": description,
         "geography": geography,
         "important_locations": unique_locations,
         "world_rules": rules,
@@ -1718,6 +1447,96 @@ def make_world_blueprint(
     }
 
 
+def protagonist_placeholder(world: str) -> str:
+    return f"the people living within {world}"
+
+
+# ============================================================
+# WORLD DESCRIPTION
+# ============================================================
+
+def make_world_description(
+    world: Dict,
+    conflict: str,
+    faction: str,
+    power: str,
+) -> str:
+
+    return (
+        f"{world['name']} is {world['type']} set during "
+        f"{world['era']}. Its regions, cultures, and hidden "
+        f"history are shaped by the unresolved conflict surrounding "
+        f"{conflict}. The world is also influenced by organizations "
+        f"such as {faction}, while {power} represents one of the "
+        f"extraordinary forces that can change the balance of power. "
+        f"What appears to be ordinary history gradually reveals "
+        f"secrets that connect the world's past to the present journey."
+    )
+
+
+# ============================================================
+# CONFLICT DESCRIPTION
+# ============================================================
+
+def make_conflict_description(
+    conflict: str,
+    world: str,
+    protagonist: str,
+    faction: str,
+) -> str:
+
+    return (
+        f"The central conflict begins with {conflict}. "
+        f"What first appears to be an isolated problem in {world} "
+        f"gradually reveals connections to older events and hidden "
+        f"interests. {protagonist} becomes involved before fully "
+        f"understanding what is at stake, while {faction} becomes "
+        f"one of the major forces whose decisions can alter the "
+        f"course of the story."
+    )
+
+
+# ============================================================
+# FACTION DESCRIPTION
+# ============================================================
+
+def make_faction_description(
+    faction: str,
+    world: str,
+    conflict: str,
+) -> str:
+
+    return (
+        f"{faction} is a major organization operating within "
+        f"{world}. Its influence extends beyond a single location, "
+        f"and its members have their own interests, alliances, "
+        f"secrets, and disagreements. As {conflict} develops, "
+        f"the faction's true position becomes increasingly important "
+        f"to the characters and the larger mystery."
+    )
+
+
+# ============================================================
+# POWER DESCRIPTION
+# ============================================================
+
+def make_power_description(
+    power: Dict,
+    protagonist: str,
+) -> str:
+
+    return (
+        f"{power['name']} is an extraordinary ability system whose "
+        f"users rely on {power['mechanism']}. For {protagonist}, "
+        f"understanding this power is a gradual process rather than "
+        f"an instant transformation. Its use carries meaningful "
+        f"costs, including {power['costs'][0]}, and stronger forms "
+        f"require greater knowledge, control, and sacrifice. "
+        f"The system therefore provides opportunities for growth "
+        f"without becoming an unlimited solution to every problem."
+    )
+
+
 # ============================================================
 # POWER BLUEPRINT
 # ============================================================
@@ -1727,9 +1546,7 @@ def make_power_blueprint(
     power: str,
 ) -> Dict:
 
-    rng = stable_rng(
-        f"{seed}:power"
-    )
+    rng = stable_rng(f"{seed}:power")
 
     mechanisms = [
         "energy is controlled through mental focus",
@@ -1776,15 +1593,12 @@ def make_power_blueprint(
     return {
         "name": power,
         "description": (
-            f"{power} is the primary supernatural or extraordinary "
-            f"ability system associated with the story. It begins "
-            f"as a limited ability and becomes increasingly important "
-            f"as the protagonist discovers its deeper rules."
+            f"{power} is the primary extraordinary ability system "
+            f"associated with the story. It begins as a limited "
+            f"ability and becomes increasingly important as the "
+            f"protagonist discovers its deeper rules."
         ),
-        "mechanism": pick(
-            rng,
-            mechanisms,
-        ),
+        "mechanism": pick(rng, mechanisms),
         "costs": [
             pick(rng, costs),
             pick(rng, costs),
@@ -1819,9 +1633,7 @@ def make_antagonists(
     used_names: set,
 ) -> List[Dict]:
 
-    rng = stable_rng(
-        f"{seed}:antagonists"
-    )
+    rng = stable_rng(f"{seed}:antagonists")
 
     roles = [
         "Primary Antagonist",
@@ -1843,14 +1655,14 @@ def make_antagonists(
 
     antagonists = []
 
-    for index, role in enumerate(roles):
+    styles = [
+        "western",
+        "japanese",
+        "korean",
+        "chinese",
+    ]
 
-        styles = [
-            "western",
-            "japanese",
-            "korean",
-            "chinese",
-        ]
+    for index, role in enumerate(roles):
 
         name = make_unique_name(
             rng,
@@ -1862,10 +1674,7 @@ def make_antagonists(
             {
                 "name": name,
                 "role": role,
-                "motivation": pick(
-                    rng,
-                    descriptions,
-                ),
+                "motivation": pick(rng, descriptions),
                 "description": (
                     f"{name} is a fictional {role.lower()} whose "
                     f"actions influence the long-term direction "
@@ -1898,16 +1707,14 @@ def make_arcs(
         )
 
         start = (
-            index *
-            CHAPTERS_PER_ARC
+            index * CHAPTERS_PER_ARC
             + 1
         )
 
         end = (
             CHAPTER_COUNT
             if index == ARC_COUNT - 1
-            else (index + 1)
-            * CHAPTERS_PER_ARC
+            else (index + 1) * CHAPTERS_PER_ARC
         )
 
         character_names = [
@@ -1917,34 +1724,15 @@ def make_arcs(
 
         involved = []
 
-        count = min(
-            4,
-            len(character_names),
-        )
+        available = list(character_names)
 
-        available = list(
-            character_names
-        )
-
-        for _ in range(count):
+        for _ in range(min(4, len(character_names))):
             if available:
-                selected = pick(
-                    rng,
-                    available,
-                )
+                selected = pick(rng, available)
+                involved.append(selected)
+                available.remove(selected)
 
-                involved.append(
-                    selected
-                )
-
-                available.remove(
-                    selected
-                )
-
-        antagonist = pick(
-            rng,
-            antagonists,
-        )
+        antagonist = pick(rng, antagonists)
 
         arcs.append(
             {
@@ -1952,10 +1740,7 @@ def make_arcs(
                 "title": ARC_NAMES[index],
                 "start": start,
                 "end": end,
-                "theme": pick(
-                    rng,
-                    ARC_THEMES,
-                ),
+                "theme": pick(rng, ARC_THEMES),
                 "objective": (
                     f"The characters must survive the events of "
                     f"this stage while discovering another part "
@@ -1965,17 +1750,8 @@ def make_arcs(
                     f"The conflict between the protagonists and "
                     f"{antagonist['name']} becomes increasingly important."
                 ),
-                "locations": world[
-                    "important_locations"
-                ][
-                    :min(
-                        3,
-                        len(
-                            world[
-                                "important_locations"
-                            ]
-                        ),
-                    )
+                "locations": world["important_locations"][
+                    :min(3, len(world["important_locations"]))
                 ],
                 "characters_involved": involved,
                 "antagonist_activity": (
@@ -2082,36 +1858,18 @@ def make_chapter_roadmap(
             )
 
         if title in used_titles:
-            title = (
-                f"{title} "
-                f"#{chapter_number}"
-            )
+            title = f"{title} #{chapter_number}"
 
-        used_titles.add(
-            title
-        )
+        used_titles.add(title)
 
-        focus_count = min(
-            3,
-            len(character_names),
-        )
-
-        shuffled_characters = list(
-            character_names
-        )
-
-        rng.shuffle(
-            shuffled_characters
-        )
+        shuffled_characters = list(character_names)
+        rng.shuffle(shuffled_characters)
 
         focus = shuffled_characters[
-            :focus_count
+            :min(3, len(character_names))
         ]
 
-        antagonist = pick(
-            rng,
-            antagonists,
-        )
+        antagonist = pick(rng, antagonists)
 
         events = [
             (
@@ -2128,10 +1886,7 @@ def make_chapter_roadmap(
             ),
         ]
 
-        if phase in {
-            "turning point",
-            "climax",
-        }:
+        if phase in {"turning point", "climax"}:
             events.append(
                 (
                     f"The rules of {power['name']} become "
@@ -2194,8 +1949,8 @@ def make_chapter_roadmap(
                     f"an unlimited solution."
                 ),
                 "revelation": (
-                    f"A clue connected to the deeper mystery "
-                    f"is revealed."
+                    "A clue connected to the deeper mystery "
+                    "is revealed."
                 ),
                 "state_before": (
                     f"The characters begin Chapter "
@@ -2275,11 +2030,7 @@ def get_arc(
 ) -> Dict:
 
     for arc in arcs:
-        if (
-            arc["start"]
-            <= chapter_number
-            <= arc["end"]
-        ):
+        if arc["start"] <= chapter_number <= arc["end"]:
             return arc
 
     return arcs[-1]
@@ -2297,40 +2048,14 @@ def generate_blueprint(
         f"{seed}:core"
     )
 
-    genre = pick(
-        core_rng,
-        GENRES,
-    )
+    genre = pick(core_rng, GENRES)
+    secondary_genre = pick(core_rng, SECONDARY_GENRES)
+    tone = pick(core_rng, TONES)
 
-    secondary_genre = pick(
-        core_rng,
-        SECONDARY_GENRES,
-    )
-
-    tone = pick(
-        core_rng,
-        TONES,
-    )
-
-    world_name = pick(
-        core_rng,
-        PLACES,
-    )
-
-    faction = pick(
-        core_rng,
-        FACTIONS,
-    )
-
-    power_name = pick(
-        core_rng,
-        POWERS,
-    )
-
-    conflict = pick(
-        core_rng,
-        CONFLICTS,
-    )
+    world_name = pick(core_rng, PLACES)
+    faction = pick(core_rng, FACTIONS)
+    power_name = pick(core_rng, POWERS)
+    conflict = pick(core_rng, CONFLICTS)
 
     protagonist_style = pick(
         core_rng,
@@ -2350,9 +2075,7 @@ def generate_blueprint(
         protagonist_style,
     )
 
-    title = make_title(
-        core_rng
-    )
+    title = make_title(core_rng)
 
     world = make_world_blueprint(
         seed,
@@ -2367,9 +2090,7 @@ def generate_blueprint(
     )
 
     characters = make_characters(
-        stable_rng(
-            f"{seed}:characters"
-        ),
+        stable_rng(f"{seed}:characters"),
         protagonist,
     )
 
@@ -2470,17 +2191,54 @@ def generate_blueprint(
         f"that can reshape the entire world."
     )
 
-    if "Comedy" in genre or "Parody" in genre:
+    if (
+        "Comedy" in genre
+        or "Parody" in genre
+    ):
         synopsis += (
-            f" Along the way, the story deliberately embraces "
-            f"comedic situations, absurd misunderstandings, "
-            f"genre jokes, exaggerated character reactions, "
-            f"and occasional parody of familiar light-novel "
-            f"story conventions."
+            " Along the way, the story deliberately embraces "
+            "comedic situations, absurd misunderstandings, "
+            "genre jokes, exaggerated character reactions, "
+            "and occasional parody of familiar light-novel "
+            "story conventions."
         )
 
+    world_description = make_world_description(
+        world,
+        conflict,
+        faction,
+        power_name,
+    )
+
+    conflict_description = make_conflict_description(
+        conflict,
+        world_name,
+        protagonist,
+        faction,
+    )
+
+    faction_description = make_faction_description(
+        faction,
+        world_name,
+        conflict,
+    )
+
+    power_description = make_power_description(
+        power,
+        protagonist,
+    )
+
     return {
+        # ----------------------------------------------------
+        # AUTHOR
+        # ----------------------------------------------------
+
         "author": AUTHOR,
+
+        # ----------------------------------------------------
+        # BASIC NOVEL INFORMATION
+        # ----------------------------------------------------
+
         "title": title,
         "genre": genre,
         "secondary_genre": secondary_genre,
@@ -2488,9 +2246,32 @@ def generate_blueprint(
         "themes": themes,
         "synopsis": synopsis,
 
+        # ----------------------------------------------------
+        # DESCRIPTIVE HERO INFORMATION
+        # ----------------------------------------------------
+
+        "descriptions": {
+            "world": world_description,
+            "conflict": conflict_description,
+            "faction": faction_description,
+            "power": power_description,
+        },
+
+        # ----------------------------------------------------
+        # WORLD
+        # ----------------------------------------------------
+
         "world": world,
 
+        # ----------------------------------------------------
+        # POWER SYSTEM
+        # ----------------------------------------------------
+
         "power_system": power,
+
+        # ----------------------------------------------------
+        # PROTAGONIST
+        # ----------------------------------------------------
 
         "protagonist": {
             "name": protagonist,
@@ -2522,18 +2303,27 @@ def generate_blueprint(
             ],
         },
 
+        # ----------------------------------------------------
+        # CHARACTERS
+        # ----------------------------------------------------
+
         "characters": characters,
 
+        # ----------------------------------------------------
+        # ANTAGONISTS
+        # ----------------------------------------------------
+
         "antagonists": antagonists,
+
+        # ----------------------------------------------------
+        # FACTIONS
+        # ----------------------------------------------------
 
         "factions": [
             {
                 "name": faction,
                 "role": "major faction",
-                "description": (
-                    f"{faction} is one of the organizations "
-                    f"whose actions influence the main conflict."
-                ),
+                "description": faction_description,
             },
             {
                 "name": pick(
@@ -2551,9 +2341,24 @@ def generate_blueprint(
             },
         ],
 
+        # ----------------------------------------------------
+        # CONFLICT
+        # ----------------------------------------------------
+
         "main_conflict": conflict,
 
+        # Human-readable version
+        "main_conflict_description": conflict_description,
+
+        # ----------------------------------------------------
+        # MYSTERY
+        # ----------------------------------------------------
+
         "central_mystery": central_mystery,
+
+        # ----------------------------------------------------
+        # STORY RULES
+        # ----------------------------------------------------
 
         "story_rules": [
             "Actions have consequences.",
@@ -2567,9 +2372,21 @@ def generate_blueprint(
             "without requiring existing copyrighted characters.",
         ],
 
+        # ----------------------------------------------------
+        # ARCS
+        # ----------------------------------------------------
+
         "arcs": arcs,
 
+        # ----------------------------------------------------
+        # 600 CHAPTER ROADMAP
+        # ----------------------------------------------------
+
         "chapter_roadmap": roadmap,
+
+        # ----------------------------------------------------
+        # COUNTS
+        # ----------------------------------------------------
 
         "chapter_count": CHAPTER_COUNT,
         "chapter_word_count": CHAPTER_WORD_COUNT,
@@ -2584,9 +2401,7 @@ def generate_novel() -> Dict:
 
     seed = make_seed()
 
-    blueprint = generate_blueprint(
-        seed
-    )
+    blueprint = generate_blueprint(seed)
 
     design = make_design(
         stable_rng(
@@ -2594,51 +2409,58 @@ def generate_novel() -> Dict:
         )
     )
 
+    world = blueprint["world"]
+    power = blueprint["power_system"]
+    faction = blueprint["factions"][0]["name"]
+
     return {
         "seed": seed,
+
+        # AUTHOR — ALWAYS blssnvj21
         "author": AUTHOR,
 
         "title": blueprint["title"],
         "genre": blueprint["genre"],
-        "secondary_genre": blueprint[
-            "secondary_genre"
-        ],
+        "secondary_genre": blueprint["secondary_genre"],
         "tone": blueprint["tone"],
         "synopsis": blueprint["synopsis"],
 
-        "world": blueprint[
-            "world"
-        ]["name"],
+        # Existing simple values retained
+        "world": world["name"],
+        "faction": faction,
+        "power": power["name"],
+        "conflict": blueprint["main_conflict"],
+        "protagonist": blueprint["protagonist"]["name"],
 
-        "faction": blueprint[
-            "factions"
-        ][0]["name"],
+        # NEW DESCRIPTIVE VALUES FOR UI
+        "world_description": blueprint[
+            "descriptions"
+        ]["world"],
 
-        "power": blueprint[
-            "power_system"
-        ]["name"],
+        "conflict_description": blueprint[
+            "descriptions"
+        ]["conflict"],
 
-        "conflict": blueprint[
-            "main_conflict"
-        ],
+        "faction_description": blueprint[
+            "descriptions"
+        ]["faction"],
 
-        "protagonist": blueprint[
-            "protagonist"
-        ]["name"],
+        "power_description": blueprint[
+            "descriptions"
+        ]["power"],
+
+        "author_description": (
+            f"This original light novel was generated "
+            f"for Light Novel World and is credited to "
+            f"{AUTHOR}."
+        ),
 
         "chapter_count": CHAPTER_COUNT,
         "chapter_word_count": CHAPTER_WORD_COUNT,
 
-        "characters": blueprint[
-            "characters"
-        ],
-
-        "arcs": blueprint[
-            "arcs"
-        ],
-
+        "characters": blueprint["characters"],
+        "arcs": blueprint["arcs"],
         "design": design,
-
         "blueprint": blueprint,
     }
 
@@ -2647,9 +2469,7 @@ def generate_novel() -> Dict:
 # WORD UTILITIES
 # ============================================================
 
-def clean_words(
-    text: str,
-) -> List[str]:
+def clean_words(text: str) -> List[str]:
 
     return re.findall(
         r"\S+",
@@ -2662,11 +2482,7 @@ def word_count(
 ) -> int:
 
     return sum(
-        len(
-            clean_words(
-                paragraph
-            )
-        )
+        len(clean_words(paragraph))
         for paragraph in paragraphs
     )
 
@@ -2676,9 +2492,7 @@ def trim_to_exact_words(
     target: int,
 ) -> List[str]:
 
-    total = word_count(
-        paragraphs
-    )
+    total = word_count(paragraphs)
 
     if total == target:
         return paragraphs
@@ -2687,7 +2501,6 @@ def trim_to_exact_words(
         return paragraphs
 
     result = []
-
     remaining = target
 
     for paragraph in paragraphs:
@@ -2695,16 +2508,11 @@ def trim_to_exact_words(
         if remaining <= 0:
             break
 
-        words = clean_words(
-            paragraph
-        )
+        words = clean_words(paragraph)
 
         if len(words) <= remaining:
 
-            result.append(
-                paragraph
-            )
-
+            result.append(paragraph)
             remaining -= len(words)
 
         else:
@@ -2714,9 +2522,7 @@ def trim_to_exact_words(
             )
 
             if shortened:
-                result.append(
-                    shortened
-                )
+                result.append(shortened)
 
             remaining = 0
 
@@ -2740,19 +2546,15 @@ def generate_chapter(
             "Invalid chapter number"
         )
 
-    blueprint = generate_blueprint(
-        seed
-    )
+    blueprint = generate_blueprint(seed)
 
     rng = stable_rng(
         f"{seed}:chapter:{chapter_number}"
     )
 
-    roadmap = blueprint[
+    plan = blueprint[
         "chapter_roadmap"
-    ]
-
-    plan = roadmap[
+    ][
         chapter_number - 1
     ]
 
@@ -2760,29 +2562,13 @@ def generate_chapter(
         "protagonist"
     ]["name"]
 
-    genre = blueprint[
-        "genre"
-    ]
+    genre = blueprint["genre"]
+    secondary_genre = blueprint["secondary_genre"]
+    world = blueprint["world"]
+    power = blueprint["power_system"]
+    faction = blueprint["factions"][0]["name"]
 
-    secondary_genre = blueprint[
-        "secondary_genre"
-    ]
-
-    world = blueprint[
-        "world"
-    ]
-
-    power = blueprint[
-        "power_system"
-    ]
-
-    faction = blueprint[
-        "factions"
-    ][0]["name"]
-
-    characters = blueprint[
-        "characters"
-    ]
+    characters = blueprint["characters"]
 
     protagonist_character = next(
         (
@@ -2828,14 +2614,10 @@ def generate_chapter(
 
     antagonist = pick(
         rng,
-        blueprint[
-            "antagonists"
-        ],
+        blueprint["antagonists"],
     )
 
-    location = plan[
-        "location"
-    ]
+    location = plan["location"]
 
     object_item = pick(
         rng,
@@ -2847,14 +2629,12 @@ def generate_chapter(
         chapter_number,
     )
 
-    # --------------------------------------------------------
-    # TITLE
-    # --------------------------------------------------------
-
     title = (
         f"Chapter {chapter_number:03d}: "
         f"{plan['title']}"
     )
+
+    paragraphs: List[str] = []
 
     # --------------------------------------------------------
     # OPENING
@@ -2885,17 +2665,8 @@ def generate_chapter(
         ),
     ]
 
-    # --------------------------------------------------------
-    # PLAN DESCRIPTION
-    # --------------------------------------------------------
-
-    paragraphs: List[str] = []
-
     paragraphs.append(
-        pick(
-            rng,
-            openings,
-        )
+        pick(rng, openings)
     )
 
     paragraphs.append(
@@ -2965,9 +2736,7 @@ def generate_chapter(
     )
 
     paragraphs.append(
-        plan[
-            "character_development"
-        ]
+        plan["character_development"]
     )
 
     # --------------------------------------------------------
@@ -2991,10 +2760,7 @@ def generate_chapter(
     ]
 
     paragraphs.append(
-        pick(
-            rng,
-            power_events,
-        )
+        pick(rng, power_events)
     )
 
     paragraphs.append(
@@ -3007,9 +2773,7 @@ def generate_chapter(
     )
 
     paragraphs.append(
-        plan[
-            "power_development"
-        ]
+        plan["power_development"]
     )
 
     # --------------------------------------------------------
@@ -3037,24 +2801,19 @@ def generate_chapter(
         ],
         [
             f'"You are taking this too seriously," {secondary_name} said.',
-            f'"Something is trying to kill us."',
+            '"Something is trying to kill us."',
             '"Exactly. That means we should at least enjoy breakfast first."',
             f'{protagonist} stared at {secondary_name}.',
             '"You are impossible."',
         ],
     ]
 
-    dialogue = pick(
-        rng,
-        dialogue_sets,
-    )
-
     paragraphs.extend(
-        dialogue
+        pick(rng, dialogue_sets)
     )
 
     # --------------------------------------------------------
-    # COMEDY / PARODY INSERTION
+    # COMEDY / PARODY
     # --------------------------------------------------------
 
     comedy_genres = {
@@ -3083,6 +2842,7 @@ def generate_chapter(
             "satirical",
         }
     ):
+
         comedy_events = [
             (
                 "For approximately five seconds, everyone "
@@ -3112,10 +2872,7 @@ def generate_chapter(
         ]
 
         paragraphs.append(
-            pick(
-                rng,
-                comedy_events,
-            )
+            pick(rng, comedy_events)
         )
 
     # --------------------------------------------------------
@@ -3130,15 +2887,11 @@ def generate_chapter(
     )
 
     paragraphs.append(
-        plan[
-            "world_development"
-        ]
+        plan["world_development"]
     )
 
     paragraphs.append(
-        plan[
-            "revelation"
-        ]
+        plan["revelation"]
     )
 
     # --------------------------------------------------------
@@ -3177,13 +2930,11 @@ def generate_chapter(
     )
 
     paragraphs.append(
-        plan[
-            "state_after"
-        ]
+        plan["state_after"]
     )
 
     # --------------------------------------------------------
-    # BRIDGES
+    # NON-REPEATING BRIDGE MATERIAL
     # --------------------------------------------------------
 
     bridge_paragraphs = [
@@ -3215,31 +2966,11 @@ def generate_chapter(
         ),
     ]
 
-    shuffled = list(
-        bridge_paragraphs
-    )
-
-    rng.shuffle(
-        shuffled
-    )
-
-    bridge_index = 0
-
-    while (
-        word_count(paragraphs)
-        < 820
-    ):
-        paragraphs.append(
-            shuffled[
-                bridge_index
-                % len(shuffled)
-            ]
-        )
-
-        bridge_index += 1
-
-        if bridge_index > 100:
+    for bridge in bridge_paragraphs:
+        if word_count(paragraphs) >= 700:
             break
+
+        paragraphs.append(bridge)
 
     # --------------------------------------------------------
     # CLIFFHANGER
@@ -3277,10 +3008,7 @@ def generate_chapter(
     ]
 
     paragraphs.append(
-        pick(
-            rng,
-            cliffhangers,
-        )
+        pick(rng, cliffhangers)
     )
 
     paragraphs.append(
@@ -3291,7 +3019,7 @@ def generate_chapter(
     )
 
     # --------------------------------------------------------
-    # EXACT 800 WORD TARGET
+    # EXACT WORD TARGET
     # --------------------------------------------------------
 
     paragraphs = trim_to_exact_words(
@@ -3299,34 +3027,62 @@ def generate_chapter(
         CHAPTER_WORD_COUNT,
     )
 
-    current_count = word_count(
-        paragraphs
-    )
+    current_count = word_count(paragraphs)
 
     if current_count < CHAPTER_WORD_COUNT:
 
-        filler = (
-            f"The silence remained around {protagonist}, "
-            f"and nobody could tell what the coming morning "
-            f"would bring."
-        )
+        filler_sentences = [
+            (
+                f"The silence around {protagonist} felt "
+                f"different now."
+            ),
+            (
+                "Nobody spoke for several seconds."
+            ),
+            (
+                "The unanswered question remained."
+            ),
+            (
+                "Somewhere nearby, something moved."
+            ),
+            (
+                "The night continued without offering an answer."
+            ),
+        ]
 
-        while (
-            word_count(paragraphs)
-            < CHAPTER_WORD_COUNT
-        ):
-            paragraphs.append(
-                filler
+        filler_index = 0
+
+        while word_count(paragraphs) < CHAPTER_WORD_COUNT:
+
+            sentence = filler_sentences[
+                filler_index % len(filler_sentences)
+            ]
+
+            remaining = (
+                CHAPTER_WORD_COUNT
+                - word_count(paragraphs)
             )
+
+            sentence_words = clean_words(sentence)
+
+            if len(sentence_words) <= remaining:
+                paragraphs.append(sentence)
+            else:
+                shortened = " ".join(
+                    sentence_words[:remaining]
+                )
+
+                if shortened:
+                    paragraphs.append(shortened)
+
+            filler_index += 1
 
         paragraphs = trim_to_exact_words(
             paragraphs,
             CHAPTER_WORD_COUNT,
         )
 
-    final_count = word_count(
-        paragraphs
-    )
+    final_count = word_count(paragraphs)
 
     # --------------------------------------------------------
     # FINAL CHAPTER OBJECT
@@ -3347,4 +3103,25 @@ def generate_chapter(
         "chapter_plan": plan,
         "paragraphs": paragraphs,
         "word_count": final_count,
+
+        # Descriptive information available to the frontend
+        "world_description": blueprint[
+            "descriptions"
+        ]["world"],
+
+        "conflict_description": blueprint[
+            "descriptions"
+        ]["conflict"],
+
+        "faction_description": blueprint[
+            "descriptions"
+        ]["faction"],
+
+        "power_description": blueprint[
+            "descriptions"
+        ]["power"],
+
+        "author_description": (
+            f"Original light novel by {AUTHOR}."
+        ),
     }
