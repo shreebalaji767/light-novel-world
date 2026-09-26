@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 import hashlib
-import secrets
 import random
 import re
+import secrets
 from typing import Dict, List
 
 
@@ -12,6 +12,7 @@ from typing import Dict, List
 # ============================================================
 
 CHAPTER_COUNT = 600
+CHAPTER_WORD_COUNT = 800
 
 
 # ============================================================
@@ -187,6 +188,10 @@ CONFLICTS = [
 ]
 
 
+# ============================================================
+# CHAPTER TITLES
+# ============================================================
+
 CHAPTER_VERBS = [
     "The Door That",
     "The Night When",
@@ -224,6 +229,10 @@ CHAPTER_NOUNS = [
     "Whispered",
 ]
 
+
+# ============================================================
+# ARC SYSTEM
+# ============================================================
 
 ARC_THEMES = [
     "awakening",
@@ -264,7 +273,7 @@ ARC_NAMES = [
 
 
 # ============================================================
-# NAME PARTS
+# NAME SYSTEM
 # ============================================================
 
 FIRST_NAMES = [
@@ -326,7 +335,7 @@ LAST_NAMES = [
 
 
 # ============================================================
-# DESIGN SYSTEMS
+# DESIGN SYSTEM
 # ============================================================
 
 DESIGN_PRESETS = [
@@ -338,7 +347,11 @@ DESIGN_PRESETS = [
         "surface2": "#12121a",
         "text": "#f5f3ff",
         "muted": "#a9a5b8",
-        "hero": "radial-gradient(circle at 70% 20%, rgba(185,140,255,.20), transparent 35%), linear-gradient(135deg,#09090d,#151020)",
+        "hero": (
+            "radial-gradient(circle at 70% 20%, "
+            "rgba(185,140,255,.20), transparent 35%), "
+            "linear-gradient(135deg,#09090d,#151020)"
+        ),
     },
     {
         "name": "Ember",
@@ -348,7 +361,11 @@ DESIGN_PRESETS = [
         "surface2": "#1b100d",
         "text": "#fff6f0",
         "muted": "#c4aaa0",
-        "hero": "radial-gradient(circle at 70% 20%, rgba(255,138,91,.22), transparent 35%), linear-gradient(135deg,#100a08,#24120c)",
+        "hero": (
+            "radial-gradient(circle at 70% 20%, "
+            "rgba(255,138,91,.22), transparent 35%), "
+            "linear-gradient(135deg,#100a08,#24120c)"
+        ),
     },
     {
         "name": "Azure",
@@ -358,7 +375,11 @@ DESIGN_PRESETS = [
         "surface2": "#0e1b28",
         "text": "#f1f8ff",
         "muted": "#a4b8ca",
-        "hero": "radial-gradient(circle at 70% 20%, rgba(93,183,255,.22), transparent 35%), linear-gradient(135deg,#071019,#0c1c2b)",
+        "hero": (
+            "radial-gradient(circle at 70% 20%, "
+            "rgba(93,183,255,.22), transparent 35%), "
+            "linear-gradient(135deg,#071019,#0c1c2b)"
+        ),
     },
     {
         "name": "Verdant",
@@ -368,7 +389,11 @@ DESIGN_PRESETS = [
         "surface2": "#0d1c14",
         "text": "#f0fff6",
         "muted": "#a4bcae",
-        "hero": "radial-gradient(circle at 70% 20%, rgba(102,217,160,.20), transparent 35%), linear-gradient(135deg,#07110c,#102219)",
+        "hero": (
+            "radial-gradient(circle at 70% 20%, "
+            "rgba(102,217,160,.20), transparent 35%), "
+            "linear-gradient(135deg,#07110c,#102219)"
+        ),
     },
     {
         "name": "Crimson",
@@ -378,7 +403,11 @@ DESIGN_PRESETS = [
         "surface2": "#1f0d12",
         "text": "#fff2f4",
         "muted": "#c9a5aa",
-        "hero": "radial-gradient(circle at 70% 20%, rgba(255,102,124,.22), transparent 35%), linear-gradient(135deg,#12080b,#240d14)",
+        "hero": (
+            "radial-gradient(circle at 70% 20%, "
+            "rgba(255,102,124,.22), transparent 35%), "
+            "linear-gradient(135deg,#12080b,#240d14)"
+        ),
     },
     {
         "name": "Golden",
@@ -388,7 +417,11 @@ DESIGN_PRESETS = [
         "surface2": "#1d190d",
         "text": "#fffbed",
         "muted": "#c1b99e",
-        "hero": "radial-gradient(circle at 70% 20%, rgba(231,197,107,.20), transparent 35%), linear-gradient(135deg,#110f08,#211c0c)",
+        "hero": (
+            "radial-gradient(circle at 70% 20%, "
+            "rgba(231,197,107,.20), transparent 35%), "
+            "linear-gradient(135deg,#110f08,#211c0c)"
+        ),
     },
     {
         "name": "Rose",
@@ -398,7 +431,11 @@ DESIGN_PRESETS = [
         "surface2": "#20121b",
         "text": "#fff4fa",
         "muted": "#c5a8b7",
-        "hero": "radial-gradient(circle at 70% 20%, rgba(244,154,194,.22), transparent 35%), linear-gradient(135deg,#120a10,#25131e)",
+        "hero": (
+            "radial-gradient(circle at 70% 20%, "
+            "rgba(244,154,194,.22), transparent 35%), "
+            "linear-gradient(135deg,#120a10,#25131e)"
+        ),
     },
     {
         "name": "Void",
@@ -408,89 +445,17 @@ DESIGN_PRESETS = [
         "surface2": "#0d0f18",
         "text": "#f2f4ff",
         "muted": "#9ea5bd",
-        "hero": "radial-gradient(circle at 70% 20%, rgba(138,164,255,.18), transparent 35%), linear-gradient(135deg,#06070c,#101329)",
+        "hero": (
+            "radial-gradient(circle at 70% 20%, "
+            "rgba(138,164,255,.18), transparent 35%), "
+            "linear-gradient(135deg,#06070c,#101329)"
+        ),
     },
 ]
 
 
 # ============================================================
-# RANDOM HELPERS
-# ============================================================
-
-def stable_rng(value: str) -> random.Random:
-    """
-    Creates a deterministic RNG from a string.
-
-    Same seed + same input = same generated data.
-    """
-    digest = hashlib.sha256(value.encode("utf-8")).digest()
-    integer = int.from_bytes(digest[:16], "big")
-    return random.Random(integer)
-
-
-def make_seed() -> str:
-    """
-    Cryptographically random seed.
-
-    Every request receives a new seed.
-    """
-    return secrets.token_hex(32)
-
-
-def pick(rng: random.Random, items: list):
-    return items[rng.randrange(len(items))]
-
-
-def make_name(rng: random.Random) -> str:
-    return f"{pick(rng, FIRST_NAMES)} {pick(rng, LAST_NAMES)}"
-
-
-# ============================================================
-# UNIQUE SELECTION
-# ============================================================
-
-def pick_unique(
-    rng: random.Random,
-    items: list,
-    used: set,
-):
-    """
-    Pick an item not previously used when possible.
-    """
-    available = [item for item in items if item not in used]
-
-    if not available:
-        return pick(rng, items)
-
-    value = pick(rng, available)
-    used.add(value)
-
-    return value
-
-
-def make_unique_name(
-    rng: random.Random,
-    used_names: set,
-) -> str:
-    """
-    Generate a name not already used in this novel.
-    """
-    for _ in range(100):
-        name = make_name(rng)
-
-        if name not in used_names:
-            used_names.add(name)
-            return name
-
-    # Extremely unlikely fallback.
-    name = f"{make_name(rng)} {rng.randrange(1000, 9999)}"
-    used_names.add(name)
-
-    return name
-
-
-# ============================================================
-# TITLE GENERATION
+# TITLE SYSTEM
 # ============================================================
 
 TITLE_PREFIXES = [
@@ -560,23 +525,8 @@ TITLE_NOUNS = [
 ]
 
 
-def make_title(rng: random.Random) -> str:
-    prefix = pick(rng, TITLE_PREFIXES)
-    adjective = pick(rng, TITLE_WORDS)
-    noun = pick(rng, TITLE_NOUNS)
-
-    patterns = [
-        f"{prefix} {adjective} {noun}",
-        f"{prefix} {adjective} {noun}",
-        f"{adjective} {noun}",
-        f"{prefix} {noun} of {adjective}",
-    ]
-
-    return pick(rng, patterns)
-
-
 # ============================================================
-# CHARACTERS
+# CHARACTER SYSTEM
 # ============================================================
 
 CHARACTER_ROLES = [
@@ -627,37 +577,195 @@ ABILITIES = [
 ]
 
 
+# ============================================================
+# RANDOM HELPERS
+# ============================================================
+
+def stable_rng(value: str) -> random.Random:
+    """
+    Creates a deterministic random generator from a string.
+
+    The same input always produces the same sequence.
+    """
+    digest = hashlib.sha256(
+        value.encode("utf-8")
+    ).digest()
+
+    integer = int.from_bytes(
+        digest[:16],
+        "big",
+    )
+
+    return random.Random(integer)
+
+
+def make_seed() -> str:
+    """
+    Creates a fresh cryptographically random seed.
+
+    A new HTTP request therefore produces a new novel.
+
+    No database or browser storage is required.
+    """
+    return secrets.token_hex(32)
+
+
+def pick(
+    rng: random.Random,
+    items: list,
+):
+    return items[
+        rng.randrange(len(items))
+    ]
+
+
+def make_name(
+    rng: random.Random,
+) -> str:
+    return (
+        f"{pick(rng, FIRST_NAMES)} "
+        f"{pick(rng, LAST_NAMES)}"
+    )
+
+
+# ============================================================
+# UNIQUE SELECTION
+# ============================================================
+
+def pick_unique(
+    rng: random.Random,
+    items: list,
+    used: set,
+):
+    available = [
+        item
+        for item in items
+        if item not in used
+    ]
+
+    if not available:
+        return pick(rng, items)
+
+    value = pick(
+        rng,
+        available,
+    )
+
+    used.add(value)
+
+    return value
+
+
+def make_unique_name(
+    rng: random.Random,
+    used_names: set,
+) -> str:
+
+    for _ in range(100):
+        name = make_name(rng)
+
+        if name not in used_names:
+            used_names.add(name)
+            return name
+
+    name = (
+        f"{make_name(rng)} "
+        f"{rng.randrange(1000, 9999)}"
+    )
+
+    used_names.add(name)
+
+    return name
+
+
+# ============================================================
+# TITLE GENERATION
+# ============================================================
+
+def make_title(
+    rng: random.Random,
+) -> str:
+
+    prefix = pick(
+        rng,
+        TITLE_PREFIXES,
+    )
+
+    adjective = pick(
+        rng,
+        TITLE_WORDS,
+    )
+
+    noun = pick(
+        rng,
+        TITLE_NOUNS,
+    )
+
+    patterns = [
+        f"{prefix} {adjective} {noun}",
+        f"{prefix} {adjective} {noun}",
+        f"{adjective} {noun}",
+        f"{prefix} {noun} of {adjective}",
+    ]
+
+    return pick(
+        rng,
+        patterns,
+    )
+
+
+# ============================================================
+# CHARACTER GENERATION
+# ============================================================
+
 def make_characters(
     rng: random.Random,
     protagonist: str,
 ) -> List[Dict]:
-    used_names = {protagonist}
-    characters = []
 
-    protagonist_traits = pick(rng, CHARACTER_TRAITS)
-    protagonist_ability = pick(rng, ABILITIES)
+    used_names = {
+        protagonist
+    }
+
+    characters = []
 
     characters.append(
         {
             "name": protagonist,
             "role": "Protagonist",
-            "trait": protagonist_traits,
-            "ability": protagonist_ability,
+            "trait": pick(
+                rng,
+                CHARACTER_TRAITS,
+            ),
+            "ability": pick(
+                rng,
+                ABILITIES,
+            ),
         }
     )
 
     roles = [
-        role for role in CHARACTER_ROLES
+        role
+        for role in CHARACTER_ROLES
         if role != "Protagonist"
     ]
 
     for role in roles[:5]:
         characters.append(
             {
-                "name": make_unique_name(rng, used_names),
+                "name": make_unique_name(
+                    rng,
+                    used_names,
+                ),
                 "role": role,
-                "trait": pick(rng, CHARACTER_TRAITS),
-                "ability": pick(rng, ABILITIES),
+                "trait": pick(
+                    rng,
+                    CHARACTER_TRAITS,
+                ),
+                "ability": pick(
+                    rng,
+                    ABILITIES,
+                ),
             }
         )
 
@@ -668,28 +776,42 @@ def make_characters(
 # ARC GENERATION
 # ============================================================
 
-def make_arcs(rng: random.Random) -> List[Dict]:
+def make_arcs(
+    rng: random.Random,
+) -> List[Dict]:
+
     arcs = []
 
-    chapters_per_arc = CHAPTER_COUNT // 15
+    chapters_per_arc = (
+        CHAPTER_COUNT // 15
+    )
 
     for index in range(15):
-        start = index * chapters_per_arc + 1
+
+        start = (
+            index *
+            chapters_per_arc
+            + 1
+        )
 
         if index == 14:
             end = CHAPTER_COUNT
         else:
-            end = (index + 1) * chapters_per_arc
-
-        title = ARC_NAMES[index]
+            end = (
+                (index + 1)
+                * chapters_per_arc
+            )
 
         arcs.append(
             {
                 "number": index + 1,
-                "title": title,
+                "title": ARC_NAMES[index],
                 "start": start,
                 "end": end,
-                "theme": pick(rng, ARC_THEMES),
+                "theme": pick(
+                    rng,
+                    ARC_THEMES,
+                ),
             }
         )
 
@@ -700,8 +822,13 @@ def get_arc(
     arcs: List[Dict],
     chapter_number: int,
 ) -> Dict:
+
     for arc in arcs:
-        if arc["start"] <= chapter_number <= arc["end"]:
+        if (
+            arc["start"]
+            <= chapter_number
+            <= arc["end"]
+        ):
             return arc
 
     return arcs[-1]
@@ -711,10 +838,17 @@ def get_arc(
 # DESIGN GENERATION
 # ============================================================
 
-def make_design(rng: random.Random) -> Dict:
-    preset = dict(pick(rng, DESIGN_PRESETS))
+def make_design(
+    rng: random.Random,
+) -> Dict:
 
-    # Add subtle generated variations while preserving readability.
+    preset = dict(
+        pick(
+            rng,
+            DESIGN_PRESETS,
+        )
+    )
+
     preset["radius"] = pick(
         rng,
         [
@@ -755,66 +889,111 @@ def make_design(rng: random.Random) -> Dict:
 
 def generate_novel() -> Dict:
     """
-    Creates a completely new novel on every HTTP request.
+    Creates a completely new novel.
 
-    The seed is cryptographically random.
+    Every call gets a fresh cryptographic seed.
+
+    No database.
+    No localStorage.
+    No sessionStorage.
     """
+
     seed = make_seed()
 
     rng = stable_rng(seed)
 
-    genre = pick(rng, GENRES)
-    secondary_genre = pick(rng, SECONDARY_GENRES)
+    genre = pick(
+        rng,
+        GENRES,
+    )
 
-    world = pick(rng, PLACES)
-    faction = pick(rng, FACTIONS)
-    power = pick(rng, POWERS)
-    conflict = pick(rng, CONFLICTS)
+    secondary_genre = pick(
+        rng,
+        SECONDARY_GENRES,
+    )
+
+    world = pick(
+        rng,
+        PLACES,
+    )
+
+    faction = pick(
+        rng,
+        FACTIONS,
+    )
+
+    power = pick(
+        rng,
+        POWERS,
+    )
+
+    conflict = pick(
+        rng,
+        CONFLICTS,
+    )
 
     protagonist = make_unique_name(
         rng,
         set(),
     )
 
-    title = make_title(rng)
+    title = make_title(
+        rng
+    )
 
-    design = make_design(rng)
+    design = make_design(
+        rng
+    )
 
     characters = make_characters(
         rng,
         protagonist,
     )
 
-    arc_rng = stable_rng(f"{seed}:arcs")
-    arcs = make_arcs(arc_rng)
+    arc_rng = stable_rng(
+        f"{seed}:arcs"
+    )
+
+    arcs = make_arcs(
+        arc_rng
+    )
 
     synopsis_templates = [
         (
-            f"In the world of {world}, {protagonist} becomes trapped "
-            f"inside a conflict involving {faction}. When the power "
-            f"known as {power} begins behaving strangely, an old mystery "
+            f"In the world of {world}, "
+            f"{protagonist} becomes trapped inside "
+            f"a conflict involving {faction}. "
+            f"When the power known as {power} "
+            f"begins behaving strangely, an old mystery "
             f"returns and threatens to change everything."
         ),
         (
-            f"{protagonist} expected an ordinary journey through {world}. "
-            f"Instead, they become connected to {conflict}. As the "
-            f"mysterious power of {power} awakens, the boundaries between "
-            f"legend and reality begin to disappear."
+            f"{protagonist} expected an ordinary journey "
+            f"through {world}. Instead, they become "
+            f"connected to {conflict}. As the mysterious "
+            f"power of {power} awakens, the boundaries "
+            f"between legend and reality begin to disappear."
         ),
         (
-            f"Something is changing in {world}. The ancient influence of "
-            f"{faction} is returning, and {protagonist} discovers that "
-            f"{power} may be connected to a secret buried for generations."
+            f"Something is changing in {world}. "
+            f"The ancient influence of {faction} is returning, "
+            f"and {protagonist} discovers that {power} "
+            f"may be connected to a secret buried "
+            f"for generations."
         ),
         (
-            f"When {protagonist} discovers evidence connected to "
-            f"{conflict}, they are pulled into a journey across {world}. "
-            f"Every answer reveals another question, and the people "
-            f"closest to them may know more than they admit."
+            f"When {protagonist} discovers evidence connected "
+            f"to {conflict}, they are pulled into a journey "
+            f"across {world}. Every answer reveals another "
+            f"question, and the people closest to them "
+            f"may know more than they admit."
         ),
     ]
 
-    synopsis = pick(rng, synopsis_templates)
+    synopsis = pick(
+        rng,
+        synopsis_templates,
+    )
 
     return {
         "seed": seed,
@@ -828,6 +1007,7 @@ def generate_novel() -> Dict:
         "protagonist": protagonist,
         "synopsis": synopsis,
         "chapter_count": CHAPTER_COUNT,
+        "chapter_word_count": CHAPTER_WORD_COUNT,
         "characters": characters,
         "arcs": arcs,
         "design": design,
@@ -835,16 +1015,29 @@ def generate_novel() -> Dict:
 
 
 # ============================================================
-# CHAPTER CONTENT
+# WORD UTILITIES
 # ============================================================
 
-def clean_words(text: str) -> List[str]:
-    return re.findall(r"\S+", text)
+def clean_words(
+    text: str,
+) -> List[str]:
+
+    return re.findall(
+        r"\S+",
+        text,
+    )
 
 
-def word_count(paragraphs: List[str]) -> int:
+def word_count(
+    paragraphs: List[str],
+) -> int:
+
     return sum(
-        len(clean_words(paragraph))
+        len(
+            clean_words(
+                paragraph
+            )
+        )
         for paragraph in paragraphs
     )
 
@@ -853,12 +1046,10 @@ def trim_to_exact_words(
     paragraphs: List[str],
     target: int,
 ) -> List[str]:
-    """
-    Makes the final chapter exactly target words.
 
-    The final paragraph is shortened if necessary.
-    """
-    total = word_count(paragraphs)
+    total = word_count(
+        paragraphs
+    )
 
     if total == target:
         return paragraphs
@@ -867,53 +1058,100 @@ def trim_to_exact_words(
         return paragraphs
 
     result = []
+
     remaining = target
 
     for paragraph in paragraphs:
-        words = clean_words(paragraph)
 
         if remaining <= 0:
             break
 
+        words = clean_words(
+            paragraph
+        )
+
         if len(words) <= remaining:
-            result.append(paragraph)
+
+            result.append(
+                paragraph
+            )
+
             remaining -= len(words)
+
         else:
-            shortened = " ".join(words[:remaining])
+
+            shortened = " ".join(
+                words[:remaining]
+            )
 
             if shortened:
-                result.append(shortened)
+                result.append(
+                    shortened
+                )
 
             remaining = 0
 
     return result
 
 
+# ============================================================
+# CHAPTER GENERATION
+# ============================================================
+
 def generate_chapter(
     seed: str,
     chapter_number: int,
 ) -> Dict:
 
-    if chapter_number < 1 or chapter_number > CHAPTER_COUNT:
-        raise ValueError("Invalid chapter number")
+    if (
+        chapter_number < 1
+        or chapter_number > CHAPTER_COUNT
+    ):
+        raise ValueError(
+            "Invalid chapter number"
+        )
 
     rng = stable_rng(
         f"{seed}:chapter:{chapter_number}"
     )
 
-    base_rng = stable_rng(seed)
+    base_rng = stable_rng(
+        seed
+    )
 
     # --------------------------------------------------------
     # RECREATE NOVEL CORE
     # --------------------------------------------------------
 
-    genre = pick(base_rng, GENRES)
-    secondary_genre = pick(base_rng, SECONDARY_GENRES)
+    genre = pick(
+        base_rng,
+        GENRES,
+    )
 
-    world = pick(base_rng, PLACES)
-    faction = pick(base_rng, FACTIONS)
-    power = pick(base_rng, POWERS)
-    conflict = pick(base_rng, CONFLICTS)
+    secondary_genre = pick(
+        base_rng,
+        SECONDARY_GENRES,
+    )
+
+    world = pick(
+        base_rng,
+        PLACES,
+    )
+
+    faction = pick(
+        base_rng,
+        FACTIONS,
+    )
+
+    power = pick(
+        base_rng,
+        POWERS,
+    )
+
+    conflict = pick(
+        base_rng,
+        CONFLICTS,
+    )
 
     protagonist = make_unique_name(
         base_rng,
@@ -924,7 +1162,9 @@ def generate_chapter(
         f"{seed}:arcs"
     )
 
-    arcs = make_arcs(arc_rng)
+    arcs = make_arcs(
+        arc_rng
+    )
 
     arc = get_arc(
         arcs,
@@ -937,7 +1177,9 @@ def generate_chapter(
 
     used_places = set()
     used_objects = set()
-    used_names = {protagonist}
+    used_names = {
+        protagonist
+    }
 
     location = pick_unique(
         rng,
@@ -982,35 +1224,42 @@ def generate_chapter(
     )
 
     # --------------------------------------------------------
-    # STORY POOLS
+    # OPENINGS
     # --------------------------------------------------------
 
     openings = [
         (
-            f"Morning arrived over {location} beneath a sky that looked "
-            f"far too quiet for the events that had taken place during "
-            f"the previous night. {protagonist} stood beside the window, "
-            f"watching the first travelers move through the distant street."
+            f"Morning arrived over {location} beneath a sky "
+            f"that looked far too quiet for the events that "
+            f"had taken place during the previous night. "
+            f"{protagonist} stood beside the window, watching "
+            f"the first travelers move through the distant street."
         ),
         (
-            f"Rain covered {location} when {protagonist} finally woke. "
-            f"The sound of water against the roof should have been calming, "
-            f"but something about the silence between each distant thunder "
-            f"was deeply unsettling."
+            f"Rain covered {location} when {protagonist} finally "
+            f"woke. The sound of water against the roof should "
+            f"have been calming, but something about the silence "
+            f"between each distant thunder was deeply unsettling."
         ),
         (
-            f"{protagonist} woke before sunrise with the strange certainty "
-            f"that someone had spoken their name. The room was empty. "
-            f"Yet the feeling remained, as though an unseen presence "
-            f"had followed them into the night."
+            f"{protagonist} woke before sunrise with the strange "
+            f"certainty that someone had spoken their name. "
+            f"The room was empty. Yet the feeling remained, "
+            f"as though an unseen presence had followed them "
+            f"into the night."
         ),
         (
-            f"The journey had brought them to {location} just before "
-            f"darkness. From a distance the settlement appeared ordinary. "
-            f"Only after entering its streets did {protagonist} notice "
-            f"the abandoned buildings and shuttered windows."
+            f"The journey had brought them to {location} just "
+            f"before darkness. From a distance the settlement "
+            f"appeared ordinary. Only after entering its streets "
+            f"did {protagonist} notice the abandoned buildings "
+            f"and shuttered windows."
         ),
     ]
+
+    # --------------------------------------------------------
+    # DISCOVERIES
+    # --------------------------------------------------------
 
     discoveries = [
         (
@@ -1020,52 +1269,65 @@ def generate_chapter(
         ),
         (
             f"Behind a damaged wall they found a narrow passage. "
-            f"The entrance had been carefully concealed, and the stone "
-            f"around it carried markings that looked older than the town."
+            f"The entrance had been carefully concealed, and the "
+            f"stone around it carried markings that looked older "
+            f"than the town."
         ),
         (
-            f"A forgotten document contained several references to "
-            f"{faction}. Most of the writing had faded, but a single "
-            f"paragraph remained clear enough to read."
+            f"A forgotten document contained several references "
+            f"to {faction}. Most of the writing had faded, but "
+            f"a single paragraph remained clear enough to read."
         ),
         (
-            f"Footprints crossed the dust near the entrance. They were "
-            f"fresh enough to prove that someone had arrived before them, "
-            f"yet there was no sign of where that person had gone."
+            f"Footprints crossed the dust near the entrance. "
+            f"They were fresh enough to prove that someone had "
+            f"arrived before them, yet there was no sign of "
+            f"where that person had gone."
         ),
         (
-            f"A low sound emerged from beneath the ground. Following it "
-            f"led the group to a chamber that should not have existed "
-            f"beneath {location}."
+            f"A low sound emerged from beneath the ground. "
+            f"Following it led the group to a chamber that "
+            f"should not have existed beneath {location}."
         ),
     ]
+
+    # --------------------------------------------------------
+    # DEVELOPMENTS
+    # --------------------------------------------------------
 
     developments = [
         (
-            f"The discovery appeared connected to the larger mystery "
-            f"surrounding {world}."
+            f"The discovery appeared connected to the larger "
+            f"mystery surrounding {world}."
         ),
         (
-            f"The evidence suggested that {faction} had been involved "
-            f"in these events for much longer than anyone realized."
+            f"The evidence suggested that {faction} had been "
+            f"involved in these events for much longer than "
+            f"anyone realized."
         ),
         (
-            f"The information contradicted what {protagonist} believed "
-            f"about {power}."
+            f"The information contradicted what {protagonist} "
+            f"believed about {power}."
         ),
         (
-            f"The discovery revealed that the current conflict was only "
-            f"one part of a struggle that had begun generations earlier."
+            f"The discovery revealed that the current conflict "
+            f"was only one part of a struggle that had begun "
+            f"generations earlier."
         ),
         (
-            f"The evidence seemed directly connected to {conflict_item}."
+            f"The evidence seemed directly connected to "
+            f"{conflict_item}."
         ),
     ]
 
+    # --------------------------------------------------------
+    # COMPLICATIONS
+    # --------------------------------------------------------
+
     complications = [
         (
-            "Before anyone could investigate further, footsteps echoed "
-            "through the corridor."
+            "Before anyone could investigate further, footsteps "
+            "echoed through the corridor."
         ),
         (
             "The door behind them suddenly closed."
@@ -1088,27 +1350,35 @@ def generate_chapter(
         ),
     ]
 
+    # --------------------------------------------------------
+    # EMOTIONAL EVENTS
+    # --------------------------------------------------------
+
     emotional_events = [
         (
             f"{protagonist} remembered why the journey had begun."
         ),
         (
-            f"{supporting_character} finally admitted that they were "
-            f"afraid of what would happen next."
+            f"{supporting_character} finally admitted that they "
+            f"were afraid of what would happen next."
         ),
         (
-            f"{secondary_character} revealed a secret that had been "
-            f"hidden since the beginning of the journey."
+            f"{secondary_character} revealed a secret that had "
+            f"been hidden since the beginning of the journey."
         ),
         (
-            "The argument that followed was not really about the "
-            "discovery. It was about trust."
+            "The argument that followed was not really about "
+            "the discovery. It was about trust."
         ),
         (
             "For several seconds nobody knew what to say. "
             "The silence made the danger feel closer."
         ),
     ]
+
+    # --------------------------------------------------------
+    # ACTION EVENTS
+    # --------------------------------------------------------
 
     action_events = [
         (
@@ -1118,22 +1388,26 @@ def generate_chapter(
         ),
         (
             f"The attackers moved quickly. {supporting_character} "
-            f"blocked the first strike while {protagonist} searched "
-            f"for a way through."
+            f"blocked the first strike while {protagonist} "
+            f"searched for a way through."
         ),
         (
-            "The ground shook violently. Something enormous was moving "
-            "beneath the structure."
+            "The ground shook violently. Something enormous was "
+            "moving beneath the structure."
         ),
         (
-            f"{rival_character} appeared without warning and immediately "
-            f"challenged {protagonist}."
+            f"{rival_character} appeared without warning and "
+            f"immediately challenged {protagonist}."
         ),
         (
-            f"The escape became a desperate race through the narrow "
-            f"streets of {location}."
+            f"The escape became a desperate race through the "
+            f"narrow streets of {location}."
         ),
     ]
+
+    # --------------------------------------------------------
+    # POWER EVENTS
+    # --------------------------------------------------------
 
     power_events = [
         (
@@ -1144,8 +1418,8 @@ def generate_chapter(
             f"behaving in a way nobody had witnessed before."
         ),
         (
-            f"For several seconds {protagonist} could see fragments "
-            f"of possible futures."
+            f"For several seconds {protagonist} could see "
+            f"fragments of possible futures."
         ),
         (
             f"The ability responded to {object_item} rather than "
@@ -1156,6 +1430,10 @@ def generate_chapter(
             f"{protagonist} more frightened than before."
         ),
     ]
+
+    # --------------------------------------------------------
+    # REVELATIONS
+    # --------------------------------------------------------
 
     revelations = [
         (
@@ -1170,8 +1448,8 @@ def generate_chapter(
             f"{protagonist} discovered that the enemy knew their name."
         ),
         (
-            "The document contained a prediction describing an event "
-            "that had not happened yet."
+            "The document contained a prediction describing an "
+            "event that had not happened yet."
         ),
         (
             f"The symbol matched the mark that appeared whenever "
@@ -1182,27 +1460,36 @@ def generate_chapter(
         ),
     ]
 
+    # --------------------------------------------------------
+    # REFLECTIONS
+    # --------------------------------------------------------
+
     reflections = [
         (
-            f"{protagonist} stood alone for several minutes, thinking "
-            f"about everything that had happened."
+            f"{protagonist} stood alone for several minutes, "
+            f"thinking about everything that had happened."
         ),
         (
             "The others discussed their options, but every choice "
             "seemed to carry a different kind of danger."
         ),
         (
-            "Nobody wanted to admit how serious the situation had become."
+            "Nobody wanted to admit how serious the situation "
+            "had become."
         ),
         (
-            "The journey had started with a single unanswered question. "
-            "Now there were dozens."
+            "The journey had started with a single unanswered "
+            "question. Now there were dozens."
         ),
         (
-            "Trust had become more valuable than information, and "
-            "neither was easy to obtain."
+            "Trust had become more valuable than information, "
+            "and neither was easy to obtain."
         ),
     ]
+
+    # --------------------------------------------------------
+    # TRANSITIONS
+    # --------------------------------------------------------
 
     transitions = [
         (
@@ -1211,7 +1498,7 @@ def generate_chapter(
         ),
         (
             f"Night fell over {location}. The streets became empty, "
-            "but the feeling of being watched never disappeared."
+            f"but the feeling of being watched never disappeared."
         ),
         (
             "The group found temporary shelter and began planning "
@@ -1221,6 +1508,10 @@ def generate_chapter(
             "After everything that had happened, sleep was difficult."
         ),
     ]
+
+    # --------------------------------------------------------
+    # CLIFFHANGERS
+    # --------------------------------------------------------
 
     cliffhangers = [
         (
@@ -1232,7 +1523,8 @@ def generate_chapter(
             f"DO NOT TRUST THE PERSON BESIDE YOU."
         ),
         (
-            "Far beyond the horizon, a strange light appeared in the sky."
+            "Far beyond the horizon, a strange light appeared "
+            "in the sky."
         ),
         (
             "The sealed door opened by itself."
@@ -1248,6 +1540,10 @@ def generate_chapter(
             f"{rival_character}'s voice came from the darkness."
         ),
     ]
+
+    # --------------------------------------------------------
+    # DIALOGUE
+    # --------------------------------------------------------
 
     dialogue_sets = [
         [
@@ -1279,172 +1575,7 @@ def generate_chapter(
     ]
 
     # --------------------------------------------------------
-    # BUILD
-    # --------------------------------------------------------
-
-    paragraphs = []
-
-    paragraphs.append(
-        pick(rng, openings)
-    )
-
-    paragraphs.append(
-        (
-            f"Chapter {chapter_number} belongs to the "
-            f"{arc['title']} arc, a period shaped by "
-            f"{arc['theme']}. The journey has already changed "
-            f"{protagonist}, but the events waiting in {location} "
-            f"will force another decision."
-        )
-    )
-
-    paragraphs.append(
-        pick(rng, discoveries)
-    )
-
-    paragraphs.append(
-        (
-            f"For several seconds nobody moved. "
-            f"{supporting_character} examined the discovery while "
-            f"{secondary_character} watched the entrance."
-        )
-    )
-
-    paragraphs.append(
-        pick(rng, developments)
-    )
-
-    paragraphs.append(
-        (
-            f"The implications were difficult to ignore. If the evidence "
-            f"was genuine, then the events happening now were connected "
-            f"to something that had begun long before {protagonist} "
-            f"entered the story."
-        )
-    )
-
-    paragraphs.append(
-        pick(rng, complications)
-    )
-
-    paragraphs.append(
-        (
-            f"{protagonist} immediately understood that there was no "
-            f"longer enough time for careful planning. Whatever was "
-            f"approaching would arrive soon."
-        )
-    )
-
-    dialogue = pick(rng, dialogue_sets)
-
-    paragraphs.extend(dialogue)
-
-    paragraphs.append(
-        (
-            "The conversation ended without agreement. Everyone "
-            "understood that the next decision would affect more "
-            "than the people standing in the room."
-        )
-    )
-
-    paragraphs.append(
-        pick(rng, emotional_events)
-    )
-
-    paragraphs.append(
-        (
-            f"Outside, the wind grew stronger. Its sound travelled "
-            f"through the streets of {location}, carrying distant voices "
-            "and the metallic sound of something moving through the dark."
-        )
-    )
-
-    paragraphs.append(
-        pick(rng, action_events)
-    )
-
-    paragraphs.append(
-        (
-            f"{protagonist} barely had enough time to react. "
-            "The situation had changed from an investigation into "
-            "a fight for survival."
-        )
-    )
-
-    paragraphs.append(
-        pick(rng, power_events)
-    )
-
-    paragraphs.append(
-        (
-            "The sudden release of power forced everyone nearby to "
-            "retreat. For one impossible moment, the world seemed "
-            "to stop moving."
-        )
-    )
-
-    paragraphs.append(
-        (
-            f"{protagonist} could hear their own breathing. "
-            "The strange energy disappeared almost as quickly as "
-            "it had appeared."
-        )
-    )
-
-    paragraphs.append(
-        pick(rng, revelations)
-    )
-
-    paragraphs.append(
-        (
-            "The revelation left the group silent. It did not solve "
-            "the mystery. Instead, it revealed that the mystery was "
-            "far larger than they had imagined."
-        )
-    )
-
-    paragraphs.append(
-        pick(rng, reflections)
-    )
-
-    paragraphs.append(
-        (
-            f"{supporting_character} finally looked toward "
-            f"{protagonist}. There was no certainty in their expression, "
-            "only the understanding that the journey had reached "
-            "another turning point."
-        )
-    )
-
-    paragraphs.append(
-        (
-            f"The name of {faction} appeared again in their discussion. "
-            "The organization had been present in too many places "
-            "to be coincidence."
-        )
-    )
-
-    paragraphs.append(
-        (
-            f"The conflict surrounding {conflict_item} was becoming "
-            "impossible to separate from their personal journey."
-        )
-    )
-
-    paragraphs.append(
-        pick(rng, transitions)
-    )
-
-    paragraphs.append(
-        (
-            f"Before leaving, {protagonist} looked back one final time. "
-            f"The place seemed ordinary again, almost peaceful. "
-            "But the silence felt artificial."
-        )
-    )
-
-    # --------------------------------------------------------
-    # UNIQUE BRIDGES
+    # BRIDGE PARAGRAPHS
     # --------------------------------------------------------
 
     bridge_paragraphs = [
@@ -1454,13 +1585,14 @@ def generate_chapter(
             f"another clue. Nothing appeared immediately."
         ),
         (
-            f"{protagonist} returned to {object_item}. The object remained "
-            "unchanged, yet something about it felt different now."
+            f"{protagonist} returned to {object_item}. "
+            f"The object remained unchanged, yet something about "
+            f"it felt different now."
         ),
         (
-            f"{secondary_character} suggested that the answer might not "
-            "be hidden inside the object. Perhaps the object itself "
-            "was only a key."
+            f"{secondary_character} suggested that the answer might "
+            f"not be hidden inside the object. Perhaps the object "
+            f"itself was only a key."
         ),
         (
             "The suggestion changed the way everyone looked at the room."
@@ -1468,7 +1600,7 @@ def generate_chapter(
         (
             f"{supporting_character} remembered an old story involving "
             f"{world}. The details had always sounded like a myth, "
-            "but they suddenly appeared strangely relevant."
+            f"but they suddenly appeared strangely relevant."
         ),
         (
             "The discussion continued quietly. Each person contributed "
@@ -1504,19 +1636,255 @@ def generate_chapter(
         (
             "For now, survival remained more important than answers."
         ),
+        (
+            f"The cold air entered through the damaged doorway, "
+            f"carrying the smell of rain and distant smoke."
+        ),
+        (
+            f"{protagonist} studied the markings again and noticed "
+            f"a pattern that had been hidden beneath the dust."
+        ),
+        (
+            "Nobody could explain why the symbols seemed familiar, "
+            "but everyone agreed that ignoring them was impossible."
+        ),
+        (
+            "The discovery forced the group to reconsider their "
+            "assumptions about the journey."
+        ),
+        (
+            f"The name of {faction} appeared once more in their notes, "
+            "surrounded by several references that had been crossed out."
+        ),
+        (
+            f"{secondary_character} carefully copied the remaining "
+            f"symbols before the fading light made them impossible to read."
+        ),
     ]
 
-    # Shuffle the bridge pool for this chapter.
-    shuffled_bridges = list(bridge_paragraphs)
-    rng.shuffle(shuffled_bridges)
+    # --------------------------------------------------------
+    # BUILD CHAPTER
+    # --------------------------------------------------------
+
+    paragraphs: List[str] = []
+
+    paragraphs.append(
+        pick(
+            rng,
+            openings,
+        )
+    )
+
+    paragraphs.append(
+        (
+            f"Chapter {chapter_number} belongs to the "
+            f"{arc['title']} arc, a period shaped by "
+            f"{arc['theme']}. The journey has already changed "
+            f"{protagonist}, but the events waiting in {location} "
+            f"will force another decision."
+        )
+    )
+
+    paragraphs.append(
+        pick(
+            rng,
+            discoveries,
+        )
+    )
+
+    paragraphs.append(
+        (
+            f"For several seconds nobody moved. "
+            f"{supporting_character} examined the discovery while "
+            f"{secondary_character} watched the entrance."
+        )
+    )
+
+    paragraphs.append(
+        pick(
+            rng,
+            developments,
+        )
+    )
+
+    paragraphs.append(
+        (
+            f"The implications were difficult to ignore. If the "
+            f"evidence was genuine, then the events happening now "
+            f"were connected to something that had begun long before "
+            f"{protagonist} entered the story."
+        )
+    )
+
+    paragraphs.append(
+        pick(
+            rng,
+            complications,
+        )
+    )
+
+    paragraphs.append(
+        (
+            f"{protagonist} immediately understood that there was "
+            f"no longer enough time for careful planning. Whatever "
+            f"was approaching would arrive soon."
+        )
+    )
+
+    dialogue = pick(
+        rng,
+        dialogue_sets,
+    )
+
+    paragraphs.extend(
+        dialogue
+    )
+
+    paragraphs.append(
+        (
+            "The conversation ended without agreement. Everyone "
+            "understood that the next decision would affect more "
+            "than the people standing in the room."
+        )
+    )
+
+    paragraphs.append(
+        pick(
+            rng,
+            emotional_events,
+        )
+    )
+
+    paragraphs.append(
+        (
+            f"Outside, the wind grew stronger. Its sound travelled "
+            f"through the streets of {location}, carrying distant "
+            f"voices and the metallic sound of something moving "
+            f"through the dark."
+        )
+    )
+
+    paragraphs.append(
+        pick(
+            rng,
+            action_events,
+        )
+    )
+
+    paragraphs.append(
+        (
+            f"{protagonist} barely had enough time to react. "
+            f"The situation had changed from an investigation into "
+            f"a fight for survival."
+        )
+    )
+
+    paragraphs.append(
+        pick(
+            rng,
+            power_events,
+        )
+    )
+
+    paragraphs.append(
+        (
+            "The sudden release of power forced everyone nearby "
+            "to retreat. For one impossible moment, the world "
+            "seemed to stop moving."
+        )
+    )
+
+    paragraphs.append(
+        (
+            f"{protagonist} could hear their own breathing. "
+            f"The strange energy disappeared almost as quickly "
+            f"as it had appeared."
+        )
+    )
+
+    paragraphs.append(
+        pick(
+            rng,
+            revelations,
+        )
+    )
+
+    paragraphs.append(
+        (
+            "The revelation left the group silent. It did not "
+            "solve the mystery. Instead, it revealed that the "
+            "mystery was far larger than they had imagined."
+        )
+    )
+
+    paragraphs.append(
+        pick(
+            rng,
+            reflections,
+        )
+    )
+
+    paragraphs.append(
+        (
+            f"{supporting_character} finally looked toward "
+            f"{protagonist}. There was no certainty in their "
+            f"expression, only the understanding that the journey "
+            f"had reached another turning point."
+        )
+    )
+
+    paragraphs.append(
+        (
+            f"The name of {faction} appeared again in their "
+            f"discussion. The organization had been present "
+            f"in too many places to be coincidence."
+        )
+    )
+
+    paragraphs.append(
+        (
+            f"The conflict surrounding {conflict_item} was becoming "
+            f"impossible to separate from their personal journey."
+        )
+    )
+
+    paragraphs.append(
+        pick(
+            rng,
+            transitions,
+        )
+    )
+
+    paragraphs.append(
+        (
+            f"Before leaving, {protagonist} looked back one final "
+            f"time. The place seemed ordinary again, almost peaceful. "
+            f"But the silence felt artificial."
+        )
+    )
+
+    # --------------------------------------------------------
+    # BRIDGE EXPANSION
+    # --------------------------------------------------------
+
+    shuffled_bridges = list(
+        bridge_paragraphs
+    )
+
+    rng.shuffle(
+        shuffled_bridges
+    )
 
     bridge_index = 0
 
-    # Aim beyond 800 before exact trimming.
-    while word_count(paragraphs) < 810:
+    while (
+        word_count(paragraphs)
+        < 820
+    ):
         paragraphs.append(
             shuffled_bridges[
-                bridge_index % len(shuffled_bridges)
+                bridge_index
+                % len(shuffled_bridges)
             ]
         )
 
@@ -1530,13 +1898,16 @@ def generate_chapter(
     # --------------------------------------------------------
 
     paragraphs.append(
-        pick(rng, cliffhangers)
+        pick(
+            rng,
+            cliffhangers,
+        )
     )
 
     paragraphs.append(
         (
             f"{protagonist} stared into the darkness. "
-            "The answer would have to wait until tomorrow."
+            f"The answer would have to wait until tomorrow."
         )
     )
 
@@ -1546,7 +1917,44 @@ def generate_chapter(
 
     paragraphs = trim_to_exact_words(
         paragraphs,
-        800,
+        CHAPTER_WORD_COUNT,
+    )
+
+    # --------------------------------------------------------
+    # SAFETY FALLBACK
+    # --------------------------------------------------------
+
+    current_count = word_count(
+        paragraphs
+    )
+
+    if current_count < CHAPTER_WORD_COUNT:
+
+        filler = (
+            f"The silence remained around {protagonist}, "
+            f"and nobody could tell what the coming morning "
+            f"would bring."
+        )
+
+        while (
+            word_count(paragraphs)
+            < CHAPTER_WORD_COUNT
+        ):
+            paragraphs.append(
+                filler
+            )
+
+        paragraphs = trim_to_exact_words(
+            paragraphs,
+            CHAPTER_WORD_COUNT,
+        )
+
+    # --------------------------------------------------------
+    # FINAL RESULT
+    # --------------------------------------------------------
+
+    final_count = word_count(
+        paragraphs
     )
 
     return {
@@ -1555,6 +1963,7 @@ def generate_chapter(
         "arc": arc,
         "location": location,
         "genre": genre,
+        "secondary_genre": secondary_genre,
         "paragraphs": paragraphs,
-        "word_count": word_count(paragraphs),
+        "word_count": final_count,
     }
