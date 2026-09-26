@@ -1,12 +1,14 @@
+```css
 /* =========================================================
    LIGHT NOVEL WORLD
    COMPLETE RESPONSIVE CSS
    CSS ONLY — NO HTML / ID / CLASS CHANGES
+   MOBILE-FIRST / ALL DEVICES
    ========================================================= */
 
 
 /* =========================================================
-   1. GLOBAL RESET
+   01. GLOBAL RESET
    ========================================================= */
 
 *,
@@ -23,6 +25,8 @@ html {
     padding: 0;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
@@ -41,6 +45,7 @@ svg,
 video,
 canvas,
 iframe {
+    display: block;
     max-width: 100%;
 }
 
@@ -54,6 +59,15 @@ textarea,
 select {
     max-width: 100%;
     box-sizing: border-box;
+    font: inherit;
+}
+
+button,
+a,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+    -webkit-tap-highlight-color: transparent;
 }
 
 h1,
@@ -68,13 +82,26 @@ span,
 div,
 li {
     max-width: 100%;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
 }
 
 
 /* =========================================================
-   2. FLEX / GRID SAFETY
+   02. UNIVERSAL LAYOUT SAFETY
    ========================================================= */
+
+html,
+body,
+main,
+section,
+header,
+footer,
+nav,
+article,
+aside,
+div {
+    min-width: 0;
+}
 
 section,
 header,
@@ -85,19 +112,29 @@ article,
 aside,
 .container,
 .wrapper {
-    min-width: 0;
     max-width: 100%;
 }
 
 [class*="grid"] > *,
 [class*="layout"] > *,
-[class*="row"] > * {
+[class*="row"] > *,
+[class*="column"] > * {
     min-width: 0;
 }
 
 
 /* =========================================================
-   3. TOP BAR
+   03. LINKS
+   ========================================================= */
+
+a {
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+
+/* =========================================================
+   04. TOP BAR
    ========================================================= */
 
 .topbar {
@@ -110,8 +147,8 @@ aside,
 .brand {
     min-width: 0;
     max-width: 100%;
-    overflow-wrap: anywhere;
-    word-break: break-word;
+    overflow-wrap: break-word;
+    word-break: normal;
 }
 
 .desktop-nav {
@@ -120,26 +157,32 @@ aside,
 }
 
 .desktop-nav a {
+    min-width: 0;
     max-width: 100%;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
 }
 
 
 /* =========================================================
-   4. BUTTONS
+   05. BUTTONS
    ========================================================= */
 
 .button {
-    max-width: 100%;
     min-width: 0;
+    max-width: 100%;
     white-space: normal;
-    overflow-wrap: anywhere;
-    word-break: break-word;
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+.button img,
+.button svg {
+    flex-shrink: 0;
 }
 
 
 /* =========================================================
-   5. HERO
+   06. HERO
    ========================================================= */
 
 .hero {
@@ -150,8 +193,9 @@ aside,
 }
 
 .hero-content {
-    min-width: 0;
+    width: 100%;
     max-width: 100%;
+    min-width: 0;
     overflow: visible;
 }
 
@@ -163,7 +207,7 @@ aside,
 .eyebrow {
     max-width: 100%;
     white-space: normal;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
 }
 
 .hero h1,
@@ -172,24 +216,27 @@ aside,
     max-width: 100%;
     min-width: 0;
     white-space: normal;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     word-break: normal;
 }
 
 .hero-description {
+    width: 100%;
     max-width: 100%;
     min-width: 0;
     white-space: normal;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
 }
 
 .hero-actions {
+    width: 100%;
     max-width: 100%;
     min-width: 0;
     flex-wrap: wrap;
 }
 
 .hero-meta {
+    width: 100%;
     max-width: 100%;
     min-width: 0;
     flex-wrap: wrap;
@@ -197,13 +244,12 @@ aside,
 
 
 /* =========================================================
-   6. HERO ART
-   IMPORTANT — COVER MUST NOT BE CLIPPED
+   07. HERO ART
    ========================================================= */
 
 .hero-art {
     position: relative !important;
-    z-index: 10 !important;
+    z-index: 2;
 
     width: 100%;
     max-width: 100%;
@@ -213,13 +259,11 @@ aside,
     height: auto !important;
     max-height: none !important;
 
-    overflow: visible !important;
-
     display: flex;
     align-items: flex-start;
     justify-content: center;
 
-    flex-shrink: 1;
+    overflow: visible !important;
 }
 
 .hero-art > * {
@@ -228,17 +272,19 @@ aside,
 
 
 /* =========================================================
-   7. BOOK COVER — MASTER VISIBILITY FIX
+   08. BOOK COVER
+   MASTER RESPONSIVE RULES
    ========================================================= */
 
 .cover-card {
     position: relative !important;
-    z-index: 100 !important;
+    z-index: 20 !important;
+
     isolation: isolate;
 
     display: block !important;
 
-    width: 100%;
+    width: min(100%, 420px);
     max-width: 420px;
     min-width: 0;
 
@@ -248,8 +294,7 @@ aside,
 
     aspect-ratio: auto !important;
 
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
 
     overflow: visible !important;
 
@@ -261,30 +306,18 @@ aside,
 
     transform-origin: center center;
 
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     word-wrap: break-word;
 }
 
 
-/*
-   IMPORTANT:
-   Do not allow any parent to clip the cover.
-*/
-
-.hero-art .cover-card {
-    overflow: visible !important;
-    height: auto !important;
-    max-height: none !important;
-}
-
-
 /* =========================================================
-   8. COVER INTERNAL SECTIONS
+   09. COVER INTERNAL AREAS
    ========================================================= */
 
 .cover-top,
 .cover-bottom {
-    position: relative !important;
+    position: relative;
 
     width: 100%;
     max-width: 100%;
@@ -300,20 +333,19 @@ aside,
     opacity: 1 !important;
 
     white-space: normal;
-    overflow-wrap: anywhere;
-    word-break: normal;
 }
 
 
 /* =========================================================
-   9. COVER TITLE — NEVER HIDE IT
+   10. COVER TITLE
+   NEVER CLIP / NEVER ELLIPSIZE
    ========================================================= */
 
 .cover-top h1,
 .cover-top h2,
 .cover-top h3 {
     position: relative !important;
-    z-index: 110 !important;
+    z-index: 30 !important;
 
     display: block !important;
 
@@ -336,8 +368,7 @@ aside,
 
     -webkit-line-clamp: unset !important;
     line-clamp: unset !important;
-
-    -webkit-box-orient: unset !important;
+    -webkit-box-orient: initial !important;
 
     visibility: visible !important;
     opacity: 1 !important;
@@ -345,13 +376,13 @@ aside,
     clip: auto !important;
     clip-path: none !important;
 
-    overflow-wrap: anywhere !important;
+    overflow-wrap: break-word !important;
     word-break: normal !important;
 }
 
 
 /* =========================================================
-   10. ALL COVER TEXT
+   11. ALL COVER TEXT
    ========================================================= */
 
 .cover-card p,
@@ -361,22 +392,16 @@ aside,
 .cover-card em,
 .cover-card b,
 .cover-card i,
-.cover-card a,
-.cover-card div {
+.cover-card a {
     max-width: 100%;
 
     white-space: normal;
 
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     word-wrap: break-word;
 
     visibility: visible;
 }
-
-
-/*
-   Prevent accidental text clipping from inherited rules.
-*/
 
 .cover-card p,
 .cover-card span,
@@ -390,12 +415,12 @@ aside,
 
 
 /* =========================================================
-   11. COVER SYMBOL
+   12. COVER SYMBOL
    ========================================================= */
 
 .cover-symbol {
     position: relative;
-    z-index: 105;
+    z-index: 25;
 
     max-width: 100%;
 
@@ -405,7 +430,7 @@ aside,
 
 
 /* =========================================================
-   12. COVER ORB / DECORATION
+   13. COVER ORB / DECORATION
    ========================================================= */
 
 .orb {
@@ -419,7 +444,7 @@ aside,
 
 
 /* =========================================================
-   13. INFORMATION GRID
+   14. INFORMATION GRID
    ========================================================= */
 
 .info-grid {
@@ -436,12 +461,12 @@ aside,
 .info-card {
     min-width: 0;
     max-width: 100%;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
 }
 
 
 /* =========================================================
-   14. CHARACTER GRID
+   15. CHARACTER GRID
    ========================================================= */
 
 .character-grid {
@@ -469,12 +494,12 @@ aside,
 .character-info {
     min-width: 0;
     max-width: 100%;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
 }
 
 
 /* =========================================================
-   15. SECTIONS
+   16. SECTIONS
    ========================================================= */
 
 .section {
@@ -485,6 +510,7 @@ aside,
 }
 
 .section-heading {
+    width: 100%;
     max-width: 100%;
     min-width: 0;
 }
@@ -495,12 +521,12 @@ aside,
 .section-heading p {
     max-width: 100%;
     min-width: 0;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
 }
 
 
 /* =========================================================
-   16. FINAL SECTION
+   17. FINAL SECTION
    ========================================================= */
 
 .final-section {
@@ -519,7 +545,7 @@ aside,
 
 
 /* =========================================================
-   17. READER
+   18. READER
    ========================================================= */
 
 .reader-section {
@@ -535,6 +561,8 @@ aside,
     min-width: 0;
 
     display: grid;
+
+    min-height: 0;
 }
 
 .reader-layout > * {
@@ -543,21 +571,25 @@ aside,
 }
 
 .reader {
+    width: 100%;
     min-width: 0;
     max-width: 100%;
     overflow: visible;
 }
 
 .reader-content {
+    width: 100%;
     min-width: 0;
     max-width: 100%;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
 }
 
 .chapter-body {
+    width: 100%;
     min-width: 0;
     max-width: 100%;
-    overflow-wrap: anywhere;
+
+    overflow-wrap: break-word;
     word-wrap: break-word;
 }
 
@@ -568,19 +600,22 @@ aside,
 .chapter-body h4,
 .chapter-body h5,
 .chapter-body h6 {
+    width: 100%;
     max-width: 100%;
-    overflow-wrap: anywhere;
+
+    overflow-wrap: break-word;
     word-break: normal;
 }
 
 .chapter-footer {
+    width: 100%;
     max-width: 100%;
     min-width: 0;
 }
 
 
 /* =========================================================
-   18. CHAPTER SIDEBAR
+   19. CHAPTER SIDEBAR
    ========================================================= */
 
 .chapter-sidebar {
@@ -592,28 +627,31 @@ aside,
 .chapter-list {
     min-width: 0;
     max-width: 100%;
+
     overflow-x: hidden;
     overflow-y: auto;
 }
 
 .chapter-list a,
 .chapter-list button {
-    max-width: 100%;
     min-width: 0;
+    max-width: 100%;
+
     white-space: normal;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
 }
 
 .arc-button {
-    max-width: 100%;
     min-width: 0;
+    max-width: 100%;
+
     white-space: normal;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
 }
 
 
 /* =========================================================
-   19. GENERAL CARD SAFETY
+   20. GENERAL CARD SAFETY
    ========================================================= */
 
 .card,
@@ -630,12 +668,12 @@ aside,
 .card h6,
 .card p {
     max-width: 100%;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
 }
 
 
 /* =========================================================
-   20. TABLE SAFETY
+   21. TABLES
    ========================================================= */
 
 table {
@@ -647,13 +685,13 @@ table {
 th,
 td {
     max-width: 100%;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     word-break: break-word;
 }
 
 
 /* =========================================================
-   21. CODE / PRE SAFETY
+   22. CODE
    ========================================================= */
 
 pre,
@@ -666,7 +704,7 @@ code {
 
 
 /* =========================================================
-   22. FORMS
+   23. FORMS
    ========================================================= */
 
 input,
@@ -683,12 +721,31 @@ textarea {
 
 label {
     max-width: 100%;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
 }
 
 
 /* =========================================================
-   23. 1100px
+   24. LARGE DESKTOP
+   1200px+
+   ========================================================= */
+
+@media (min-width: 1200px) {
+
+    .cover-card {
+        width: min(100%, 420px);
+        max-width: 420px;
+    }
+
+    .hero-art {
+        justify-content: center;
+    }
+}
+
+
+/* =========================================================
+   25. DESKTOP / SMALL LAPTOP
+   1100px
    ========================================================= */
 
 @media (max-width: 1100px) {
@@ -704,10 +761,11 @@ label {
     }
 
     .cover-card {
-        width: 100%;
+        width: min(100%, 390px);
         max-width: 390px;
 
         height: auto !important;
+        min-height: 0 !important;
         max-height: none !important;
 
         overflow: visible !important;
@@ -716,6 +774,7 @@ label {
     .cover-top,
     .cover-bottom {
         height: auto !important;
+        min-height: 0 !important;
         max-height: none !important;
         overflow: visible !important;
     }
@@ -724,9 +783,48 @@ label {
     .cover-top h2,
     .cover-top h3 {
         height: auto !important;
+        min-height: 0 !important;
         max-height: none !important;
         overflow: visible !important;
         white-space: normal !important;
+    }
+}
+
+
+/* =========================================================
+   26. TABLET
+   900px
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .desktop-nav {
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .hero {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero-art {
+        width: 100%;
+        max-width: 100%;
+        padding-inline: 0;
+
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .cover-card {
+        width: min(100%, 380px);
+        max-width: 380px;
     }
 
     .info-grid,
@@ -737,7 +835,8 @@ label {
 
 
 /* =========================================================
-   24. 800px — TABLET
+   27. TABLET
+   800px
    ========================================================= */
 
 @media (max-width: 800px) {
@@ -759,8 +858,6 @@ label {
     .hero-art {
         width: 100%;
         max-width: 100%;
-        padding-left: 0;
-        padding-right: 0;
 
         display: flex;
         justify-content: center;
@@ -779,8 +876,7 @@ label {
         min-height: 0 !important;
         max-height: none !important;
 
-        margin-left: auto;
-        margin-right: auto;
+        margin-inline: auto;
 
         overflow: visible !important;
     }
@@ -788,6 +884,7 @@ label {
     .cover-top,
     .cover-bottom {
         width: 100%;
+
         height: auto !important;
         min-height: 0 !important;
         max-height: none !important;
@@ -799,6 +896,7 @@ label {
     .cover-top h2,
     .cover-top h3 {
         width: 100%;
+
         height: auto !important;
         min-height: 0 !important;
         max-height: none !important;
@@ -817,7 +915,8 @@ label {
     }
 
     .hero-actions .button {
-        flex: 1 1 auto;
+        flex: 1 1 180px;
+        min-width: 0;
     }
 
     .reader-layout {
@@ -840,7 +939,8 @@ label {
 
 
 /* =========================================================
-   25. 600px — MOBILE
+   28. MOBILE
+   600px
    ========================================================= */
 
 @media (max-width: 600px) {
@@ -880,29 +980,24 @@ label {
 
     .hero-art {
         display: flex;
+
         align-items: flex-start;
         justify-content: center;
 
         overflow: visible !important;
     }
 
-    /*
-       MOBILE COVER:
-       Full available width, but never wider than 360px.
-    */
-
     .cover-card {
         display: block !important;
 
-        width: min(100%, 360px);
+        width: min(calc(100% - 24px), 360px);
         max-width: 360px;
 
         height: auto !important;
         min-height: 0 !important;
         max-height: none !important;
 
-        margin-left: auto;
-        margin-right: auto;
+        margin-inline: auto;
 
         overflow: visible !important;
 
@@ -913,6 +1008,7 @@ label {
     .cover-top,
     .cover-bottom {
         width: 100%;
+
         height: auto !important;
         min-height: 0 !important;
         max-height: none !important;
@@ -926,6 +1022,7 @@ label {
         display: block !important;
 
         width: 100%;
+
         height: auto !important;
         min-height: 0 !important;
         max-height: none !important;
@@ -938,7 +1035,7 @@ label {
         -webkit-line-clamp: unset !important;
         line-clamp: unset !important;
 
-        overflow-wrap: anywhere !important;
+        overflow-wrap: break-word !important;
     }
 
     .cover-card p,
@@ -946,7 +1043,9 @@ label {
     .cover-card strong,
     .cover-card small {
         height: auto !important;
+        min-height: 0 !important;
         max-height: none !important;
+
         overflow: visible !important;
     }
 
@@ -956,6 +1055,7 @@ label {
 
     .hero-actions {
         width: 100%;
+
         flex-direction: column;
         align-items: stretch;
     }
@@ -963,6 +1063,7 @@ label {
     .hero-actions .button {
         width: 100%;
         max-width: 100%;
+        flex: 1 1 auto;
     }
 
     .hero-meta {
@@ -995,39 +1096,69 @@ label {
 
 
 /* =========================================================
-   26. 380px
+   29. SMALL MOBILE
+   480px
    ========================================================= */
 
-@media (max-width: 380px) {
+@media (max-width: 480px) {
 
     .cover-card {
-        width: calc(100% - 24px);
-        max-width: 340px;
-
-        height: auto !important;
-        max-height: none !important;
-
-        overflow: visible !important;
+        width: min(calc(100% - 20px), 350px);
+        max-width: 350px;
     }
 
-    .cover-top,
-    .cover-bottom {
-        height: auto !important;
-        max-height: none !important;
-        overflow: visible !important;
+    .hero-actions .button {
+        min-height: 44px;
+    }
+
+    .chapter-body {
+        overflow-wrap: break-word;
+    }
+
+    .chapter-list {
+        max-height: 60vh;
+    }
+}
+
+
+/* =========================================================
+   30. SMALL MOBILE
+   430px
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .cover-card {
+        width: min(calc(100% - 18px), 340px);
+        max-width: 340px;
+    }
+
+    .hero-actions {
+        gap: 10px;
+    }
+
+    .hero-meta {
+        gap: 8px;
+    }
+}
+
+
+/* =========================================================
+   31. SMALL MOBILE
+   390px
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+    .cover-card {
+        width: calc(100% - 16px);
+        max-width: 350px;
     }
 
     .cover-top h1,
     .cover-top h2,
     .cover-top h3 {
-        font-size: inherit;
-        line-height: inherit;
-
-        height: auto !important;
-        max-height: none !important;
-
-        overflow: visible !important;
-        white-space: normal !important;
+        line-height: 1.2;
     }
 
     .button {
@@ -1037,16 +1168,82 @@ label {
 
 
 /* =========================================================
-   27. 320px
+   32. SMALL MOBILE
+   375px
+   ========================================================= */
+
+@media (max-width: 375px) {
+
+    .cover-card {
+        width: calc(100% - 14px);
+        max-width: 345px;
+    }
+
+    .cover-top,
+    .cover-bottom {
+        width: 100%;
+    }
+
+    .cover-top h1,
+    .cover-top h2,
+    .cover-top h3 {
+        width: 100%;
+        max-width: 100%;
+
+        height: auto !important;
+        max-height: none !important;
+
+        white-space: normal !important;
+        overflow: visible !important;
+    }
+}
+
+
+/* =========================================================
+   33. VERY SMALL MOBILE
+   360px
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .cover-card {
+        width: calc(100% - 12px);
+        max-width: 348px;
+    }
+
+    .cover-top h1,
+    .cover-top h2,
+    .cover-top h3 {
+        overflow-wrap: anywhere !important;
+    }
+
+    .hero-description,
+    .chapter-body,
+    .character-info,
+    .info-card,
+    .final-card {
+        overflow-wrap: anywhere;
+    }
+}
+
+
+/* =========================================================
+   34. 320px
    ========================================================= */
 
 @media (max-width: 320px) {
 
     .cover-card {
-        width: calc(100% - 16px);
-        max-width: 304px;
+        width: calc(100% - 10px);
+        max-width: 310px;
+    }
+
+    .cover-top,
+    .cover-bottom {
+        width: 100%;
 
         height: auto !important;
+        min-height: 0 !important;
         max-height: none !important;
 
         overflow: visible !important;
@@ -1070,63 +1267,82 @@ label {
     }
 
     .cover-card p,
-    .cover-card span {
+    .cover-card span,
+    .cover-card strong,
+    .cover-card small {
         height: auto !important;
         max-height: none !important;
         overflow: visible !important;
+    }
+
+    .button {
+        width: 100%;
+        min-width: 0;
+        min-height: 44px;
     }
 }
 
 
 /* =========================================================
-   28. 280px
+   35. 280px
    ========================================================= */
 
 @media (max-width: 280px) {
 
     .cover-card {
-        width: calc(100% - 12px);
-        max-width: 268px;
-
-        height: auto !important;
-        max-height: none !important;
-
-        overflow: visible !important;
+        width: calc(100% - 8px);
+        max-width: 272px;
     }
 
     .cover-top,
     .cover-bottom {
+        width: 100%;
+
         height: auto !important;
+        min-height: 0 !important;
         max-height: none !important;
+
         overflow: visible !important;
     }
 
     .cover-top h1,
     .cover-top h2,
     .cover-top h3 {
-        font-size: inherit;
-        line-height: 1.2;
+        width: 100%;
+
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
 
         white-space: normal !important;
 
-        height: auto !important;
-        max-height: none !important;
-
         overflow: visible !important;
         text-overflow: clip !important;
+
+        line-height: 1.2;
+    }
+
+    .hero-actions {
+        width: 100%;
+    }
+
+    .hero-actions .button {
+        width: 100%;
+        min-width: 0;
     }
 }
 
 
 /* =========================================================
-   29. 240px — EXTREME SMALL SCREEN
+   36. 240px
+   EXTREME SMALL SCREEN
    ========================================================= */
 
 @media (max-width: 240px) {
 
     .cover-card {
-        width: calc(100% - 8px);
-        max-width: 232px;
+        width: calc(100% - 6px);
+        max-width: 234px;
 
         height: auto !important;
         min-height: 0 !important;
@@ -1174,7 +1390,7 @@ label {
 
 
 /* =========================================================
-   30. LONG TEXT / URL SAFETY
+   37. LONG CONTENT SAFETY
    ========================================================= */
 
 .cover-card,
@@ -1197,7 +1413,7 @@ label {
 
 
 /* =========================================================
-   31. NEVER CLIP COVER CONTENT
+   38. COVER CONTENT MUST NEVER BE CLIPPED
    ========================================================= */
 
 .cover-card,
@@ -1214,7 +1430,7 @@ label {
 
 
 /* =========================================================
-   32. REMOVE COMMON TEXT-HIDING RULES FROM COVER
+   39. COVER TEXT VISIBILITY
    ========================================================= */
 
 .cover-card h1,
@@ -1236,31 +1452,47 @@ label {
 
 
 /* =========================================================
-   33. COVER STACKING
+   40. COVER STACKING
    ========================================================= */
 
-.hero-art,
-.cover-card,
-.cover-top,
-.cover-bottom {
+.hero-art {
     position: relative;
+    z-index: 1;
 }
 
 .cover-card {
-    z-index: 100;
+    position: relative !important;
+    z-index: 20 !important;
 }
 
 .cover-top {
-    z-index: 101;
+    position: relative;
+    z-index: 21;
 }
 
 .cover-bottom {
-    z-index: 101;
+    position: relative;
+    z-index: 21;
+}
+
+.cover-symbol {
+    position: relative;
+    z-index: 22;
 }
 
 
 /* =========================================================
-   34. TOUCH DEVICES
+   41. PREVENT DECORATIVE LAYERS FROM BLOCKING TEXT
+   ========================================================= */
+
+.cover-card::before,
+.cover-card::after {
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   42. TOUCH DEVICES
    ========================================================= */
 
 @media (hover: none) and (pointer: coarse) {
@@ -1269,36 +1501,60 @@ label {
         min-height: 44px;
     }
 
-    .cover-card {
-        overflow: visible !important;
-    }
-
+    .cover-card,
     .cover-top,
     .cover-bottom {
         overflow: visible !important;
     }
-}
 
-
-/* =========================================================
-   35. REDUCED MOTION
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+    .chapter-list a,
+    .chapter-list button,
+    .arc-button {
+        min-height: 44px;
     }
 }
 
 
 /* =========================================================
-   36. PRINT
+   43. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* =========================================================
+   44. HIGH ZOOM / LARGE TEXT SAFETY
+   ========================================================= */
+
+@media (min-resolution: 192dpi) {
+
+    .cover-card,
+    .hero-content,
+    .reader,
+    .info-card,
+    .character-card,
+    .final-card {
+        min-width: 0;
+    }
+}
+
+
+/* =========================================================
+   45. PRINT
    ========================================================= */
 
 @media print {
@@ -1307,6 +1563,8 @@ label {
     body {
         width: 100%;
         max-width: 100%;
+        min-width: 0;
+
         overflow: visible !important;
     }
 
@@ -1316,7 +1574,9 @@ label {
     .cover-top,
     .cover-bottom {
         overflow: visible !important;
+
         height: auto !important;
+        min-height: 0 !important;
         max-height: none !important;
     }
 
@@ -1332,6 +1592,7 @@ label {
         opacity: 1 !important;
 
         height: auto !important;
+        min-height: 0 !important;
         max-height: none !important;
 
         overflow: visible !important;
@@ -1347,16 +1608,17 @@ label {
 
 
 /* =========================================================
-   37. FINAL COVER OVERRIDE
-   THIS MUST REMAIN AT THE END OF THE FILE
+   46. FINAL RESPONSIVE COVER SAFETY
+   KEEP AT END
    ========================================================= */
 
 .cover-card {
     display: block !important;
+
     visibility: visible !important;
     opacity: 1 !important;
 
-    width: 100% !important;
+    width: min(100%, 420px) !important;
     max-width: 420px !important;
 
     height: auto !important;
@@ -1376,7 +1638,6 @@ label {
 
 .cover-card .cover-top,
 .cover-card .cover-bottom {
-    display: block;
     width: 100%;
 
     height: auto !important;
@@ -1417,6 +1678,9 @@ label {
 }
 
 .hero-art {
+    width: 100%;
+    max-width: 100%;
+
     height: auto !important;
     min-height: 0 !important;
     max-height: none !important;
@@ -1424,32 +1688,64 @@ label {
     overflow: visible !important;
 }
 
+
+/* =========================================================
+   47. FINAL MOBILE COVER WIDTHS
+   ========================================================= */
+
 @media (max-width: 600px) {
 
     .cover-card {
-        width: calc(100% - 24px) !important;
+        width: min(calc(100% - 24px), 360px) !important;
         max-width: 360px !important;
-
-        height: auto !important;
-        max-height: none !important;
-
-        overflow: visible !important;
     }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 480px) {
+
+    .cover-card {
+        width: min(calc(100% - 20px), 350px) !important;
+        max-width: 350px !important;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .cover-card {
+        width: min(calc(100% - 18px), 340px) !important;
+        max-width: 340px !important;
+    }
+}
+
+@media (max-width: 390px) {
 
     .cover-card {
         width: calc(100% - 16px) !important;
-        max-width: 340px !important;
+        max-width: 350px !important;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .cover-card {
+        width: calc(100% - 14px) !important;
+        max-width: 345px !important;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .cover-card {
+        width: calc(100% - 12px) !important;
+        max-width: 348px !important;
     }
 }
 
 @media (max-width: 320px) {
 
     .cover-card {
-        width: calc(100% - 12px) !important;
-        max-width: 304px !important;
+        width: calc(100% - 10px) !important;
+        max-width: 310px !important;
     }
 }
 
@@ -1457,7 +1753,7 @@ label {
 
     .cover-card {
         width: calc(100% - 8px) !important;
-        max-width: 268px !important;
+        max-width: 272px !important;
     }
 }
 
@@ -1465,6 +1761,7 @@ label {
 
     .cover-card {
         width: calc(100% - 6px) !important;
-        max-width: 232px !important;
+        max-width: 234px !important;
     }
 }
+```
