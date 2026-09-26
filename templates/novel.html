@@ -1,1 +1,488 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="{{ novel.synopsis }}"><title>{{ novel.title }} — Light Novel World</title><link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}"><style>:root{--bg:{{novel.design.bg}};--surface:{{novel.design.surface}};--accent:{{novel.design.accent}};--text:{{novel.design.text}};--radius:{{novel.design.radius}}}</style></head><body class="mode-{{novel.design.mode}} layout-{{novel.design.layout}} {% if novel.design.serif %}serif{% endif %}"><header><a class="brand" href="/">✦ LIGHT NOVEL WORLD</a><nav><a href="#story">Story</a><a href="#chapters">Chapters</a><button onclick="newNovel()">New Novel</button></nav></header><main><section class="hero"><div class="art"><span>{{novel.genre}}</span><div class="orb"></div></div><div><div class="eyebrow">{{novel.genre}} · {{novel.visual}}</div><h1>{{novel.title}}</h1><p class="sub">{{novel.subtitle}}</p><p class="lead">{{novel.synopsis}}</p><div class="actions"><button class="primary" onclick="document.querySelector('#chapters').scrollIntoView({behavior:'smooth'})">Read Chapter One</button><button onclick="newNovel()">Generate Another</button></div><small>{{novel.mood}} · {{novel.chapters|length}} chapters · {{novel.id}}</small></div></section><section id="story" class="grid"><article><label>WORLD</label><h2>{{novel.location}}</h2><p>{{novel.synopsis}}</p></article><article><label>CORE MYSTERY</label><h2>{{novel.conflict}}</h2><p><b>Power:</b> {{novel.power}}</p><p><b>Faction:</b> {{novel.faction}}</p><p><b>Object:</b> {{novel.object}}</p></article><article><label>CAST</label><h2>{{novel.protagonist.name}}</h2><p>{{novel.protagonist.traits|join(' · ')}}</p>{% for c in novel.characters %}<div class="card"><b>{{c.name}}</b><span>{{c.role}} · {{c.traits|join(', ')}}</span></div>{% endfor %}</article></section><section id="chapters" class="reader"><div class="heading"><div><label>THE NOVEL</label><h2>Chapters</h2></div><div><button onclick="font(-1)">A−</button><button onclick="font(1)">A+</button></div></div><div class="readergrid"><aside>{% for c in novel.chapters %}<button class="toc {% if loop.first %}active{% endif %}" onclick="showChapter({{loop.index0}})">{{'%02d'|format(c.number)}} · {{c.title}}</button>{% endfor %}</aside><article id="reading">{% for c in novel.chapters %}<div class="chapter {% if not loop.first %}hidden{% endif %}" data-i="{{loop.index0}}"><label>CHAPTER {{'%02d'|format(c.number)}}</label><h3>{{c.title}}</h3><div class="copy">{% for p in c.paragraphs %}<p>{{p}}</p>{% endfor %}</div><div class="chapter-nav"><button onclick="showChapter({{loop.index0-1}})" {% if loop.first %}disabled{% endif %}>Previous</button><button class="primary" onclick="showChapter({{loop.index0+1}})" {% if loop.last %}disabled{% endif %}>Next</button></div></div>{% endfor %}</article></div></section></main><footer><span>Generated for this request · no browser persistence</span><button onclick="newNovel()">Discover another</button></footer><script src="{{url_for('static',filename='js/app.js')}}"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="{{ novel.title }} — a dynamically generated {{ novel.genre }} light novel with {{ novel.chapter_count }} chapters."
+    >
+
+    <meta
+        name="theme-color"
+        content="{{ novel.design.accent }}"
+    >
+
+    <title>{{ novel.title }} — Light Novel World</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body
+    style="
+        --accent: {{ novel.design.accent }};
+        --accent-2: {{ novel.design.accent2 }};
+        --surface: {{ novel.design.surface }};
+        --surface-2: {{ novel.design.surface2 }};
+        --text: {{ novel.design.text }};
+        --muted: {{ novel.design.muted }};
+    "
+>
+
+<div class="noise"></div>
+
+<header class="topbar">
+    <a class="brand" href="/">
+        <span class="brand-mark">LW</span>
+
+        <span>
+            <strong>Light Novel</strong>
+            <small>WORLD</small>
+        </span>
+    </a>
+
+    <nav class="desktop-nav">
+        <a href="#about">About</a>
+        <a href="#characters">Characters</a>
+        <a href="#chapters">Chapters</a>
+    </nav>
+
+    <button
+        id="newNovelButton"
+        class="button button-primary"
+        type="button"
+    >
+        New Novel
+    </button>
+</header>
+
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-glow"></div>
+
+    <div class="hero-content">
+
+        <div class="eyebrow">
+            <span></span>
+            ORIGINAL LIGHT NOVEL
+        </div>
+
+        <div class="genre-row">
+            <span class="badge">{{ novel.genre }}</span>
+            <span class="badge muted-badge">
+                {{ novel.secondary_genre }}
+            </span>
+            <span class="badge muted-badge">
+                {{ novel.chapter_count }} Chapters
+            </span>
+        </div>
+
+        <h1>{{ novel.title }}</h1>
+
+        <p class="hero-description">
+            {{ novel.synopsis }}
+        </p>
+
+        <div class="hero-actions">
+
+            <button
+                class="button button-primary large"
+                id="startReading"
+                type="button"
+            >
+                Start Reading
+            </button>
+
+            <button
+                class="button button-secondary large"
+                id="randomChapter"
+                type="button"
+            >
+                Random Chapter
+            </button>
+
+        </div>
+
+        <div class="hero-meta">
+
+            <div>
+                <span>WORLD</span>
+                <strong>{{ novel.world }}</strong>
+            </div>
+
+            <div>
+                <span>PROTAGONIST</span>
+                <strong>{{ novel.protagonist }}</strong>
+            </div>
+
+            <div>
+                <span>POWER</span>
+                <strong>{{ novel.power }}</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="hero-art">
+
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+
+        <div class="cover-card">
+
+            <div class="cover-top">
+                VOL. 01
+            </div>
+
+            <div class="cover-symbol">
+                ✦
+            </div>
+
+            <h2>
+                {{ novel.title }}
+            </h2>
+
+            <p>
+                {{ novel.genre }}
+            </p>
+
+            <div class="cover-bottom">
+                LIGHT NOVEL WORLD
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section
+    id="about"
+    class="section"
+>
+
+    <div class="section-heading">
+
+        <div>
+            <span class="section-label">THE STORY</span>
+
+            <h2>
+                A world waiting to unfold.
+            </h2>
+        </div>
+
+        <p>
+            A long-form story built across {{ novel.chapter_count }}
+            chapters and multiple story arcs.
+        </p>
+
+    </div>
+
+
+    <div class="info-grid">
+
+        <article class="info-card">
+            <span class="card-number">01</span>
+            <h3>World</h3>
+            <p>{{ novel.world }}</p>
+        </article>
+
+        <article class="info-card">
+            <span class="card-number">02</span>
+            <h3>Conflict</h3>
+            <p>{{ novel.conflict }}</p>
+        </article>
+
+        <article class="info-card">
+            <span class="card-number">03</span>
+            <h3>Faction</h3>
+            <p>{{ novel.faction }}</p>
+        </article>
+
+        <article class="info-card">
+            <span class="card-number">04</span>
+            <h3>Power</h3>
+            <p>{{ novel.power }}</p>
+        </article>
+
+    </div>
+
+</section>
+
+
+<section
+    id="characters"
+    class="section"
+>
+
+    <div class="section-heading">
+
+        <div>
+            <span class="section-label">CAST</span>
+
+            <h2>
+                The people behind the story.
+            </h2>
+        </div>
+
+    </div>
+
+
+    <div class="character-grid">
+
+        {% for character in novel.characters %}
+
+        <article class="character-card">
+
+            <div class="character-avatar">
+                {{ character.name[0] }}
+            </div>
+
+            <div class="character-info">
+
+                <div class="character-role">
+                    {{ character.role }}
+                </div>
+
+                <h3>
+                    {{ character.name }}
+                </h3>
+
+                <p>
+                    {{ character.trait }}
+                </p>
+
+                <div class="character-power">
+                    {{ character.ability }}
+                </div>
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<section
+    id="chapters"
+    class="reader-section"
+>
+
+    <div class="reader-layout">
+
+        <aside class="chapter-sidebar">
+
+            <div class="sidebar-header">
+
+                <div>
+                    <span class="section-label">READ</span>
+
+                    <h3>Chapters</h3>
+                </div>
+
+                <span class="chapter-count">
+                    {{ novel.chapter_count }}
+                </span>
+
+            </div>
+
+
+            <div
+                class="chapter-list"
+                id="chapterList"
+            >
+
+                {% for chapter in novel.arcs %}
+
+                <button
+                    class="arc-button"
+                    type="button"
+                    data-start="{{ chapter.start }}"
+                >
+                    <span>
+                        ARC {{ "%02d"|format(chapter.number) }}
+                    </span>
+
+                    <strong>
+                        {{ chapter.title }}
+                    </strong>
+
+                    <small>
+                        {{ chapter.start }}–{{ chapter.end }}
+                    </small>
+                </button>
+
+                {% endfor %}
+
+            </div>
+
+        </aside>
+
+
+        <article class="reader">
+
+            <div class="reader-toolbar">
+
+                <button
+                    id="previousChapter"
+                    class="icon-button"
+                    type="button"
+                    aria-label="Previous chapter"
+                >
+                    ←
+                </button>
+
+                <div class="reader-position">
+                    <span id="chapterPosition">
+                        Chapter 001
+                    </span>
+                </div>
+
+                <button
+                    id="nextChapter"
+                    class="icon-button"
+                    type="button"
+                    aria-label="Next chapter"
+                >
+                    →
+                </button>
+
+            </div>
+
+
+            <div class="reader-progress">
+                <div
+                    id="progressBar"
+                    class="reader-progress-fill"
+                ></div>
+            </div>
+
+
+            <div class="reader-content">
+
+                <div class="chapter-kicker">
+                    <span id="chapterArc">
+                        THE BEGINNING
+                    </span>
+
+                    <span>•</span>
+
+                    <span id="chapterLocation">
+                        UNKNOWN
+                    </span>
+                </div>
+
+                <h2 id="chapterTitle">
+                    Loading Chapter...
+                </h2>
+
+                <div
+                    id="chapterBody"
+                    class="chapter-body"
+                ></div>
+
+                <div class="chapter-footer">
+
+                    <button
+                        id="previousChapterBottom"
+                        class="button button-secondary"
+                        type="button"
+                    >
+                        ← Previous
+                    </button>
+
+                    <button
+                        id="nextChapterBottom"
+                        class="button button-primary"
+                        type="button"
+                    >
+                        Next Chapter →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<section class="section final-section">
+
+    <div class="final-card">
+
+        <span class="section-label">
+            YOUR NEXT STORY
+        </span>
+
+        <h2>
+            Start another world.
+        </h2>
+
+        <p>
+            No account. No saved browser data.
+            Every new request creates another story seed.
+        </p>
+
+        <button
+            id="finalNewNovel"
+            class="button button-primary large"
+            type="button"
+        >
+            Generate New Novel
+        </button>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div>
+        <strong>Light Novel World</strong>
+        <span>Procedurally generated fiction.</span>
+    </div>
+
+    <div>
+        {{ novel.chapter_count }} chapters · No database · No localStorage
+    </div>
+
+</footer>
+
+
+<script>
+    window.NOVEL_CONFIG = {
+        seed: "{{ novel.seed }}",
+        chapterCount: {{ novel.chapter_count }}
+    };
+</script>
+
+<script
+    src="{{ url_for('static', filename='js/app.js') }}"
+></script>
+
+</body>
+</html>
