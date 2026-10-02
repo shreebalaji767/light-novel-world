@@ -1175,7 +1175,9 @@ def make_seed(
     genre: str | None = None,
     parody: bool = False,
 ) -> str:
-    if genre in GENRES:
+    if genre in GENRES or parody:
+        if genre not in GENRES:
+            genre = GENRES[secrets.randbelow(len(GENRES))]
         index = GENRES.index(genre)
         return (
             f"ff{index:04x}"
