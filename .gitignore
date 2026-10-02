@@ -22,3 +22,6 @@ htmlcov/
 .env
 .env.*
 !.env.example
+
+# Generated static site
+site/
