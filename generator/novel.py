@@ -1171,8 +1171,38 @@ def stable_rng(value: str) -> random.Random:
     return random.Random(integer)
 
 
-def make_seed() -> str:
-    return secrets.token_hex(32)
+def make_seed(
+    genre: str | None = None,
+    parody: bool = False,
+) -> str:
+    if genre in GENRES:
+        index = GENRES.index(genre)
+        return (
+            f"ff{index:04x}"
+            f"{'01' if parody else '00'}"
+            f"{secrets.token_hex(28)}"
+        )
+    return f"fe{secrets.token_hex(31)}"
+
+
+def decode_seed_options(
+    seed: str,
+) -> tuple[str | None, bool]:
+    if not isinstance(seed, str) or len(seed) != 64:
+        return None, False
+
+    if seed.startswith("ff"):
+        try:
+            index = int(seed[2:6], 16)
+            if 0 <= index < len(GENRES):
+                return (
+                    GENRES[index],
+                    seed[6:8] == "01",
+                )
+        except ValueError:
+            pass
+
+    return None, False
 
 
 def pick(
@@ -3734,6 +3764,11 @@ def generate_chapter(
             openings,
         )
     )
+
+    if blueprint["parody_mode"]:
+        paragraphs.append(
+            pick(rng, PARODY_LINES)
+        )
 
     paragraphs.append(
         (
