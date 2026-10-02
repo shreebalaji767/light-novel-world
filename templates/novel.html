@@ -2450,6 +2450,22 @@
 
         }
 
+
+        .generator-panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);gap:22px;padding:28px;border:1px solid var(--border);border-radius:var(--radius);background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.018));box-shadow:var(--shadow)}
+        .generator-field{display:grid;gap:9px}
+        .generator-field label,.picker-label{color:var(--accent);font-size:.68rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase}
+        .generator-field select,.chapter-picker select{width:100%;min-height:46px;padding:0 13px;border:1px solid var(--border-strong);border-radius:10px;background:var(--surface);color:var(--text);font:inherit}
+        .generator-field small{color:var(--muted);line-height:1.5}
+        .generator-toggle{display:flex;align-items:center;gap:10px;min-height:46px;padding:0 13px;border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.025);color:var(--text)}
+        .generator-toggle input{width:18px;height:18px;min-height:0}
+        .generator-actions{grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap}
+        .chapter-picker{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end;margin:22px 0;padding:18px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.025)}
+        .chapter-picker-field{display:grid;gap:8px}
+        .chapter-picker-actions{display:flex;gap:8px}
+        .roadmap-row{cursor:pointer}
+        .roadmap-row:hover{background:rgba(255,255,255,.035)}
+        @media(max-width:760px){.generator-panel{grid-template-columns:1fr;padding:20px}.generator-actions{grid-column:auto}.chapter-picker{grid-template-columns:1fr}}
+
     </style>
 </head>
 
@@ -2520,7 +2536,7 @@
             <button
                 class="nav-button"
                 type="button"
-                onclick="generateNewNovel()"
+                onclick="openGenerator()"
             >
                 New Novel
             </button>
@@ -2664,6 +2680,56 @@
 
     </div>
 
+
+</section>
+
+
+<!-- =========================================================
+     NOVEL GENERATOR
+========================================================= -->
+
+<section class="section" id="generator">
+    <div class="section-header">
+        <div class="section-kicker">Create Your Novel</div>
+        <h2 class="section-title">Choose a genre. Turn on parody. Generate.</h2>
+        <p class="section-intro">
+            Pick the kind of light novel you want to read. Your choice is
+            locked into the novel seed, so all 600 chapters stay consistent.
+        </p>
+    </div>
+
+    <div class="generator-panel">
+        <div class="generator-field">
+            <label for="genreSelect">Genre</label>
+            <select id="genreSelect">
+                <option value="">Surprise Me — Any Genre</option>
+                {% for genre in genres %}
+                    <option value="{{ genre }}" {% if novel.genre == genre %}selected{% endif %}>
+                        {{ genre }}
+                    </option>
+                {% endfor %}
+            </select>
+            <small>Choose any genre from the full Light Novel World genre library.</small>
+        </div>
+
+        <div class="generator-field">
+            <label>Mode</label>
+            <label class="generator-toggle">
+                <input type="checkbox" id="parodySelect" {% if novel.parody_mode %}checked{% endif %}>
+                <span><strong>Parody Mode</strong> — chaotic, self-aware light-novel trope comedy.</span>
+            </label>
+            <small>Creates original parody material without copying existing copyrighted characters.</small>
+        </div>
+
+        <div class="generator-actions">
+            <button class="button primary" type="button" onclick="generateConfiguredNovel()">
+                Generate This Novel
+            </button>
+            <button class="button" type="button" onclick="generateNewNovel()">
+                Surprise Me
+            </button>
+        </div>
+    </div>
 </section>
 
 
@@ -3622,6 +3688,22 @@
             </div>
 
 
+
+            <div class="chapter-picker">
+                <div class="chapter-picker-field">
+                    <label class="picker-label" for="chapterSelector">Select Chapter</label>
+                    <select id="chapterSelector" aria-label="Select chapter">
+                        {% for number in range(1, novel.chapter_count + 1) %}
+                            <option value="{{ number }}">Chapter {{ "%03d"|format(number) }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="chapter-picker-actions">
+                    <button class="reader-button" type="button" onclick="goToSelectedChapter()">Read</button>
+                </div>
+            </div>
+
+
             <div class="reader-controls">
 
                 <button
@@ -4074,6 +4156,8 @@
 
                 row.className =
                     "roadmap-row";
+                row.dataset.chapter = chapter.number;
+                row.title = "Read this chapter";
 
 
                 row.innerHTML = `
@@ -4415,6 +4499,8 @@
                 ).padStart(3, "0")}.`;
 
 
+            syncChapterSelector(chapter.number);
+
             readerPosition.textContent =
                 `${String(
                     chapter.number
@@ -4525,6 +4611,33 @@
     }
 
 
+
+    function syncChapterSelector(number) {
+        const selector = document.getElementById("chapterSelector");
+        if (selector) selector.value = String(number);
+    }
+
+    function goToSelectedChapter() {
+        const selector = document.getElementById("chapterSelector");
+        if (selector) loadChapter(Number(selector.value), true);
+    }
+
+    function openGenerator() {
+        const generator = document.getElementById("generator");
+        if (generator) generator.scrollIntoView({behavior:"smooth", block:"start"});
+    }
+
+    function generateConfiguredNovel() {
+        const genre = document.getElementById("genreSelect")?.value || "";
+        const parody = document.getElementById("parodySelect")?.checked;
+        const params = new URLSearchParams();
+        if (genre) params.set("genre", genre);
+        if (parody) params.set("parody", "1");
+        params.set("new", String(Date.now()));
+        window.location.href = "/?" + params.toString();
+    }
+
+
     /* =========================================================
        NEW NOVEL
     ========================================================= */
@@ -4593,6 +4706,16 @@
     /* =========================================================
        INITIALIZATION
     ========================================================= */
+
+
+    if (roadmap) {
+        roadmap.addEventListener("click", event => {
+            const row = event.target.closest(".roadmap-row");
+            if (row && row.dataset.chapter) {
+                loadChapter(Number(row.dataset.chapter), true);
+            }
+        });
+    }
 
     document.addEventListener(
         "DOMContentLoaded",
