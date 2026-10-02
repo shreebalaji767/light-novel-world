@@ -3996,6 +3996,10 @@
     const CHAPTER_COUNT =
         Number(NOVEL.chapter_count || 600);
 
+    const STATIC_SITE = {{ static_site | default(false) | tojson }};
+
+    const CHAPTER_BASE_PATH = {{ static_chapter_path | default("chapters") | tojson }};
+
     let currentChapter = 1;
 
     let blueprintReady = false;
@@ -4425,11 +4429,16 @@
 
         try {
 
+            const chapterUrl =
+                (typeof STATIC_SITE !== "undefined" && STATIC_SITE)
+                    ? `${CHAPTER_BASE_PATH}/${String(chapterNumber).padStart(3, "0")}.json`
+                    : `/api/chapter/${encodeURIComponent(
+                        NOVEL.seed
+                    )}/${chapterNumber}`;
+
             const response =
                 await fetch(
-                    `/api/chapter/${encodeURIComponent(
-                        NOVEL.seed
-                    )}/${chapterNumber}`,
+                    chapterUrl,
                     {
                         cache: "no-store"
                     }
@@ -4634,7 +4643,7 @@
         if (genre) params.set("genre", genre);
         if (parody) params.set("parody", "1");
         params.set("new", String(Date.now()));
-        window.location.href = "/?" + params.toString();
+        window.location.href = "../index.html";
     }
 
 
@@ -4651,7 +4660,7 @@
 
 
         window.location.href =
-            url;
+            "../index.html";
 
     }
 
