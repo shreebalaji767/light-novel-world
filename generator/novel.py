@@ -427,6 +427,35 @@ PARODY_GENRES = {
     "Absurd Comedy", "Fourth-Wall Comedy",
 }
 
+PARODY_TITLE_PATTERNS = [
+    "I Was Reincarnated as {object}, So Naturally the Demon Lord Is My Landlord",
+    "The Hero Has a Legendary Sword, Unfortunately It Has Opinions",
+    "I Became the Strongest Villain by Accident While Trying to Find Lunch",
+    "My Overpowered Skill Is Completely Useless Until Chapter 347",
+    "The Demon Lord, the Hero, and the Extremely Unqualified Manager",
+    "I Opened a Potion Shop and Somehow Started a World War",
+    "The Final Boss Wants a Vacation, and I Am Apparently in Charge",
+]
+
+PARODY_SCENES = [
+    "A dramatic wind appeared despite the complete absence of weather conditions that would justify it.",
+    "A mysterious system window appeared, displayed an unnecessarily dramatic message, and then demanded that the protagonist perform an embarrassingly ordinary task.",
+    "Someone announced that this was the beginning of a legendary battle. Nobody had actually agreed to have a legendary battle.",
+    "The narrator attempted to explain the prophecy, but the prophecy contained three obvious spelling mistakes.",
+    "A flashback began at an emotionally convenient moment and ended before anyone learned anything useful.",
+    "The supposedly terrifying entrance was interrupted by an argument about food.",
+    "The ancient artifact selected its chosen one, reconsidered, and selected someone else after noticing the paperwork.",
+    "A rival delivered a speech so dramatic that two nearby birds quietly left the area.",
+    "The villain revealed an elaborate plan. The plan had a budget, a flowchart, and absolutely no contingency for someone asking why.",
+]
+PARODY_SYSTEM_LINES = [
+    "SYSTEM: Congratulations. You have unlocked the legendary skill: Basic Common Sense.",
+    "SYSTEM: Quest accepted: Survive the consequences of your previous decisions.",
+    "SYSTEM: Warning. Protagonist behavior has exceeded recommended levels of protagonist behavior.",
+    "SYSTEM: New achievement unlocked: Somehow Made Everything Worse.",
+    "SYSTEM: Hidden condition discovered: Please stop touching mysterious buttons.",
+]
+
 PARODY_LINES = [
     "A narrator somewhere quietly questioned why this situation was following the exact rules of a light novel.",
     "The protagonist considered making a dramatic speech, then remembered they had not prepared one.",
@@ -2903,6 +2932,13 @@ def generate_blueprint(
         core_rng
     )
 
+    if parody_mode:
+        parody_title_rng = stable_rng(f"{seed}:parody:title")
+        parody_object = pick(parody_title_rng, OBJECTS)
+        title = pick(parody_title_rng, PARODY_TITLE_PATTERNS).format(
+            object=parody_object
+        )
+
     world = make_world_blueprint(
         seed,
         world_name,
@@ -3768,9 +3804,22 @@ def generate_chapter(
     )
 
     if blueprint["parody_mode"]:
-        paragraphs.append(
-            pick(rng, PARODY_LINES)
-        )
+        # Python-native parody layer: deterministic, genre-aware chaos.
+        paragraphs.append(pick(rng, PARODY_LINES))
+        paragraphs.append(pick(rng, PARODY_SCENES))
+
+        if genre in {
+            "Isekai Parody", "System Parody", "LitRPG",
+            "GameLit", "Leveling System", "Status Window",
+            "Quest System", "RPG Fantasy",
+        } or secondary_genre in {"Isekai", "System", "LitRPG"}:
+            paragraphs.append(pick(rng, PARODY_SYSTEM_LINES))
+
+        if chapter_number % 7 == 0:
+            paragraphs.append(
+                "The story briefly became self-aware, looked directly "
+                "at the structure of the plot, and decided to continue anyway."
+            )
 
     paragraphs.append(
         (
