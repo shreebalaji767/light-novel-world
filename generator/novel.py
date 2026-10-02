@@ -4,6 +4,7 @@ import hashlib
 import random
 import re
 import secrets
+from functools import lru_cache
 from typing import Dict, List
 
 
@@ -2786,6 +2787,7 @@ def get_arc(
 # NOVEL BLUEPRINT
 # ============================================================
 
+@lru_cache(maxsize=64)
 def generate_blueprint(
     seed: str,
 ) -> Dict:
