@@ -1,10 +1,11 @@
 import os
 import re
 
-from flask import Flask, abort, jsonify, render_template
+from flask import Flask, abort, jsonify, render_template, request
 
 from generator.novel import (
     CHAPTER_COUNT,
+    GENRES,
     generate_chapter,
     generate_novel,
 )
@@ -21,16 +22,35 @@ def is_valid_seed(seed: str) -> bool:
     return bool(SEED_PATTERN.fullmatch(seed))
 
 
+def selected_genre(value: str | None) -> str | None:
+    if not value:
+        return None
+    normalized = value.strip().casefold()
+    return next((genre for genre in GENRES if genre.casefold() == normalized), None)
+
+
+def selected_parody(value: str | None) -> bool:
+    return str(value).strip().lower() in {"1", "true", "yes", "on"}
+
+
 @app.get("/")
 def home():
-    """Render a brand-new deterministic novel."""
-    return render_template("novel.html", novel=generate_novel())
+    """Render a new novel using optional genre/parody selections."""
+    genre = selected_genre(request.args.get("genre"))
+    parody = selected_parody(request.args.get("parody"))
+    return render_template(
+        "novel.html",
+        novel=generate_novel(genre=genre, parody=parody),
+        genres=GENRES,
+    )
 
 
 @app.get("/api/novel")
 def api_novel():
-    """Generate a brand-new novel as JSON."""
-    response = jsonify(generate_novel())
+    """Generate a new novel using optional genre/parody selections."""
+    genre = selected_genre(request.args.get("genre"))
+    parody = selected_parody(request.args.get("parody"))
+    response = jsonify(generate_novel(genre=genre, parody=parody))
     response.headers["Cache-Control"] = "no-store"
     return response
 

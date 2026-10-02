@@ -47,3 +47,25 @@ def test_api_chapter_is_cacheable():
 
     assert response.status_code == 200
     assert response.headers["Cache-Control"] == "public, max-age=3600"
+
+
+def test_selected_genre_and_parody_mode_are_preserved():
+    novel = generate_novel(genre="Isekai", parody=True)
+
+    assert novel["genre"] == "Isekai"
+    assert novel["parody_mode"] is True
+
+    chapter = generate_chapter(novel["seed"], 1)
+    assert chapter["word_count"] == CHAPTER_WORD_COUNT
+
+
+def test_selected_genre_api():
+    client = app.test_client()
+
+    response = client.get("/api/novel?genre=Cyberpunk&parody=1")
+
+    assert response.status_code == 200
+    payload = response.get_json()
+
+    assert payload["genre"] == "Cyberpunk"
+    assert payload["parody_mode"] is True
