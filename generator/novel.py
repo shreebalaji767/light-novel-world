@@ -419,6 +419,23 @@ GENRES = [
 # SECONDARY GENRES
 # ============================================================
 
+PARODY_GENRES = {
+    "Parody", "Genre Parody", "Fantasy Parody", "Isekai Parody",
+    "Cultivation Parody", "System Parody", "Academy Parody",
+    "Superhero Parody", "Villain Parody", "Hero Parody",
+    "Self-Aware Comedy", "Meta Comedy", "Chaotic Comedy",
+    "Absurd Comedy", "Fourth-Wall Comedy",
+}
+
+PARODY_LINES = [
+    "A narrator somewhere quietly questioned why this situation was following the exact rules of a light novel.",
+    "The protagonist considered making a dramatic speech, then remembered they had not prepared one.",
+    "A suspiciously convenient coincidence arrived exactly on schedule and was immediately treated with distrust.",
+    "The situation had become so dramatic that even the background music seemed to be looking for an exit.",
+    "Someone mentioned destiny. Everyone stared at them until they stopped.",
+    "The universe appeared to have a very specific sense of humor, and unfortunately the protagonist was the joke.",
+]
+
 SECONDARY_GENRES = [
     "Adventure",
     "Action",
@@ -2790,16 +2807,17 @@ def get_arc(
 @lru_cache(maxsize=64)
 def generate_blueprint(
     seed: str,
+    genre_override: str | None = None,
+    parody_override: bool = False,
 ) -> Dict:
 
     core_rng = stable_rng(
         f"{seed}:core"
     )
 
-    genre = pick(
-        core_rng,
-        GENRES,
-    )
+    encoded_genre, encoded_parody = decode_seed_options(seed)
+    genre = genre_override or encoded_genre or pick(core_rng, GENRES)
+    parody_mode = bool(parody_override or encoded_parody)
 
     secondary_genre = pick(
         core_rng,
@@ -3035,7 +3053,8 @@ def generate_blueprint(
     }
 
     if (
-        genre in comedy_genres
+        parody_mode
+        or genre in comedy_genres
         or secondary_genre in comedy_genres
         or tone in {
             "comedic",
@@ -3097,6 +3116,7 @@ def generate_blueprint(
         "genre": genre,
         "secondary_genre": secondary_genre,
         "tone": tone,
+        "parody_mode": parody_mode,
         "themes": themes,
         "synopsis": synopsis,
 
@@ -3266,12 +3286,17 @@ def generate_blueprint(
 # NOVEL GENERATION
 # ============================================================
 
-def generate_novel() -> Dict:
+def generate_novel(
+    genre: str | None = None,
+    parody: bool = False,
+) -> Dict:
 
-    seed = make_seed()
+    seed = make_seed(genre, parody)
 
     blueprint = generate_blueprint(
-        seed
+        seed,
+        genre_override=genre,
+        parody_override=parody,
     )
 
     design = make_design(
@@ -3311,6 +3336,10 @@ def generate_novel() -> Dict:
 
         "secondary_genre": blueprint[
             "secondary_genre"
+        ],
+
+        "parody_mode": blueprint[
+            "parody_mode"
         ],
 
         "tone": blueprint[
