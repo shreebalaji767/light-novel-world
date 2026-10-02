@@ -64,7 +64,25 @@ def api_chapter(seed: str, chapter_number: int):
     if not 1 <= chapter_number <= CHAPTER_COUNT:
         abort(404)
 
-    chapter = generate_chapter(seed, chapter_number)
+    try:
+        chapter = generate_chapter(seed, chapter_number)
+    except Exception as exc:
+        app.logger.exception(
+            "Chapter generation failed: seed=%s chapter=%s",
+            seed,
+            chapter_number,
+        )
+        response = jsonify(
+            {
+                "error": "chapter_generation_failed",
+                "chapter": chapter_number,
+                "message": str(exc),
+            }
+        )
+        response.status_code = 500
+        response.headers["Cache-Control"] = "no-store"
+        return response
+
     response = jsonify(chapter)
 
     # The chapter is deterministic for this seed + number, so it is safe
